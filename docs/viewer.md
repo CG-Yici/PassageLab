@@ -4,7 +4,7 @@ The desktop application uses OpenGL 3.3 core with GLFW, GLAD, Dear ImGui and Eig
 
 ## Controls
 
-- Drag in the viewport to orbit; Shift-drag to pan; use the wheel to zoom.
+- Drag empty viewport space to orbit; Shift-drag to pan; use the wheel to zoom. Drag a picked box/sphere to edit its world position (body components move in body-local coordinates).
 - Click the viewport to select an obstacle, use **Focus selection** to center the camera, or choose **Reset camera**.
 - Edit body dimensions, start/goal poses, obstacle dimensions and positions, or planning/validation settings in the left panel. Any such edit increments the scene revision and invalidates the current plan.
 - **Plan path** runs the planner asynchronously. **Cancel** requests cooperative cancellation. A successful path is displayed only when the planner reports `Solved`.
@@ -15,11 +15,11 @@ The viewer labels its guarantee **discrete validation**. A solved path has passe
 ## Command line
 
 ```text
-PassageLabDesktop [--scene scene.json] [--smoke-test]
-PassageLabDesktop --screenshot capture.ppm
-PassageLabDesktop --frames 4
+PassageLabDesktop [--scene scene.json] [--demo 0|1|2] [--smoke-test]
+PassageLabDesktop --screenshot capture.ppm [--demo 0|1|2]
+PassageLabDesktop --capture-dir frames --frames 60 [--demo 0|1|2]
 ```
 
-`--smoke-test` creates a context, renders four frames and exits. `--frames N` exits after N rendered frames. `--screenshot` solves the first demo scene using a fixed seed and operation budget, then captures the visible application frame as binary PPM. If planning does not produce a validated solution, the screenshot shows that truthful result; no reference animation is substituted.
+`--smoke-test` creates a context, renders four frames and exits. `--frames N` exits after N rendered frames. `--screenshot` solves the selected demo using a fixed sequence of seeds and operation budgets, sets playback to 40%, then captures the visible application frame as binary PPM before buffer swap. `--capture-dir` renders playback from start to goal across N frames and writes `frame0000.ppm`, `frame0001.ppm`, and so on. A capture contains only the planner's validated result; if planning does not solve the scene, the visible budget/error status remains truthful. Reference motion is never substituted.
 
-The rendering layer currently draws box meshes for all analytic shapes, using their dimensions for a quick engineering visualization. Sphere geometry rendering and per-frame nearest-clearance witness overlays are not yet implemented. The planning result's sampled-clearance metric is shown when available. Picking currently selects the first obstacle when the viewport is clicked; geometric ray picking is still pending.
+The viewport renders the configured box and sphere geometry, the current playback-state query, available distance witnesses, path ghosts, search edges, and collision pairs. Imported paths are labeled as unverified previews until explicitly revalidated against the current scene. Picking uses camera-unprojected rays and nearest analytic geometry hits.
