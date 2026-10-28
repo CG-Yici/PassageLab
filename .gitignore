@@ -1,0 +1,10 @@
+/.tools/
+/build/
+/out/
+/vcpkg_installed/
+/results/
+/.vs/
+/dist/
+__pycache__/
+CMakeUserPresets.json
+*.user

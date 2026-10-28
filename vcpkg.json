@@ -1,0 +1,9 @@
+{
+  "name": "passagelab",
+  "version-semver": "0.1.0",
+  "builtin-baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+  "dependencies": [
+    "eigen3", "nlohmann-json", "catch2", "fcl", "ompl", "glfw3", "glad",
+    { "name": "imgui", "features": ["glfw-binding", "opengl3-binding"] }
+  ]
+}
