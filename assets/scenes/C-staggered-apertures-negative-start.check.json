@@ -1,0 +1,7 @@
+{
+  "body": "spine",
+  "expected": "invalid_start",
+  "obstacle": "vertical-opening-left",
+  "reason": "collision or contact",
+  "valid": false
+}

@@ -1,0 +1,39 @@
+name: Windows build and validation
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    env:
+      VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/.binary-cache,readwrite
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: .binary-cache
+          key: windows-msvc-${{ hashFiles('vcpkg.json') }}
+      - name: Configure, build, test
+        shell: pwsh
+        run: ./tools/build.ps1
+      - name: Validate scene assets and solve regression demos
+        shell: pwsh
+        run: |
+          $cli = './build/windows/Release/passagelab_cli.exe'
+          & $cli generate-scenes --out results/generated
+          if ($LASTEXITCODE) { throw 'Reference validation failed' }
+          foreach ($demo in 0,1,2) {
+            & $cli plan --demo $demo --seconds 0 --seed 42 --out "results/demo-$demo"
+            if ($LASTEXITCODE) { throw "Demo $demo failed" }
+          }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: validation-results
+          path: |
+            results/
+            build/windows/Testing/Temporary/LastTest.log

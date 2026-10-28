@@ -1,0 +1,7 @@
+{
+  "body": "bar",
+  "expected": "invalid_start",
+  "obstacle": "central-column",
+  "reason": "collision or contact",
+  "valid": false
+}

@@ -1,0 +1,2 @@
+#pragma once
+inline constexpr const char* PL_DEPENDENCIES_JSON = R"pldeps(@PL_DEPENDENCIES@)pldeps";

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "seed_start": 1000,
+  "seed_count": 30,
+  "reference_seed": 42,
+  "scenes": ["A-offset-passage", "B-L-corner", "C-staggered-apertures"],
+  "baseline": {"planner": "passagelab", "use_bvh": true, "step": 0.08},
+  "comparisons": ["brute", "fine-step-0.04", "ompl"],
+  "search_seconds": 5,
+  "goal_bias": 0,
+  "rendering": false,
+  "build": "Release",
+  "note": "Reference seed uses fixed operation budgets. Timed experimental outcomes are hardware-dependent. Failed runs are included."
+}

@@ -12,13 +12,16 @@
 namespace pl {
 using Vec3 = Eigen::Vector3d;
 using Quat = Eigen::Quaterniond;
-struct Pose { Vec3 t = Vec3::Zero(); Quat q = Quat::Identity(); };
-Pose compose(const Pose&, const Pose&);
-Pose inverse(const Pose&);
-Pose interpolate(const Pose&, const Pose&, double);
-double rotation_distance(const Quat&, const Quat&);
-double pose_distance(const Pose&, const Pose&, double rotation_weight);
-bool valid_pose(const Pose&);
+struct Pose {
+    Vec3 t = Vec3::Zero();
+    Quat q = Quat::Identity();
+};
+Pose compose(const Pose &, const Pose &);
+Pose inverse(const Pose &);
+Pose interpolate(const Pose &, const Pose &, double);
+double rotation_distance(const Quat &, const Quat &);
+double pose_distance(const Pose &, const Pose &, double rotation_weight);
+bool valid_pose(const Pose &);
 enum class Shape { Box, Sphere };
 struct Part {
     std::string id;
@@ -27,7 +30,10 @@ struct Part {
     double radius = 0.5;
     Pose pose; // body-local for components, world for obstacles
 };
-struct Bounds { Vec3 min = Vec3::Constant(-5); Vec3 max = Vec3::Constant(5); };
+struct Bounds {
+    Vec3 min = Vec3::Constant(-5);
+    Vec3 max = Vec3::Constant(5);
+};
 struct ValidationConfig {
     double translation_step = 0.08;
     double rotation_step = 0.08;
@@ -51,10 +57,12 @@ struct Scene {
     Pose start, goal;
     PlannerConfig config;
 };
-struct Aabb { Vec3 min, max; };
-Aabb world_aabb(const Part&, const Pose& parent = {});
-double body_radius(const Scene&);
-std::vector<std::string> scene_errors(const Scene&);
+struct Aabb {
+    Vec3 min, max;
+};
+Aabb world_aabb(const Part &, const Pose &parent = {});
+double body_radius(const Scene &);
+std::vector<std::string> scene_errors(const Scene &);
 enum class Relation { Separated, Touching, Overlapping, Indeterminate };
 struct QueryResult {
     Relation relation = Relation::Indeterminate;
@@ -62,9 +70,16 @@ struct QueryResult {
     std::optional<double> distance;
     std::optional<Vec3> on_body, on_obstacle;
 };
-QueryResult query_pair(const Part& body, const Pose& body_pose, const Part& obstacle, double tolerance = 1e-8);
-struct QueryStats { std::uint64_t states = 0, motions = 0, narrow = 0, broad = 0, samples = 0; };
-struct StateResult { bool valid = false; std::string reason; QueryResult query; };
+QueryResult query_pair(const Part &body, const Pose &body_pose, const Part &obstacle,
+                       double tolerance = 1e-8);
+struct QueryStats {
+    std::uint64_t states = 0, motions = 0, narrow = 0, broad = 0, samples = 0;
+};
+struct StateResult {
+    bool valid = false;
+    std::string reason;
+    QueryResult query;
+};
 enum class CheckStatus { Passed, Failed, Incomplete, Cancelled };
 struct MotionResult {
     CheckStatus status = CheckStatus::Incomplete;
@@ -74,15 +89,17 @@ struct MotionResult {
     StateResult failure;
 };
 class Validator {
-public:
-    explicit Validator(const Scene&);
+  public:
+    explicit Validator(const Scene &);
     ~Validator();
-    Validator(const Validator&) = delete;
-    Validator& operator=(const Validator&) = delete;
-    StateResult state(const Pose&, const ValidationConfig&, bool distance = false);
-    MotionResult motion(const Pose&, const Pose&, const ValidationConfig&, std::stop_token = {});
+    Validator(const Validator &) = delete;
+    Validator &operator=(const Validator &) = delete;
+    StateResult state(const Pose &, const ValidationConfig &, bool distance = false);
+    MotionResult motion(const Pose &, const Pose &, const ValidationConfig &, std::stop_token = {});
     QueryStats stats() const;
-private:
+    void set_query_budget(std::uint64_t maximum_narrow_queries);
+
+  private:
     struct Impl;
     std::unique_ptr<Impl> impl_;
 };
@@ -100,9 +117,20 @@ struct PathMetrics {
     std::uint64_t samples = 0;
     bool complete = false;
 };
-enum class SolveStatus { Solved, InvalidStart, InvalidGoal, BudgetExhausted, Cancelled, ValidationIncomplete, Error };
+enum class SolveStatus {
+    Solved,
+    InvalidStart,
+    InvalidGoal,
+    BudgetExhausted,
+    Cancelled,
+    ValidationIncomplete,
+    Error
+};
 std::string to_string(SolveStatus);
-struct SearchEdge { Pose from, to; bool start_tree = true; };
+struct SearchEdge {
+    Pose from, to;
+    bool start_tree = true;
+};
 struct PlanningResult {
     SolveStatus status = SolveStatus::Error;
     std::string reason;
@@ -114,10 +142,12 @@ struct PlanningResult {
     std::vector<SearchEdge> edges;
 };
 using Progress = std::function<void(std::uint64_t, std::uint64_t)>;
-PlanningResult solve(const Scene&, const PlannerConfig&, std::stop_token = {}, Progress = {});
-MotionResult validate_path(const Scene&, const Path&, const ValidationConfig&, std::stop_token = {});
-Path optimize(const Scene&, const Path&, const PlannerConfig&, std::stop_token = {});
-PathMetrics evaluate(const Scene&, const Path&, const PlannerConfig&, std::stop_token = {});
-PlanningResult solve_ompl(const Scene&, const PlannerConfig&, std::stop_token = {});
-std::optional<double> ray_box(const Vec3& origin, const Vec3& direction, const Part&, const Pose& parent = {});
+PlanningResult solve(const Scene &, const PlannerConfig &, std::stop_token = {}, Progress = {});
+MotionResult validate_path(const Scene &, const Path &, const ValidationConfig &,
+                           std::stop_token = {});
+Path optimize(const Scene &, const Path &, const PlannerConfig &, std::stop_token = {});
+PathMetrics evaluate(const Scene &, const Path &, const PlannerConfig &, std::stop_token = {});
+PlanningResult solve_ompl(const Scene &, const PlannerConfig &, std::stop_token = {});
+std::optional<double> ray_box(const Vec3 &origin, const Vec3 &direction, const Part &,
+                              const Pose &parent = {});
 } // namespace pl

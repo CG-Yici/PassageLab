@@ -8,3 +8,5 @@
 __pycache__/
 CMakeUserPresets.json
 *.user
+/imgui.ini
+/.binary-cache/
