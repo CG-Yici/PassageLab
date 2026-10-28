@@ -12,14 +12,19 @@ The desktop application uses OpenGL 3.3 core with GLFW, GLAD, Dear ImGui and Eig
 
 The viewer labels its guarantee **discrete validation**. A solved path has passed the configured sampled checks; it is not a continuous collision certificate. Search-budget exhaustion and cancellation remain visible as non-solved statuses. Reference paths are not displayed as planner results.
 
+On Windows the UI loads the system Segoe UI font at 17 px when available; it falls back to Dear ImGui's built-in font. No font asset is bundled.
+
 ## Command line
 
 ```text
-PassageLabDesktop [--scene scene.json] [--demo 0|1|2] [--smoke-test]
-PassageLabDesktop --screenshot capture.ppm [--demo 0|1|2]
-PassageLabDesktop --capture-dir frames --frames 60 [--demo 0|1|2]
+passagelab_desktop.exe [--scene scene.json] [--demo 0|1|2] [--smoke-test]
+passagelab_desktop.exe --screenshot capture.ppm [--demo 0|1|2]
+passagelab_desktop.exe --capture-dir frames --frames 60 [--demo 0|1|2]
+passagelab_desktop.exe --ui-self-test
 ```
 
 `--smoke-test` creates a context, renders four frames and exits. `--frames N` exits after N rendered frames. `--screenshot` solves the selected demo using a fixed sequence of seeds and operation budgets, sets playback to 40%, then captures the visible application frame as binary PPM before buffer swap. `--capture-dir` renders playback from start to goal across N frames and writes `frame0000.ppm`, `frame0001.ppm`, and so on. A capture contains only the planner's validated result; if planning does not solve the scene, the visible budget/error status remains truthful. Reference motion is never substituted.
+
+`--ui-self-test` creates a hidden OpenGL window and exercises worker launch/cancel, stale-result invalidation, imported-path revalidation, and scene/path JSON round trips. It exits nonzero when an assertion fails.
 
 The viewport renders the configured box and sphere geometry, the current playback-state query, available distance witnesses, path ghosts, search edges, and collision pairs. Imported paths are labeled as unverified previews until explicitly revalidated against the current scene. Picking uses camera-unprojected rays and nearest analytic geometry hits.
