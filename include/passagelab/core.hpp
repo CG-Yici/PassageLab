@@ -48,6 +48,7 @@ struct PlannerConfig {
     double time_limit = 10.0, extension = 0.5, rotation_weight = 1.0, goal_bias = 0.05;
     std::uint64_t shortcut_attempts = 100;
     ValidationConfig validation;
+    bool planar_xy = false; // fixed start Z, rotations about world Z relative to start orientation
 };
 struct Scene {
     std::string id = "scene", hash;
@@ -63,6 +64,20 @@ struct Aabb {
 Aabb world_aabb(const Part &, const Pose &parent = {});
 double body_radius(const Scene &);
 std::vector<std::string> scene_errors(const Scene &);
+bool in_motion_space(const Scene &, const Pose &);
+struct PointDistance {
+    double distance = 0;
+    Vec3 closest = Vec3::Zero();
+    bool inside = false;
+};
+std::optional<PointDistance> point_segment(const Vec3 &, const Vec3 &, const Vec3 &);
+std::optional<PointDistance> point_box(const Vec3 &, const Part &, const Pose &parent = {});
+struct RayHit {
+    double parameter = 0;
+    Vec3 position = Vec3::Zero(), barycentric = Vec3::Zero();
+};
+std::optional<RayHit> ray_triangle(const Vec3 &origin, const Vec3 &direction,
+                                   const Vec3 &, const Vec3 &, const Vec3 &);
 enum class Relation { Separated, Touching, Overlapping, Indeterminate };
 struct QueryResult {
     Relation relation = Relation::Indeterminate;
@@ -87,6 +102,9 @@ struct MotionResult {
     double failed_u = 0;
     std::string reason;
     StateResult failure;
+    std::uint64_t intervals = 0;
+    double translation_step = 0, rotation_step = 0, surface_step = 0;
+    std::optional<std::size_t> failed_edge;
 };
 class Validator {
   public:
@@ -109,11 +127,13 @@ struct Path {
     std::uint64_t scene_revision = 0;
     ValidationConfig validation;
     std::string source = "rrt-connect";
+    std::string request_id;
 };
 struct PathMetrics {
     double translation = 0, rotation = 0, objective = 0;
     std::optional<double> min_sampled_clearance;
     std::optional<Pose> min_clearance_pose;
+    std::optional<double> min_clearance_position; // normalized path-node playback position
     std::uint64_t samples = 0;
     bool complete = false;
 };
@@ -130,6 +150,7 @@ std::string to_string(SolveStatus);
 struct SearchEdge {
     Pose from, to;
     bool start_tree = true;
+    bool accepted = true;
 };
 struct PlanningResult {
     SolveStatus status = SolveStatus::Error;
@@ -142,7 +163,10 @@ struct PlanningResult {
     std::vector<SearchEdge> edges;
 };
 using Progress = std::function<void(std::uint64_t, std::uint64_t)>;
-PlanningResult solve(const Scene &, const PlannerConfig &, std::stop_token = {}, Progress = {});
+using SearchProgress = std::function<void(const SearchEdge &)>;
+std::string new_request_id();
+PlanningResult solve(const Scene &, const PlannerConfig &, std::stop_token = {}, Progress = {},
+                     SearchProgress = {});
 MotionResult validate_path(const Scene &, const Path &, const ValidationConfig &,
                            std::stop_token = {});
 Path optimize(const Scene &, const Path &, const PlannerConfig &, std::stop_token = {});

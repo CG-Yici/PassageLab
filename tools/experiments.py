@@ -2,6 +2,7 @@
 import argparse
 import json
 import math
+import os
 from pathlib import Path
 import statistics
 import subprocess
@@ -20,6 +21,8 @@ def wilson(success, count):
 def summarize(rows):
     solved = [r for r in rows if r['status'] == 'solved']
     times = [r['total_seconds'] for r in solved]
+    search_times = [r['search_seconds'] for r in solved]
+    optimized = [r for r in solved if (r.get('optimized_metrics') or {}).get('complete')]
     reasons = {}
     for row in rows:
         reasons[row['status']] = reasons.get(row['status'], 0) + 1
@@ -28,6 +31,13 @@ def summarize(rows):
         'success_fraction': len(solved)/len(rows),
         'success_wilson_95': wilson(len(solved), len(rows)),
         'median_solved_total_seconds': statistics.median(times) if times else None,
+        'solved_search_seconds_distribution': {
+            'min': min(search_times), 'median': statistics.median(search_times),
+            'max': max(search_times), 'quartiles': statistics.quantiles(search_times, n=4) if len(search_times) > 1 else [],
+        } if search_times else None,
+        'median_original_objective_m': statistics.median(r['metrics']['objective_m'] for r in solved) if solved else None,
+        'optimized_count': len(optimized),
+        'median_optimized_objective_m': statistics.median(r['optimized_metrics']['objective_m'] for r in optimized) if optimized else None,
         'total_all_run_seconds': sum(r['total_seconds'] for r in rows),
         'median_solved_translation_m': statistics.median(r['metrics']['translation_m'] for r in solved) if solved else None,
         'median_solved_rotation_rad': statistics.median(r['metrics']['rotation_rad'] for r in solved) if solved else None,
@@ -38,12 +48,17 @@ def summarize(rows):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--exe', default='build/windows/Release/passagelab_cli.exe')
-    p.add_argument('--out', default='benchmarks/data/release-0.1.0')
+    p.add_argument('--out', default='results/experiments-0.2.0')
     p.add_argument('--runs', type=int, default=30)
     p.add_argument('--seconds', type=float, default=5)
     p.add_argument('--suite', choices=['baseline','comparisons'], default='baseline')
     args = p.parse_args()
-    out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
+    if args.runs < 1 or not math.isfinite(args.seconds) or args.seconds < 0:
+        p.error('runs must be positive and seconds must be finite and nonnegative')
+    out = Path(args.out)
+    if out.exists() and any(out.iterdir()):
+        p.error('output directory already contains evidence; choose a new --out')
+    out.mkdir(parents=True, exist_ok=True)
     variants = [('self', [])] if args.suite == 'baseline' else [
         ('brute', ['--brute']), ('fine', ['--step', '0.04']), ('ompl', ['--planner', 'ompl'])]
     groups = {}
@@ -68,6 +83,7 @@ def main():
             groups[key]=summarize(rows)
             (out/'summary.json').write_text(json.dumps(groups, indent=2))
     try:
+        os.environ['MPLCONFIGDIR'] = str((out / '.matplotlib').resolve())
         import matplotlib
         matplotlib.use('Agg')
         import matplotlib.pyplot as plt

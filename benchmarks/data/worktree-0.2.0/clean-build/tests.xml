@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Win32-MSBuild"
+	tests="40"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="CG-Dream"
+	time="0"
+	timestamp="2026-10-28T19:18:46"
+	>
+	<testcase name="All frozen demonstration reference motions pass discrete validation" classname="All frozen demonstration reference motions pass discrete validation" time="0.0161951" status="run">
+		<system-out>Filters: "All frozen demonstration reference motions pass discrete validation"
+Randomness seeded to: 490264656
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="BVH and brute force agree including positive margins" classname="BVH and brute force agree including positive margins" time="0.0094512" status="run">
+		<system-out>Filters: "BVH and brute force agree including positive margins"
+Randomness seeded to: 2909987888
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="BVH distance traversal prunes by lower bound and matches brute force" classname="BVH distance traversal prunes by lower bound and matches brute force" time="0.0092615" status="run">
+		<system-out>Filters: "BVH distance traversal prunes by lower bound and matches brute force"
+Randomness seeded to: 585537741
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="Hashes cover inputs and stale paths cannot be validated" classname="Hashes cover inputs and stale paths cannot be validated" time="0.0098501" status="run">
+		<system-out>Filters: "Hashes cover inputs and stale paths cannot be validated"
+Randomness seeded to: 1897944441
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="OBB SAT collision relation agrees with FCL for randomized separated and overlapping poses" classname="OBB SAT collision relation agrees with FCL for randomized separated and overlapping poses" time="0.0131198" status="run">
+		<system-out>Filters: "OBB SAT collision relation agrees with FCL for randomized separated and overlapping poses"
+Randomness seeded to: 3524155530
+===============================================================================
+All tests passed (1808 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="OMPL obeys cancellation and tiny node budgets" classname="OMPL obeys cancellation and tiny node budgets" time="0.0095168" status="run">
+		<system-out>Filters: "OMPL obeys cancellation and tiny node budgets"
+Randomness seeded to: 910967092
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 1 states (1 start + 0 goal)
+Info:    No solution found after 0.000024 seconds
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="OMPL planning returns only independently validated exact solutions" classname="OMPL planning returns only independently validated exact solutions" time="0.0099083" status="run">
+		<system-out>Filters: "OMPL planning returns only independently validated exact solutions"
+Randomness seeded to: 2430298360
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 6 states (2 start + 4 goal)
+Info:    Solution found in 0.000061 seconds
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 6 states (2 start + 4 goal)
+Info:    Solution found in 0.000032 seconds
+===============================================================================
+All tests passed (16 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="Physical boundaries reject external bypass and negative scenes reject direct motion" classname="Physical boundaries reject external bypass and negative scenes reject direct motion" time="0.0118419" status="run">
+		<system-out>Filters: "Physical boundaries reject external bypass and negative scenes reject direct motion"
+Randomness seeded to: 384287488
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="RRT Connect finds and verifies a detour around an obstacle" classname="RRT Connect finds and verifies a detour around an obstacle" time="0.0099336" status="run">
+		<system-out>Filters: "RRT Connect finds and verifies a detour around an obstacle"
+Randomness seeded to: 140571215
+===============================================================================
+All tests passed (5 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="RRT Connect handles an identical start and goal" classname="RRT Connect handles an identical start and goal" time="0.00914" status="run">
+		<system-out>Filters: "RRT Connect handles an identical start and goal"
+Randomness seeded to: 3872980059
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="Scene JSON preserves geometry and rejects invalid conventions" classname="Scene JSON preserves geometry and rejects invalid conventions" time="0.0091996" status="run">
+		<system-out>Filters: "Scene JSON preserves geometry and rejects invalid conventions"
+Randomness seeded to: 2045979734
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="Scene JSON rejects malformed collections and version types" classname="Scene JSON rejects malformed collections and version types" time="0.0103731" status="run">
+		<system-out>Filters: "Scene JSON rejects malformed collections and version types"
+Randomness seeded to: 3842837834
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="discrete motion detects thin obstacle between clear endpoints" classname="discrete motion detects thin obstacle between clear endpoints" time="0.0100407" status="run">
+		<system-out>Filters: "discrete motion detects thin obstacle between clear endpoints"
+Randomness seeded to: 1548131629
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="invalid scene geometry and identifiers stop validation" classname="invalid scene geometry and identifiers stop validation" time="0.0095182" status="run">
+		<system-out>Filters: "invalid scene geometry and identifiers stop validation"
+Randomness seeded to: 4189618282
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="live search edges match the bounded result and include validated orientation" classname="live search edges match the bounded result and include validated orientation" time="0.0099257" status="run">
+		<system-out>Filters: "live search edges match the bounded result and include validated orientation"
+Randomness seeded to: 3129775501
+===============================================================================
+All tests passed (19 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="max iteration budget counts extensions, including connect" classname="max iteration budget counts extensions, including connect" time="0.0105836" status="run">
+		<system-out>Filters: "max iteration budget counts extensions\, including connect"
+Randomness seeded to: 1910203626
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="minimum clearance playback position reproduces the measured pose" classname="minimum clearance playback position reproduces the measured pose" time="0.0090531" status="run">
+		<system-out>Filters: "minimum clearance playback position reproduces the measured pose"
+Randomness seeded to: 2191324843
+===============================================================================
+All tests passed (5 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="motion diagnostics retain actual resolution and failure sample" classname="motion diagnostics retain actual resolution and failure sample" time="0.0100482" status="run">
+		<system-out>Filters: "motion diagnostics retain actual resolution and failure sample"
+Randomness seeded to: 148898650
+===============================================================================
+All tests passed (7 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="motion reports sample exhaustion and cancellation" classname="motion reports sample exhaustion and cancellation" time="0.0099264" status="run">
+		<system-out>Filters: "motion reports sample exhaustion and cancellation"
+Randomness seeded to: 328403658
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="motion space and request metadata survive JSON round trips" classname="motion space and request metadata survive JSON round trips" time="0.0124203" status="run">
+		<system-out>Filters: "motion space and request metadata survive JSON round trips"
+Randomness seeded to: 2539013800
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="narrow geometry query budget never exceeds its hard limit" classname="narrow geometry query budget never exceeds its hard limit" time="0.0094926" status="run">
+		<system-out>Filters: "narrow geometry query budget never exceeds its hard limit"
+Randomness seeded to: 576590620
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="optimizer preserves scene metadata and declares shortcut source" classname="optimizer preserves scene metadata and declares shortcut source" time="0.0092463" status="run">
+		<system-out>Filters: "optimizer preserves scene metadata and declares shortcut source"
+Randomness seeded to: 3728883718
+===============================================================================
+All tests passed (5 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="path metrics include physical boundary clearance when obstacles are absent" classname="path metrics include physical boundary clearance when obstacles are absent" time="0.0091368" status="run">
+		<system-out>Filters: "path metrics include physical boundary clearance when obstacles are absent"
+Randomness seeded to: 279311095
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="path metrics retain incomplete clearance as absent" classname="path metrics retain incomplete clearance as absent" time="0.0086387" status="run">
+		<system-out>Filters: "path metrics retain incomplete clearance as absent"
+Randomness seeded to: 1637140652
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="path validation rejects stale metadata and endpoint changes" classname="path validation rejects stale metadata and endpoint changes" time="0.0098304" status="run">
+		<system-out>Filters: "path validation rejects stale metadata and endpoint changes"
+Randomness seeded to: 2929917465
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="physical boundary clearance contributes distance and rejects margin" classname="physical boundary clearance contributes distance and rejects margin" time="0.0090231" status="run">
+		<system-out>Filters: "physical boundary clearance contributes distance and rejects margin"
+Randomness seeded to: 1225428570
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="physical wall witness lies on rotated body support" classname="physical wall witness lies on rotated body support" time="0.0093465" status="run">
+		<system-out>Filters: "physical wall witness lies on rotated body support"
+Randomness seeded to: 2004645673
+===============================================================================
+All tests passed (5 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="planar sampling and validation preserve height and yaw-relative tilt" classname="planar sampling and validation preserve height and yaw-relative tilt" time="0.0100156" status="run">
+		<system-out>Filters: "planar sampling and validation preserve height and yaw-relative tilt"
+Randomness seeded to: 2442644641
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 8 states (2 start + 6 goal)
+Info:    Solution found in 0.000076 seconds
+===============================================================================
+All tests passed (24 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="point queries handle projection clamping containment and degenerate segments" classname="point queries handle projection clamping containment and degenerate segments" time="0.0093634" status="run">
+		<system-out>Filters: "point queries handle projection clamping containment and degenerate segments"
+Randomness seeded to: 1417545367
+===============================================================================
+All tests passed (26 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="ray triangle picking handles edges misses degeneracy and transformed views" classname="ray triangle picking handles edges misses degeneracy and transformed views" time="0.0091552" status="run">
+		<system-out>Filters: "ray triangle picking handles edges misses degeneracy and transformed views"
+Randomness seeded to: 478939124
+===============================================================================
+All tests passed (10 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="rigid transforms and shortest arc are stable" classname="rigid transforms and shortest arc are stable" time="0.0090242" status="run">
+		<system-out>Filters: "rigid transforms and shortest arc are stable"
+Randomness seeded to: 3497541060
+===============================================================================
+All tests passed (19 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="rotation samples the swept footprint" classname="rotation samples the swept footprint" time="0.0096224" status="run">
+		<system-out>Filters: "rotation samples the swept footprint"
+Randomness seeded to: 2210542334
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="search operation budgets and cancellation terminate" classname="search operation budgets and cancellation terminate" time="0.0091415" status="run">
+		<system-out>Filters: "search operation budgets and cancellation terminate"
+Randomness seeded to: 1267337661
+===============================================================================
+All tests passed (3 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="skew edge pair has exact symmetric closest feature distance" classname="skew edge pair has exact symmetric closest feature distance" time="0.0092606" status="run">
+		<system-out>Filters: "skew edge pair has exact symmetric closest feature distance"
+Randomness seeded to: 1544722264
+===============================================================================
+All tests passed (10 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="solve distinguishes invalid endpoints" classname="solve distinguishes invalid endpoints" time="0.0095361" status="run">
+		<system-out>Filters: "solve distinguishes invalid endpoints"
+Randomness seeded to: 2456338565
+===============================================================================
+All tests passed (4 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="sphere distances and OBB SAT classify separation contact and containment" classname="sphere distances and OBB SAT classify separation contact and containment" time="0.0107727" status="run">
+		<system-out>Filters: "sphere distances and OBB SAT classify separation contact and containment"
+Randomness seeded to: 2958018719
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="validation refuses weaker precision and honors singleton cancellation" classname="validation refuses weaker precision and honors singleton cancellation" time="0.008755" status="run">
+		<system-out>Filters: "validation refuses weaker precision and honors singleton cancellation"
+Randomness seeded to: 4099010353
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="validator rejects invalid state and physical boundary overflow" classname="validator rejects invalid state and physical boundary overflow" time="0.008817" status="run">
+		<system-out>Filters: "validator rejects invalid state and physical boundary overflow"
+Randomness seeded to: 2027166290
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="validator stops at hard narrow-query budget without exceeding it" classname="validator stops at hard narrow-query budget without exceeding it" time="0.0087967" status="run">
+		<system-out>Filters: "validator stops at hard narrow-query budget without exceeding it"
+Randomness seeded to: 1440761249
+===============================================================================
+All tests passed (5 assertions in 1 test case)
+
+</system-out>
+	</testcase>
+	<testcase name="cli_output_and_input_contract" classname="cli_output_and_input_contract" time="0.176144" status="run">
+		<system-out></system-out>
+	</testcase>
+</testsuite>

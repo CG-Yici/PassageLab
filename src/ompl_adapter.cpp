@@ -35,8 +35,8 @@ void to_state(const Pose &p, ob::State *state) {
 }
 class LocalSE3Sampler final : public ob::StateSampler {
 public:
-  LocalSE3Sampler(const ob::StateSpace *space, std::uint_fast32_t seed)
-      : ob::StateSampler(space) {
+  LocalSE3Sampler(const ob::StateSpace *space, std::uint_fast32_t seed, std::optional<Pose> anchor)
+      : ob::StateSampler(space), anchor_(std::move(anchor)) {
     rng_.setLocalSeed(seed);
   }
   void sampleUniform(ob::State *state) override {
@@ -46,6 +46,13 @@ public:
     s->setXYZ(bounds.low[0] + u() * (bounds.high[0] - bounds.low[0]),
               bounds.low[1] + u() * (bounds.high[1] - bounds.low[1]),
               bounds.low[2] + u() * (bounds.high[2] - bounds.low[2]));
+    if (anchor_) {
+      Pose p;
+      p.t = Vec3(s->getX(), s->getY(), anchor_->t.z());
+      p.q = Quat(Eigen::AngleAxisd(2 * std::numbers::pi * u(), Vec3::UnitZ())) * anchor_->q;
+      to_state(p, state);
+      return;
+    }
     const double u1 = u(), u2 = u(), u3 = u(), a = std::sqrt(1 - u1),
                  b = std::sqrt(u1);
     auto &q = s->rotation();
@@ -73,6 +80,13 @@ public:
       return r * std::cos(2 * std::numbers::pi * u()) * std::abs(stddev);
     };
     s->setXYZ(m->getX() + normal(), m->getY() + normal(), m->getZ() + normal());
+    if (anchor_) {
+      Pose p = from_state(mean);
+      p.t = Vec3(s->getX(), s->getY(), anchor_->t.z());
+      p.q = Quat(Eigen::AngleAxisd(normal(), Vec3::UnitZ())) * p.q;
+      to_state(p, state);
+      return;
+    }
     Eigen::Vector3d axis(normal(), normal(), normal());
     if (axis.squaredNorm() < 1e-20)
       axis = Eigen::Vector3d::UnitX();
@@ -91,11 +105,12 @@ public:
 private:
   double u() { return rng_.uniformReal(0.0, 1.0); }
   ompl::RNG rng_;
+  std::optional<Pose> anchor_;
 };
 class WeightedSE3Space final : public ob::SE3StateSpace {
 public:
-  WeightedSE3Space(double rw, std::uint_fast32_t seed)
-      : rotation_weight_(rw), seed_(seed) {}
+  WeightedSE3Space(double rw, std::uint_fast32_t seed, std::optional<Pose> anchor)
+      : rotation_weight_(rw), seed_(seed), anchor_(std::move(anchor)) {}
   double distance(const ob::State *a, const ob::State *b) const override {
     return pose_distance(from_state(a), from_state(b), rotation_weight_);
   }
@@ -104,12 +119,13 @@ public:
     to_state(pl::interpolate(from_state(from), from_state(to), t), state);
   }
   ob::StateSamplerPtr allocDefaultStateSampler() const override {
-    return std::make_shared<LocalSE3Sampler>(this, seed_);
+    return std::make_shared<LocalSE3Sampler>(this, seed_, anchor_);
   }
 
 private:
   double rotation_weight_;
   std::uint_fast32_t seed_;
+  std::optional<Pose> anchor_;
 };
 class SeededRRTConnect final : public og::RRTConnect {
 public:
@@ -244,7 +260,8 @@ PlanningResult solve_ompl(const Scene &scene, const PlannerConfig &cfg,
     finish();
     return out;
   }
-  if (!valid_config(cfg) || !valid_sampling_bounds(scene.sampling)) {
+  if (!valid_config(cfg) || !valid_sampling_bounds(scene.sampling) ||
+      cfg.planar_xy != scene.config.planar_xy) {
     out.status = SolveStatus::Error;
     out.reason = "invalid configuration or sampling bounds";
     finish();
@@ -276,7 +293,8 @@ PlanningResult solve_ompl(const Scene &scene, const PlannerConfig &cfg,
   }
   auto space = std::make_shared<WeightedSE3Space>(
       cfg.rotation_weight,
-      static_cast<std::uint_fast32_t>(cfg.seed ^ 0x6a09e667f3bcc909ULL));
+      static_cast<std::uint_fast32_t>(cfg.seed ^ 0x6a09e667f3bcc909ULL),
+      cfg.planar_xy ? std::optional<Pose>(scene.start) : std::nullopt);
   ob::RealVectorBounds bounds(3);
   for (int i = 0; i < 3; ++i) {
     bounds.setLow(i, scene.sampling.min[i]);
@@ -353,6 +371,7 @@ PlanningResult solve_ompl(const Scene &scene, const PlannerConfig &cfg,
       poses.push_back(from_state(path.getState(i)));
     out.path = {std::move(poses), scene.hash, scene.revision, cfg.validation,
                 "ompl-rrt-connect"};
+    out.path.request_id = new_request_id();
     const auto v = std::chrono::steady_clock::now();
     const auto remaining = operations.load() < cfg.max_queries
                                ? cfg.max_queries - operations.load()
@@ -381,12 +400,17 @@ PlanningResult solve_ompl(const Scene &scene, const PlannerConfig &cfg,
         auto edge = verifier.motion(out.path.poses[i - 1], out.path.poses[i],
                                     cfg.validation, stop);
         out.verification.samples += edge.samples;
+        out.verification.intervals += edge.intervals;
+        out.verification.translation_step = std::max(out.verification.translation_step, edge.translation_step);
+        out.verification.rotation_step = std::max(out.verification.rotation_step, edge.rotation_step);
+        out.verification.surface_step = std::max(out.verification.surface_step, edge.surface_step);
         if (edge.status != CheckStatus::Passed) {
           out.verification.status = edge.status;
           out.verification.failed_u = edge.failed_u;
           out.verification.reason =
               "path edge " + std::to_string(i - 1) + " failed: " + edge.reason;
           out.verification.failure = edge.failure;
+          out.verification.failed_edge = i - 1;
           break;
         }
       }

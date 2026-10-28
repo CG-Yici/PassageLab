@@ -1,0 +1,92 @@
+{
+  "self-demo-0": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.00289755,
+    "solved_search_seconds_distribution": {
+      "min": 0.0009042,
+      "median": 0.00252085,
+      "max": 0.0045503,
+      "quartiles": [
+        0.00188235,
+        0.00252085,
+        0.0033534
+      ]
+    },
+    "median_original_objective_m": 17.476122315421918,
+    "optimized_count": 30,
+    "median_optimized_objective_m": 11.3964543929625,
+    "total_all_run_seconds": 0.0890189,
+    "median_solved_translation_m": 8.505866226559366,
+    "median_solved_rotation_rad": 8.063923622392629,
+    "mean_narrow_queries_all_runs": 568.1333333333333
+  },
+  "self-demo-1": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.00040019999999999997,
+    "solved_search_seconds_distribution": {
+      "min": 0.0001648,
+      "median": 0.00026655,
+      "max": 0.0008491,
+      "quartiles": [
+        0.000221775,
+        0.00026655,
+        0.00038425000000000004
+      ]
+    },
+    "median_original_objective_m": 9.721815782472387,
+    "optimized_count": 30,
+    "median_optimized_objective_m": 7.276853944030821,
+    "total_all_run_seconds": 0.0144368,
+    "median_solved_translation_m": 5.077406343127808,
+    "median_solved_rotation_rad": 3.581073521181101,
+    "mean_narrow_queries_all_runs": 60
+  },
+  "self-demo-2": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.037694,
+    "solved_search_seconds_distribution": {
+      "min": 0.012246700000000001,
+      "median": 0.02708775,
+      "max": 0.7521918,
+      "quartiles": [
+        0.0209817,
+        0.02708775,
+        0.043346625
+      ]
+    },
+    "median_original_objective_m": 12.80197377544888,
+    "optimized_count": 30,
+    "median_optimized_objective_m": 9.164393850316337,
+    "total_all_run_seconds": 2.1677089,
+    "median_solved_translation_m": 6.9976111988487855,
+    "median_solved_rotation_rad": 4.846606985129995,
+    "mean_narrow_queries_all_runs": 18830.466666666667
+  }
+}

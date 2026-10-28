@@ -2,6 +2,39 @@
 #include <limits>
 #include <passagelab/io.hpp>
 using namespace pl;
+TEST_CASE("motion space and request metadata survive JSON round trips", "[io]") {
+    auto s = demo_scenes()[0];
+    const auto original = s.hash;
+    s.config.planar_xy = true;
+    refresh_hash(s);
+    REQUIRE(s.hash != original);
+    REQUIRE(scene_from_json(scene_json(s)).config.planar_xy);
+    auto j = scene_json(s);
+    j["default_planning_config"]["motion_space"] = "unknown";
+    REQUIRE_THROWS(scene_from_json(j));
+    auto r = solve(s, s.config);
+    REQUIRE(r.status == SolveStatus::Solved);
+    REQUIRE(path_from_json(path_json(r.path)).request_id == r.path.request_id);
+    auto p = path_json(r.path);
+    p["endpoint_rotation_tolerance_rad"] = 1.0;
+    REQUIRE_THROWS(path_from_json(p));
+}
+TEST_CASE("Scene JSON rejects malformed collections and version types", "[io]") {
+    const auto original = scene_json(demo_scenes()[0]);
+    for (const auto *key : {"moving_body", "obstacles"}) {
+        auto j = original;
+        j[key] = Json::object({{"part", original[key][0]}});
+        REQUIRE_THROWS(scene_from_json(j));
+        j[key] = nullptr;
+        REQUIRE_THROWS(scene_from_json(j));
+    }
+    auto j = original;
+    j["scene_id"] = "";
+    REQUIRE_THROWS(scene_from_json(j));
+    j = original;
+    j["schema_version"] = 1.0;
+    REQUIRE_THROWS(scene_from_json(j));
+}
 TEST_CASE("Scene JSON preserves geometry and rejects invalid conventions", "[io]") {
     auto s = demo_scenes()[0];
     auto j = scene_json(s);

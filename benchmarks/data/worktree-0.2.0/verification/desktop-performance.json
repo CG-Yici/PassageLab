@@ -1,0 +1,14 @@
+{
+  "frames_after_warmup": 170,
+  "gpu": "AMD Radeon RX 9070 XT",
+  "height": 900,
+  "max_render_ms": 1.5816,
+  "measurement": "CPU frame start through glFinish, vsync disabled, first 10 excluded",
+  "median_render_ms": 0.419,
+  "median_target_ms": 33.333333,
+  "opengl": "3.3.0 Core Profile Context 26.8.1.260810",
+  "scene": "C-staggered-apertures",
+  "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+  "target_passed": true,
+  "width": 1440
+}

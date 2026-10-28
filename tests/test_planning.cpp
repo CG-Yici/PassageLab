@@ -32,6 +32,74 @@ TEST_CASE("RRT Connect handles an identical start and goal") {
   REQUIRE(r.path.poses.size() == 1);
   REQUIRE(r.verification.status == pl::CheckStatus::Passed);
 }
+TEST_CASE("planar sampling and validation preserve height and yaw-relative tilt") {
+  auto s = clear_scene();
+  s.config.planar_xy = true;
+  s.config.time_limit = 0;
+  s.start.q = pl::Quat(Eigen::AngleAxisd(.3, pl::Vec3::UnitX()));
+  s.goal.q = pl::Quat(Eigen::AngleAxisd(.8, pl::Vec3::UnitZ())) * s.start.q;
+  for (bool ompl : {false, true}) {
+    auto r = ompl ? pl::solve_ompl(s, s.config) : pl::solve(s, s.config);
+    REQUIRE(r.status == pl::SolveStatus::Solved);
+    REQUIRE_FALSE(r.path.request_id.empty());
+    for (const auto &pose : r.path.poses)
+      CHECK(pl::in_motion_space(s, pose));
+    REQUIRE(pl::validate_path(s, r.path, s.config.validation).status == pl::CheckStatus::Passed);
+    auto bad = r.path;
+    auto middle = pl::interpolate(s.start, s.goal, .5);
+    middle.t.z() += .1;
+    bad.poses.insert(bad.poses.begin() + 1, middle);
+    CHECK(pl::validate_path(s, bad, s.config.validation).status == pl::CheckStatus::Failed);
+  }
+  s.goal.t.z() += .1;
+  CHECK(pl::solve(s, s.config).status == pl::SolveStatus::InvalidGoal);
+  CHECK(pl::solve_ompl(s, s.config).status == pl::SolveStatus::InvalidGoal);
+  s.goal.t.z() = s.start.t.z();
+  s.goal.q = pl::Quat(Eigen::AngleAxisd(.6, pl::Vec3::UnitX()));
+  CHECK(pl::solve(s, s.config).status == pl::SolveStatus::InvalidGoal);
+}
+
+TEST_CASE("live search edges match the bounded result and include validated orientation") {
+  auto s = clear_scene();
+  s.config.time_limit = 0;
+  std::vector<pl::SearchEdge> live;
+  auto r = pl::solve(s, s.config, {}, {}, [&](const pl::SearchEdge &edge) {
+    live.push_back(edge);
+  });
+  REQUIRE(r.status == pl::SolveStatus::Solved);
+  REQUIRE_FALSE(live.empty());
+  REQUIRE(live.size() == r.edges.size());
+  REQUIRE(live.size() <= 4000);
+  pl::Validator validator(s);
+  for (std::size_t i = 0; i < live.size(); ++i) {
+    REQUIRE(pl::valid_pose(live[i].to));
+    REQUIRE(live[i].accepted == r.edges[i].accepted);
+    if (live[i].accepted)
+      REQUIRE(validator.motion(live[i].from, live[i].to, s.config.validation).status ==
+              pl::CheckStatus::Passed);
+  }
+}
+
+TEST_CASE("minimum clearance playback position reproduces the measured pose") {
+  auto s = clear_scene();
+  pl::Path p;
+  p.scene_hash = s.hash;
+  p.scene_revision = s.revision;
+  p.validation = s.config.validation;
+  auto middle = s.start;
+  middle.t = pl::Vec3(0, 1.9, 0);
+  middle.q = pl::Quat(Eigen::AngleAxisd(.7, pl::Vec3::UnitZ()));
+  p.poses = {s.start, middle, s.goal};
+  auto m = pl::evaluate(s, p, s.config);
+  REQUIRE(m.complete);
+  REQUIRE(m.min_clearance_position.has_value());
+  REQUIRE(m.min_clearance_pose.has_value());
+  const double x = *m.min_clearance_position * (p.poses.size() - 1);
+  const auto i = std::min(std::size_t(x), p.poses.size() - 2);
+  const auto current = pl::interpolate(p.poses[i], p.poses[i + 1], x - i);
+  REQUIRE((current.t - m.min_clearance_pose->t).norm() < 1e-12);
+  REQUIRE(pl::rotation_distance(current.q, m.min_clearance_pose->q) < 1e-12);
+}
 
 TEST_CASE("solve distinguishes invalid endpoints") {
   auto s = clear_scene();

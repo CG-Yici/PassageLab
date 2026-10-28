@@ -471,6 +471,15 @@ QueryStats Validator::stats() const {
 void Validator::set_query_budget(std::uint64_t maximum_narrow_queries) {
     impl_->max_narrow_queries = maximum_narrow_queries;
 }
+bool in_motion_space(const Scene &scene, const Pose &pose) {
+    if (!valid_pose(pose) || !valid_pose(scene.start))
+        return false;
+    if (!scene.config.planar_xy)
+        return true;
+    const Quat relative = pose.q.normalized() * scene.start.q.normalized().conjugate();
+    return std::abs(pose.t.z() - scene.start.t.z()) <= 1e-8 &&
+           std::hypot(relative.x(), relative.y()) <= 1e-8;
+}
 StateResult Validator::state(const Pose &input, const ValidationConfig &c, bool want_distance) {
     auto &x = *impl_;
     ++x.stats.states;
@@ -487,6 +496,11 @@ StateResult Validator::state(const Pose &input, const ValidationConfig &c, bool 
         return out;
     }
     Pose pose = normalized(input);
+    if (!in_motion_space(x.scene, pose)) {
+        out.reason = "outside planar-xy motion space (fixed start Z and world-Z yaw)";
+        out.query.relation = Relation::Separated;
+        return out;
+    }
     if ((pose.t.array() < x.scene.sampling.min.array()).any() ||
         (pose.t.array() > x.scene.sampling.max.array()).any()) {
         out.reason = "sampling bounds";
@@ -660,6 +674,10 @@ MotionResult Validator::motion(const Pose &a, const Pose &b, const ValidationCon
         return m;
     }
     auto n = static_cast<std::uint64_t>(nd);
+    m.intervals = n;
+    m.translation_step = L / n;
+    m.rotation_step = theta / n;
+    m.surface_step = travel / n;
     for (std::uint64_t i = 0; i <= n; ++i) {
         if (stop.stop_requested()) {
             m.status = CheckStatus::Cancelled;
@@ -680,6 +698,43 @@ MotionResult Validator::motion(const Pose &a, const Pose &b, const ValidationCon
     }
     m.status = CheckStatus::Passed;
     return m;
+}
+std::optional<PointDistance> point_segment(const Vec3 &p, const Vec3 &a, const Vec3 &b) {
+    if (!finite(p) || !finite(a) || !finite(b))
+        return std::nullopt;
+    const Vec3 edge = b - a;
+    const double squared = edge.squaredNorm();
+    if (!std::isfinite(squared))
+        return std::nullopt;
+    const double u = squared == 0 ? 0 : std::clamp((p - a).dot(edge) / squared, 0.0, 1.0);
+    const Vec3 closest = a + u * edge;
+    return PointDistance{(p - closest).norm(), closest, false};
+}
+std::optional<PointDistance> point_box(const Vec3 &p, const Part &box, const Pose &parent) {
+    if (!finite(p) || !valid_part(box) || box.shape != Shape::Box || !valid_pose(parent))
+        return std::nullopt;
+    const Pose world = compose(parent, box.pose);
+    const Vec3 local = world.q.conjugate() * (p - world.t);
+    const Vec3 closest = world.q * local.cwiseMax(-box.half).cwiseMin(box.half) + world.t;
+    return PointDistance{(p - closest).norm(), closest,
+                         (local.cwiseAbs().array() <= box.half.array()).all()};
+}
+std::optional<RayHit> ray_triangle(const Vec3 &o, const Vec3 &d,
+                                    const Vec3 &a, const Vec3 &b, const Vec3 &c) {
+    if (!finite(o) || !finite(d) || !finite(a) || !finite(b) || !finite(c) || d.norm() == 0)
+        return std::nullopt;
+    const Vec3 e1 = b - a, e2 = c - a, h = d.cross(e2);
+    const double determinant = e1.dot(h);
+    const double scale = e1.norm() * e2.norm() * d.norm();
+    if (!std::isfinite(scale) || scale == 0 || std::abs(determinant) <= 1e-12 * scale)
+        return std::nullopt;
+    const Vec3 offset = o - a, cross = offset.cross(e1);
+    const double u = offset.dot(h) / determinant, v = d.dot(cross) / determinant;
+    const double t = e2.dot(cross) / determinant;
+    if (!std::isfinite(t) || !std::isfinite(u) || !std::isfinite(v) ||
+        t < 0 || u < 0 || v < 0 || u + v > 1)
+        return std::nullopt;
+    return RayHit{t, o + t * d, Vec3(1 - u - v, u, v)};
 }
 std::optional<double> ray_box(const Vec3 &o, const Vec3 &d, const Part &p, const Pose &parent) {
     if (!finite(o) || !finite(d) || d.squaredNorm() < 1e-24 || p.shape != Shape::Box ||

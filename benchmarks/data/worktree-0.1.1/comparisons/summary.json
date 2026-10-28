@@ -1,0 +1,155 @@
+{
+  "brute-demo-0": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.0088908,
+    "total_all_run_seconds": 0.2845417,
+    "median_solved_translation_m": 8.505866226559366,
+    "median_solved_rotation_rad": 8.063923622392629,
+    "mean_narrow_queries_all_runs": 2228.7
+  },
+  "brute-demo-1": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.00363305,
+    "total_all_run_seconds": 0.1103196,
+    "median_solved_translation_m": 5.077406343127808,
+    "median_solved_rotation_rad": 3.581073521181101,
+    "mean_narrow_queries_all_runs": 855.1333333333333
+  },
+  "brute-demo-2": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.06313235,
+    "total_all_run_seconds": 4.0918019,
+    "median_solved_translation_m": 6.9976111988487855,
+    "median_solved_rotation_rad": 4.846606985129995,
+    "mean_narrow_queries_all_runs": 35158.9
+  },
+  "fine-demo-0": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.0045314,
+    "total_all_run_seconds": 0.1401205,
+    "median_solved_translation_m": 8.505866226559366,
+    "median_solved_rotation_rad": 8.063923622392629,
+    "mean_narrow_queries_all_runs": 893.9333333333333
+  },
+  "fine-demo-1": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.0006688,
+    "total_all_run_seconds": 0.0213912,
+    "median_solved_translation_m": 5.077406343127808,
+    "median_solved_rotation_rad": 3.581073521181101,
+    "mean_narrow_queries_all_runs": 95
+  },
+  "fine-demo-2": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.06917205,
+    "total_all_run_seconds": 3.7172311,
+    "median_solved_translation_m": 7.074406176776502,
+    "median_solved_rotation_rad": 4.90320543722454,
+    "mean_narrow_queries_all_runs": 32703.1
+  },
+  "ompl-demo-0": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.0037787999999999997,
+    "total_all_run_seconds": 0.1160688,
+    "median_solved_translation_m": 9.031287460229276,
+    "median_solved_rotation_rad": 8.976753066188515,
+    "mean_narrow_queries_all_runs": 621.1333333333333
+  },
+  "ompl-demo-1": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.00058855,
+    "total_all_run_seconds": 0.018372199999999998,
+    "median_solved_translation_m": 5.180001636788246,
+    "median_solved_rotation_rad": 3.9335357640568445,
+    "mean_narrow_queries_all_runs": 49.266666666666666
+  },
+  "ompl-demo-2": {
+    "runs": 30,
+    "solved": 30,
+    "status_counts": {
+      "solved": 30
+    },
+    "success_fraction": 1.0,
+    "success_wilson_95": [
+      0.8864829086095221,
+      1.0
+    ],
+    "median_solved_total_seconds": 0.0323926,
+    "total_all_run_seconds": 1.5101124,
+    "median_solved_translation_m": 6.713391953145015,
+    "median_solved_rotation_rad": 4.238548244285981,
+    "mean_narrow_queries_all_runs": 13028.9
+  }
+}

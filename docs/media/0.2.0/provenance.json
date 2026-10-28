@@ -1,0 +1,14 @@
+{
+  "source": "Actual PassageLab OpenGL frames; no reference motion substitution",
+  "demo_order": [
+    "A",
+    "B",
+    "C"
+  ],
+  "seed_policy": "First solved seed in 42..49, fixed operation limits, wall-clock disabled",
+  "frames_per_demo": 60,
+  "fps": 12,
+  "git_commit": "c9881a2f064feeb5b4853edbaef43c6dc8f827c5",
+  "git_tracked_dirty": true,
+  "executable_sha256": "84559ae067f14130a768f19f23488506cf31948e76a46272d1c0bd65944734f2"
+}

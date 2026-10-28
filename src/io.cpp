@@ -93,6 +93,10 @@ PlannerConfig read_config(const Json &j) {
     c.rotation_weight = finite_number(j, "rotation_weight");
     c.goal_bias = finite_number(j, "goal_bias");
     c.validation = read_validation(j.at("validation"));
+    const auto space = j.value("motion_space", std::string("se3"));
+    if (space != "se3" && space != "planar-xy")
+        throw std::runtime_error("Unsupported motion_space");
+    c.planar_xy = space == "planar-xy";
     if (c.extension <= 0 || c.rotation_weight <= 0 || c.goal_bias < 0 || c.goal_bias > 1 ||
         c.max_nodes < 2)
         throw std::runtime_error("Invalid planner configuration");
@@ -123,9 +127,7 @@ Json read_json(const std::filesystem::path &p) {
     std::ifstream f(p);
     if (!f)
         throw std::runtime_error("Cannot open " + p.string());
-    Json j;
-    f >> j;
-    return j;
+    return Json::parse(f); // Reject trailing documents or garbage as well as malformed JSON.
 }
 Json metric_json(const PathMetrics &m) {
     Json j = {{"translation_m", m.translation}, {"rotation_rad", m.rotation},
@@ -135,11 +137,13 @@ Json metric_json(const PathMetrics &m) {
         j["min_sampled_clearance_m"] = *m.min_sampled_clearance;
     if (m.min_clearance_pose)
         j["min_clearance_pose"] = pose_json(*m.min_clearance_pose);
+    if (m.complete && m.min_clearance_position)
+        j["min_clearance_position"] = *m.min_clearance_position;
     return j;
 }
 } // namespace
 Json config_json(const PlannerConfig &c) {
-    return {{"seed", c.seed},
+    Json j = {{"seed", c.seed},
             {"max_iterations", c.max_iterations},
             {"max_nodes", c.max_nodes},
             {"max_queries", c.max_queries},
@@ -149,6 +153,10 @@ Json config_json(const PlannerConfig &c) {
             {"goal_bias", c.goal_bias},
             {"shortcut_attempts", c.shortcut_attempts},
             {"validation", validation_json(c.validation)}};
+    // Omit the default to retain hashes of existing schema-1 SE(3) scenes.
+    if (c.planar_xy)
+        j["motion_space"] = "planar-xy";
+    return j;
 }
 Json scene_json(const Scene &s) {
     Json j = {{"schema_version", 1},
@@ -192,11 +200,13 @@ void refresh_hash(Scene &s) {
     s.hash = scene_hash(s);
 }
 Scene scene_from_json(const Json &j) {
-    if (j.at("schema_version") != 1 || j.at("units") != "m" ||
+    if (!j.at("schema_version").is_number_integer() || j.at("schema_version") != 1 || j.at("units") != "m" ||
         j.at("axis_convention") != "right-handed-z-up" || j.at("quaternion_order") != "xyzw")
         throw std::runtime_error("Unsupported scene version or coordinate convention");
     Scene s;
     s.id = j.at("scene_id").get<std::string>();
+    if (s.id.empty() || !j.at("moving_body").is_array() || !j.at("obstacles").is_array())
+        throw std::runtime_error("Scene needs a nonempty ID and arrays for moving_body and obstacles");
     s.revision = count(j, "scene_revision");
     s.sampling = read_bounds(j.at("sampling_bounds"));
     s.physical = read_bounds(j.at("physical_bounds"));
@@ -238,6 +248,9 @@ Json path_json(const Path &p) {
               {"quaternion_order", "xyzw"},
               {"interpolation", "linear-translation-shortest-arc-slerp"},
               {"source", p.source},
+              {"request_id", p.request_id},
+              {"endpoint_translation_tolerance_m", 1e-8},
+              {"endpoint_rotation_tolerance_rad", 1e-8},
               {"validation", validation_json(p.validation)},
               {"validation_claim", "Requires revalidation on load; discrete sampling only"},
               {"poses", Json::array()}};
@@ -246,7 +259,7 @@ Json path_json(const Path &p) {
     return j;
 }
 Path path_from_json(const Json &j) {
-    if (j.at("schema_version") != 1 || j.at("quaternion_order") != "xyzw" ||
+    if (!j.at("schema_version").is_number_integer() || j.at("schema_version") != 1 || j.at("quaternion_order") != "xyzw" ||
         j.at("interpolation") != "linear-translation-shortest-arc-slerp")
         throw std::runtime_error("Unsupported path version or interpolation");
     Path p;
@@ -254,6 +267,10 @@ Path path_from_json(const Json &j) {
     p.scene_revision = count(j, "scene_revision");
     p.validation = read_validation(j.at("validation"));
     p.source = j.at("source").get<std::string>();
+    p.request_id = j.value("request_id", std::string{});
+    for (const char *key : {"endpoint_translation_tolerance_m", "endpoint_rotation_tolerance_rad"})
+        if (j.contains(key) && finite_number(j, key) != 1e-8)
+            throw std::runtime_error("Unsupported endpoint tolerance");
     if (!j.at("poses").is_array() || j.at("poses").empty())
         throw std::runtime_error("Path must contain poses");
     for (const auto &v : j.at("poses"))
@@ -281,6 +298,8 @@ Json report_json(const Scene &s, const PlannerConfig &c, const PlanningResult &r
               {"unix_time_ms", ms},
               {"software_version", PL_VERSION},
               {"git_commit", PL_COMMIT},
+              {"source_sha256", PL_SOURCE_HASH},
+              {"git_tracked_dirty", bool(PL_DIRTY)},
               {"build", "" PL_BUILD ""},
               {"compiler_msvc", _MSC_VER},
               {"os", "Windows"},
@@ -292,6 +311,8 @@ Json report_json(const Scene &s, const PlannerConfig &c, const PlanningResult &r
               {"scene_id", s.id},
               {"scene_hash", s.hash},
               {"scene_revision", s.revision},
+              {"request_id", r.path.request_id},
+              {"motion_space", c.planar_xy ? "planar-xy" : "se3"},
               {"parameters", config_json(c)},
               {"status", to_string(r.status)},
               {"reason", r.reason},
@@ -316,6 +337,18 @@ Json report_json(const Scene &s, const PlannerConfig &c, const PlanningResult &r
         j["optimized_metrics"] = metric_json(*opt);
     else
         j["optimized_metrics"] = nullptr;
+    j["verification"]["intervals"] = r.verification.intervals;
+    j["verification"]["maximum_actual_steps"] = {
+        {"translation_m", r.verification.translation_step},
+        {"rotation_rad", r.verification.rotation_step},
+        {"surface_m", r.verification.surface_step}};
+    j["verification"]["failed_edge"] = r.verification.failed_edge
+        ? Json(*r.verification.failed_edge) : Json(nullptr);
+    j["verification"]["failed_u"] = r.verification.failed_u;
+    j["verification"]["failure"] = {{"reason", r.verification.failure.reason},
+        {"body_part_id", r.verification.failure.query.body_id},
+        {"obstacle_id", r.verification.failure.query.obstacle_id}};
+    j["verification"]["tolerance_policy"] = "absolute-length-plus-32-epsilon-scale-v1; contact-invalid";
     return j;
 }
 } // namespace pl

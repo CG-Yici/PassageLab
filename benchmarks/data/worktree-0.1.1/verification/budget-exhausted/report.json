@@ -1,0 +1,83 @@
+{
+  "build": "Release",
+  "compiler_msvc": 1937,
+  "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+  "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+  "dependency_versions": {
+    "boost-headers": "1.92.0",
+    "catch2": "3.16.1",
+    "ccd": "2.1",
+    "eigen3": "5.0.1",
+    "fcl": "0.7.0",
+    "glad": "0.1.36",
+    "glfw3": "3.5.1",
+    "imgui": "1.93.0",
+    "nlohmann-json": "3.12.0",
+    "ompl": "2.0.2"
+  },
+  "evaluation_seconds": 0.0,
+  "git_commit": "c9881a2",
+  "git_tracked_dirty": true,
+  "iterations": 0,
+  "logical_processors": 32,
+  "memory_bytes": 68633149440,
+  "metrics": {
+    "complete": false,
+    "min_sampled_clearance_m": null,
+    "objective_m": 0.0,
+    "rotation_rad": 0.0,
+    "samples": 0,
+    "translation_m": 0.0
+  },
+  "nodes": 0,
+  "optimization_seconds": 0.0,
+  "optimized_metrics": null,
+  "os": "Windows",
+  "parameters": {
+    "extension": 0.4,
+    "goal_bias": 0.05,
+    "max_iterations": 0,
+    "max_nodes": 80000,
+    "max_queries": 2000000,
+    "rotation_weight": 1.2,
+    "seed": 42,
+    "shortcut_attempts": 100,
+    "time_limit": 30.0,
+    "validation": {
+      "margin": 0.0,
+      "max_samples": 100000,
+      "rotation_step": 0.08,
+      "surface_step": 0.08,
+      "tolerance": 1e-08,
+      "translation_step": 0.08,
+      "use_bvh": true
+    }
+  },
+  "planner": "passagelab-rrt-connect",
+  "queries": {
+    "broad": 0,
+    "motions": 0,
+    "narrow": 0,
+    "samples": 0,
+    "states": 0
+  },
+  "reason": "operation budget is zero or cannot hold both roots and validate endpoints",
+  "run_id": "C-staggered-apertures-42-1793227484073",
+  "scene_hash": "sha256:ec94bbd7799c23331750f3d0f0848a0134b35f6ccbd3f19adeb6fb9a85c7387c",
+  "scene_id": "C-staggered-apertures",
+  "scene_revision": 1,
+  "schema_version": 1,
+  "search_seconds": 0.0,
+  "software_version": "0.1.1",
+  "source_sha256": "8da56c443ff7483f11d008dcab5b10313409bc679eab25f0c6077c425a13fe52",
+  "status": "budget_exhausted",
+  "total_seconds": 3.7e-06,
+  "unix_time_ms": 1793227484073,
+  "validation_seconds": 0.0,
+  "verification": {
+    "method": "discrete interpolation samples; no continuous safety certificate",
+    "reason": "",
+    "samples": 0,
+    "status": 2
+  }
+}

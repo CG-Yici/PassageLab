@@ -32,6 +32,62 @@ bool on_box_surface(const Vec3 &point, const Part &part, const Pose &parent) {
            ((local.cwiseAbs() - part.half).cwiseAbs().minCoeff() <= eps);
 }
 } // namespace
+TEST_CASE("point queries handle projection clamping containment and degenerate segments") {
+    auto q = point_segment(Vec3(2, 3, 0), Vec3(0, 0, 0), Vec3(4, 0, 0));
+    REQUIRE(q);
+    CHECK(q->distance == Catch::Approx(3));
+    CHECK((q->closest - Vec3(2, 0, 0)).norm() < 1e-12);
+    q = point_segment(Vec3(8, 3, 0), Vec3(0, 0, 0), Vec3(4, 0, 0));
+    REQUIRE(q);
+    CHECK(q->distance == Catch::Approx(5));
+    q = point_segment(Vec3(1, 0, 0), Vec3::Zero(), Vec3::Zero());
+    REQUIRE(q);
+    CHECK(q->distance == Catch::Approx(1));
+    for (double scale : {1e-4, 1.0, 1e4}) {
+        auto b = box("box", Vec3::Constant(scale));
+        Pose t{Vec3(2, 3, 4), Quat(Eigen::AngleAxisd(.7, Vec3::UnitZ()))};
+        auto exterior = point_box(t.t + t.q * Vec3(3 * scale, 0, 0), b, t);
+        REQUIRE(exterior);
+        CHECK(exterior->distance == Catch::Approx(2 * scale));
+        CHECK_FALSE(exterior->inside);
+        auto interior = point_box(t.t, b, t);
+        REQUIRE(interior);
+        CHECK(interior->inside);
+        CHECK(interior->distance == Catch::Approx(0).margin(1e-12));
+    }
+    CHECK_FALSE(point_segment(Vec3::Constant(std::numeric_limits<double>::infinity()), Vec3::Zero(), Vec3::Zero()));
+}
+TEST_CASE("ray triangle picking handles edges misses degeneracy and transformed views") {
+    const Vec3 a(0, 0, 0), b(1, 0, 0), c(0, 1, 0);
+    auto hit = ray_triangle(Vec3(.25, .25, 2), Vec3(0, 0, -2), a, b, c);
+    REQUIRE(hit);
+    CHECK(hit->parameter == Catch::Approx(1));
+    CHECK((hit->barycentric - Vec3(.5, .25, .25)).norm() < 1e-12);
+    CHECK(ray_triangle(Vec3(.5, .5, 1), Vec3(0, 0, -1), a, b, c));
+    CHECK_FALSE(ray_triangle(Vec3(2, 2, 1), Vec3(0, 0, -1), a, b, c));
+    CHECK_FALSE(ray_triangle(Vec3(.25, .25, 1), Vec3(1, 0, 0), a, b, c));
+    CHECK_FALSE(ray_triangle(Vec3(.25, .25, 1), Vec3(0, 0, -1), a, a, c));
+    CHECK_FALSE(ray_triangle(Vec3(.25, .25, 1), Vec3::Zero(), a, b, c));
+    Pose t{Vec3(-3, 2, 4), Quat(Eigen::AngleAxisd(.9, Vec3(1, 2, 3).normalized()))};
+    auto moved = ray_triangle(t.t + t.q * Vec3(.25, .25, 2), t.q * Vec3(0, 0, -2),
+                             t.t + t.q * a, t.t + t.q * b, t.t + t.q * c);
+    REQUIRE(moved);
+    CHECK(moved->parameter == Catch::Approx(hit->parameter));
+}
+TEST_CASE("motion diagnostics retain actual resolution and failure sample") {
+    auto s = base_scene();
+    s.obstacles = {box("wall", Vec3(.01, 1, 1))};
+    Validator v(s);
+    Pose a{Vec3(-1, 0, 0)}, b{Vec3(1, 0, 0)};
+    auto r = v.motion(a, b, s.config.validation);
+    REQUIRE(r.status == CheckStatus::Failed);
+    REQUIRE(r.intervals > 0);
+    CHECK(r.translation_step <= s.config.validation.translation_step);
+    CHECK(r.surface_step <= s.config.validation.surface_step);
+    CHECK(r.failed_u > 0);
+    CHECK(r.failed_u < 1);
+    CHECK(r.failure.query.obstacle_id == "wall");
+}
 TEST_CASE("rigid transforms and shortest arc are stable") {
     Pose a{Vec3(1, 2, 3), Quat(Eigen::AngleAxisd(.6, Vec3::UnitZ()))},
         b{Vec3(0, 1, 0), Quat::Identity()};

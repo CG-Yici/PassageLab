@@ -1,8 +1,11 @@
 #include <chrono>
+#include <charconv>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
+#include <limits>
 #include <map>
+#include <set>
 #include <passagelab/io.hpp>
 
 namespace {
@@ -11,17 +14,35 @@ struct Args {
     std::string command;
     std::map<std::string, std::string> opts;
     Args(int argc, char **argv) {
+        const std::set<std::string> flags = {"--brute", "--no-optimize"};
+        const std::set<std::string> values = {"--scene", "--demo", "--out", "--seed",
+            "--seconds", "--iterations", "--nodes", "--queries", "--goal-bias",
+            "--step", "--planner", "--runs", "--path", "--motion-space"};
         if (argc > 1)
             command = argv[1];
         for (int i = 2; i < argc; ++i) {
             std::string k = argv[i];
-            if (!k.starts_with("--"))
-                throw std::runtime_error("Expected option: " + k);
-            if (i + 1 < argc && !std::string(argv[i + 1]).starts_with("--"))
-                opts[k] = argv[++i];
-            else
+            if (opts.contains(k))
+                throw std::runtime_error("Duplicate option: " + k);
+            if (flags.contains(k))
                 opts[k] = "true";
+            else if (values.contains(k)) {
+                if (i + 1 >= argc || std::string(argv[i + 1]).starts_with("--"))
+                    throw std::runtime_error("Missing value for " + k);
+                opts[k] = argv[++i];
+            } else
+                throw std::runtime_error("Unknown option: " + k);
         }
+        for (const auto *key : {"--seed", "--iterations", "--nodes", "--queries", "--runs", "--demo"})
+            if (has(key))
+                (void)number(key);
+        for (const auto *key : {"--seconds", "--goal-bias", "--step"})
+            if (has(key))
+                (void)real(key);
+        if (has("--planner") && get("--planner") != "ompl" && get("--planner") != "passagelab")
+            throw std::runtime_error("--planner must be passagelab or ompl");
+        if (has("--motion-space") && get("--motion-space") != "se3" && get("--motion-space") != "planar-xy")
+            throw std::runtime_error("--motion-space must be se3 or planar-xy");
     }
     std::string get(const std::string &k, std::string def = "") const {
         auto i = opts.find(k);
@@ -30,38 +51,59 @@ struct Args {
     bool has(const std::string &k) const {
         return opts.contains(k);
     }
+    std::uint64_t number(const std::string &key, const std::string &fallback = "0") const {
+        const auto value = get(key, fallback);
+        std::uint64_t result = 0;
+        const auto [end, error] = std::from_chars(value.data(), value.data() + value.size(), result);
+        if (error != std::errc{} || end != value.data() + value.size())
+            throw std::runtime_error("Expected unsigned integer for " + key);
+        return result;
+    }
+    double real(const std::string &key) const {
+        const auto value = get(key);
+        std::size_t used = 0;
+        const double result = std::stod(value, &used);
+        if (used != value.size() || !std::isfinite(result))
+            throw std::runtime_error("Expected finite number for " + key);
+        return result;
+    }
 };
 void configure(Scene &s, const Args &a) {
     auto &c = s.config;
     if (a.has("--seed"))
-        c.seed = std::stoull(a.get("--seed"));
+        c.seed = a.number("--seed");
     if (a.has("--seconds"))
-        c.time_limit = std::stod(a.get("--seconds"));
+        c.time_limit = a.real("--seconds");
     if (a.has("--iterations"))
-        c.max_iterations = std::stoull(a.get("--iterations"));
+        c.max_iterations = a.number("--iterations");
     if (a.has("--nodes"))
-        c.max_nodes = std::stoull(a.get("--nodes"));
+        c.max_nodes = a.number("--nodes");
     if (a.has("--queries"))
-        c.max_queries = std::stoull(a.get("--queries"));
+        c.max_queries = a.number("--queries");
     if (a.has("--goal-bias"))
-        c.goal_bias = std::stod(a.get("--goal-bias"));
+        c.goal_bias = a.real("--goal-bias");
     if (a.has("--step"))
         c.validation.translation_step = c.validation.rotation_step = c.validation.surface_step =
-            std::stod(a.get("--step"));
+            a.real("--step");
     if (a.has("--brute"))
         c.validation.use_bvh = false;
+    if (a.has("--motion-space"))
+        c.planar_xy = a.get("--motion-space") == "planar-xy";
     refresh_hash(s);
 }
 Scene input_scene(const Args &a) {
     if (a.has("--scene"))
         return load_scene(a.get("--scene"));
-    const int i = std::stoi(a.get("--demo", "0"));
+    const auto i = a.number("--demo");
     auto scenes = demo_scenes();
-    if (i < 0 || i >= int(scenes.size()))
+    if (i >= scenes.size())
         throw std::runtime_error("--demo must be 0, 1 or 2");
     return scenes[i];
 }
 Json run(Scene s, const Args &a, const std::filesystem::path &dir) {
+    for (const auto *name : {"scene.json", "path.json", "optimized.json", "report.json"})
+        if (std::filesystem::exists(dir / name))
+            throw std::runtime_error("Output already contains run artifacts; choose a new --out directory: " + dir.string());
     configure(s, a);
     const bool ompl = a.get("--planner") == "ompl";
     auto result = ompl ? solve_ompl(s, s.config) : solve(s, s.config);
@@ -224,14 +266,23 @@ int main(int argc, char **argv) {
             auto p = load_path(a.get("--path"));
             auto cfg = p.validation;
             if (a.has("--step")) {
-                double step = std::stod(a.get("--step"));
+                double step = a.real("--step");
                 cfg.translation_step = cfg.rotation_step = cfg.surface_step = step;
             }
             auto check = validate_path(s, p, cfg);
             Json j = {{"status", int(check.status)},
                       {"samples", check.samples},
                       {"reason", check.reason},
-                      {"failed_u", check.failed_u}};
+                      {"failed_u", check.failed_u},
+                      {"failed_edge", check.failed_edge ? Json(*check.failed_edge) : Json(nullptr)},
+                      {"body_part_id", check.failure.query.body_id},
+                      {"obstacle_id", check.failure.query.obstacle_id},
+                      {"intervals", check.intervals},
+                      {"maximum_actual_translation_step", check.translation_step},
+                      {"maximum_actual_rotation_step", check.rotation_step},
+                      {"maximum_actual_surface_step", check.surface_step},
+                      {"source_sha256", PL_SOURCE_HASH},
+                      {"request_id", p.request_id}};
             std::cout << j.dump(2) << '\n';
             if (a.has("--out"))
                 write_json(j, a.get("--out"));
@@ -242,14 +293,16 @@ int main(int argc, char **argv) {
             return report.at("status") == "solved" ? 0 : 2;
         }
         if (a.command == "benchmark") {
-            const int runs = std::stoi(a.get("--runs", "30"));
+            const auto runs = a.number("--runs", "30");
             if (runs < 1 || runs > 10000)
                 throw std::runtime_error("Invalid run count");
-            const auto base = std::stoull(a.get("--seed", "1000"));
+            const auto base = a.number("--seed", "1000");
+            if (base > std::numeric_limits<std::uint64_t>::max() - (runs - 1))
+                throw std::runtime_error("Seed range overflows uint64");
             Json rows = Json::array();
             std::filesystem::path root = a.get("--out", "results/benchmark");
             auto s = input_scene(a);
-            for (int i = 0; i < runs; ++i) {
+            for (std::uint64_t i = 0; i < runs; ++i) {
                 Args one = a;
                 one.opts["--seed"] = std::to_string(base + i);
                 rows.push_back(run(s, one, root / std::to_string(base + i)));
@@ -261,7 +314,7 @@ int main(int argc, char **argv) {
                   << ")\nCommands: generate-scenes, validate-scene, plan, validate-path, "
                      "benchmark\nOptions: --scene file | --demo 0|1|2, --out path, --seed N, "
                      "--seconds N (0=operation budget), --iterations N, --nodes N, --queries N, "
-                     "--step N, --brute, --planner ompl, --no-optimize, --runs N\n";
+                     "--step N, --brute, --planner ompl, --motion-space se3|planar-xy, --no-optimize, --runs N\n";
         return a.command.empty() || a.command == "--help" ? 0 : 1;
     } catch (const std::exception &e) {
         std::cerr << "error: " << e.what() << '\n';

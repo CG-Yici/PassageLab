@@ -1,0 +1,81 @@
+{
+  "build": "Release",
+  "compiler_msvc": 1937,
+  "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+  "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+  "dependency_versions": {
+    "boost-headers": "1.92.0",
+    "catch2": "3.16.1",
+    "ccd": "2.1",
+    "eigen3": "5.0.1",
+    "fcl": "0.7.0",
+    "glad": "0.1.36",
+    "glfw3": "3.5.1",
+    "imgui": "1.93.0",
+    "nlohmann-json": "3.12.0",
+    "ompl": "2.0.2"
+  },
+  "evaluation_seconds": 0.0,
+  "git_commit": "c9881a2",
+  "iterations": 1,
+  "logical_processors": 32,
+  "memory_bytes": 68633149440,
+  "metrics": {
+    "complete": false,
+    "min_sampled_clearance_m": null,
+    "objective_m": 0.0,
+    "rotation_rad": 0.0,
+    "samples": 0,
+    "translation_m": 0.0
+  },
+  "nodes": 3,
+  "optimization_seconds": 0.0,
+  "optimized_metrics": null,
+  "os": "Windows",
+  "parameters": {
+    "extension": 0.4,
+    "goal_bias": 0.05,
+    "max_iterations": 1,
+    "max_nodes": 80000,
+    "max_queries": 2000000,
+    "rotation_weight": 1.2,
+    "seed": 42,
+    "shortcut_attempts": 100,
+    "time_limit": 0.0,
+    "validation": {
+      "margin": 0.0,
+      "max_samples": 100000,
+      "rotation_step": 0.08,
+      "surface_step": 0.08,
+      "tolerance": 1e-08,
+      "translation_step": 0.08,
+      "use_bvh": true
+    }
+  },
+  "planner": "passagelab-rrt-connect",
+  "queries": {
+    "broad": 30,
+    "motions": 1,
+    "narrow": 0,
+    "samples": 8,
+    "states": 10
+  },
+  "reason": "budget exhausted",
+  "run_id": "C-staggered-apertures-42-1793226566524",
+  "scene_hash": "sha256:bfe735af23d053bee4733ae68c180d570f250b3bb36a02b5a341bbb477aca19a",
+  "scene_id": "C-staggered-apertures",
+  "scene_revision": 1,
+  "schema_version": 1,
+  "search_seconds": 5.8e-06,
+  "software_version": "0.1.0",
+  "status": "budget_exhausted",
+  "total_seconds": 3.65e-05,
+  "unix_time_ms": 1793226566524,
+  "validation_seconds": 0.0,
+  "verification": {
+    "method": "discrete interpolation samples; no continuous safety certificate",
+    "reason": "",
+    "samples": 0,
+    "status": 2
+  }
+}

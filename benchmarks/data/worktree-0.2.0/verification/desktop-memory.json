@@ -1,0 +1,6 @@
+﻿{
+    "observed_peak_working_set_bytes":  103178240,
+    "target_bytes":  536870912,
+    "passed":  true,
+    "method":  "Process PeakWorkingSet64 sampled every 20ms during scene C playback"
+}

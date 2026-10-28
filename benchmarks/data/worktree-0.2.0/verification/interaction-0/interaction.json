@@ -1,0 +1,110 @@
+{
+  "checks": [
+    {
+      "control": "Plan path",
+      "passed": true
+    },
+    {
+      "control": "Step forward",
+      "passed": true
+    },
+    {
+      "control": "Play",
+      "passed": true
+    },
+    {
+      "control": "Play",
+      "passed": true
+    },
+    {
+      "control": "Inspect minimum sampled clearance",
+      "passed": true
+    },
+    {
+      "control": "Shortcut",
+      "passed": true
+    },
+    {
+      "control": "Show optimized",
+      "passed": true
+    },
+    {
+      "control": "Export scene",
+      "passed": true
+    },
+    {
+      "control": "Export path",
+      "passed": true
+    },
+    {
+      "control": "Export report",
+      "passed": true
+    },
+    {
+      "control": "Wireframe",
+      "passed": true
+    },
+    {
+      "control": "Search tree",
+      "passed": true
+    },
+    {
+      "control": "Load path JSON",
+      "passed": true
+    },
+    {
+      "control": "Revalidate path",
+      "passed": true
+    },
+    {
+      "control": "Half size",
+      "passed": true
+    },
+    {
+      "control": "Load JSON",
+      "passed": true
+    },
+    {
+      "control": "Plan path",
+      "passed": true
+    },
+    {
+      "control": "Inspect search motion",
+      "passed": true
+    },
+    {
+      "control": "Inspect minimum sampled clearance",
+      "passed": true
+    },
+    {
+      "control": "Viewport orbit",
+      "passed": true
+    },
+    {
+      "control": "Viewport pan",
+      "passed": true
+    },
+    {
+      "control": "Viewport zoom",
+      "passed": true
+    },
+    {
+      "control": "Viewport pick",
+      "passed": true
+    },
+    {
+      "control": "Focus selection",
+      "passed": true
+    },
+    {
+      "control": "Reset camera",
+      "passed": true
+    }
+  ],
+  "driver": "AMD Radeon RX 9070 XT",
+  "frames": 127,
+  "opengl": "3.3.0 Core Profile Context 26.8.1.260810",
+  "passed": true,
+  "scene": "A-offset-passage",
+  "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789"
+}

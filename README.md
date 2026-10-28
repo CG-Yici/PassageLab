@@ -4,7 +4,9 @@
 
 A long bar, an L-shaped body, and an asymmetric assembly move through obstacles using translation and rotation. PassageLab computes the motion, checks every path segment at an explicit resolution, and lets you inspect the resulting poses and clearance.
 
-> Development status: implementation and release verification in progress. Recorded results and a downloadable release are added only after execution.
+> Version 0.2.0: design phases P0–P6 implemented and verified on Windows x64. 40 CTest cases, 75 desktop input checks, three solved demos with finer path rechecks, fresh-source rebuild and fixed-seed experiments. See [verification status](docs/implementation-status.md) and the [Chinese acceptance report](docs/acceptance-0.2.0.zh-CN.md). P7 is optional future work. [Download v0.2.0](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0).
+
+![Actual PassageLab scene C playback](docs/media/0.2.0/passagelab.gif)
 
 ## What the project demonstrates
 
@@ -14,8 +16,13 @@ A long bar, an L-shaped body, and an asymmetric assembly move through obstacles 
 - A GLFW / OpenGL / Dear ImGui desktop application, with pose editing, playback, search trees, collision and clearance inspection.
 - Validated shortcut optimization, immutable scene snapshots, stale-result rejection, versioned JSON and SHA-256 input fingerprints.
 - A headless CLI and an OMPL comparison adapter for reproducible experiments.
+- Matched SE(3) / fixed-height, fixed-tilt planar planning, with the same state and motion checks.
 
 The planner implements an established algorithm. Eigen supplies linear algebra, FCL supplies independent geometry comparisons, and OMPL supplies a separate planner. A tested box-specific feature distance handles cases where FCL's GJK distance varied with argument order. See [architecture](docs/architecture.md) and [algorithm notes](docs/algorithms.md).
+
+## Run the portable release
+
+Download `PassageLab-0.2.0-windows-x64.zip` from the [v0.2.0 release](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0), extract it, and run **Start PassageLab.cmd**. Windows x64 and an OpenGL 3.3 driver are required. The release includes checksums, package verification and a demo video. See [release notes](docs/releases/v0.2.0.md) for provenance and tested scope.
 
 ## Build on Windows
 
@@ -30,6 +37,19 @@ powershell -ExecutionPolicy Bypass -File tools/build.ps1
 
 The build script checks out the vcpkg baseline in `vcpkg.json`, installs dependencies, builds Release and runs CTest. The first dependency build can take a while. It temporarily maps a free drive letter for dependency builds to avoid Windows RC/Ninja issues with Unicode or spaced paths, and releases the mapping afterward. No administrator privileges are required.
 
+For this migrated workspace, run from `passagelab-codex/`. The inherited `build/windows` cache names the previous source location; leave it as historical output and use a fresh build directory with the already installed local dependencies:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/build.ps1 -UseInstalledDependencies -BuildDirectory build/worktree
+./build/worktree/Release/passagelab_desktop.exe
+powershell -ExecutionPolicy Bypass -File tools/verify.ps1 -BuildDirectory build/worktree -OutputDirectory results/new-acceptance
+powershell -ExecutionPolicy Bypass -File tools/package.ps1 -BuildDirectory build/worktree
+```
+
+`verify.ps1` checks references, fixed-seed planning, original and optimized paths at 0.02 resolution, the exhausted-budget case, BVH agreement, desktop smoke/self-tests and 25 input-driven operations per scene. It captures real rendered frames and measures rendering, cancellation and memory against reference-host targets. `-SkipDesktop` supports headless verification and records that omission. Verification output directories must be new; packaging refuses to replace an existing package.
+
+`tools/clean_build.ps1` copies source into a fresh local directory and rebuilds/tests it using the pinned dependency installation. `tools/verify_package.ps1` extracts the ZIP into a fresh directory, verifies binary hashes and reruns CLI/desktop checks with a system-only PATH. The portable package includes app-local Visual C++ runtime DLLs; extract it and run **Start PassageLab.cmd**.
+
 ## Headless examples
 
 ```powershell
@@ -42,6 +62,10 @@ $cli = './build/windows/Release/passagelab_cli.exe'
 ```
 
 `--seconds 0` disables the wall-clock deadline; operation and query limits still apply. The saved scene includes configuration overrides, so revalidate against the exported `scene.json`. A `plan` exit code of 0 means solved and verified, 2 means a recorded unsolved result, and 1 means an input or execution error. A timeout does not prove infeasibility.
+
+Each plan needs a new output directory: existing scene/path/report files are preserved and produce an error instead of being mixed with another run. Unknown options, malformed numbers and unknown planner names are rejected. Reports include a source SHA-256 and tracked-worktree dirty flag in addition to the Git commit.
+
+`--motion-space planar-xy` restricts motion to XY translation and world-Z yaw relative to the start orientation. A goal with another height or tilt is invalid. Use compatible endpoints for a meaningful SE(3)/planar comparison; the geometry-variant runner creates and records such a paired case explicitly.
 
 ## Demonstrations
 
@@ -62,11 +86,14 @@ One rigid body, static boxes/spheres, no gravity, forces, flexible parts, robot 
 ## Experiments
 
 ```powershell
-python tools/experiments.py --suite baseline --runs 30 --seconds 5
-python tools/experiments.py --suite comparisons --runs 30 --seconds 5 --out results/comparisons
+python tools/experiments.py --suite baseline --runs 30 --seconds 5 --out results/new-baseline
+python tools/experiments.py --suite comparisons --runs 30 --seconds 5 --out results/new-comparisons
+python tools/design_experiments.py --exe build/windows/Release/passagelab_cli.exe --runs 30 --seconds 1 --out results/new-geometry-experiments
 ```
 
 Python is optional for running the application. The experiment runner uses the standard library; matplotlib is optional for charts. Reports retain failed runs, environment information, seeds, validation settings and query counts. Solved-only timing statistics are explicitly conditional on success. See [experiment notes](docs/experiments.md).
+
+For the migrated build add `--exe build/worktree/Release/passagelab_cli.exe`. Current evidence is under [worktree-0.2.0](benchmarks/data/worktree-0.2.0); previous 0.1.0/0.1.1 evidence and media remain unchanged. All failed experiment outcomes are retained alongside successes.
 
 ## Project map
 

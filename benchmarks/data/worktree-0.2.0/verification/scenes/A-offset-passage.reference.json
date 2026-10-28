@@ -1,0 +1,75 @@
+{
+  "endpoint_rotation_tolerance_rad": 1e-08,
+  "endpoint_translation_tolerance_m": 1e-08,
+  "interpolation": "linear-translation-shortest-arc-slerp",
+  "poses": [
+    {
+      "position": [
+        -2.6,
+        -0.65,
+        1.3
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "position": [
+        -2.6,
+        -1.3,
+        1.3
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "position": [
+        2.6,
+        -1.3,
+        1.3
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "position": [
+        2.6,
+        0.65,
+        1.3
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "quaternion_order": "xyzw",
+  "request_id": "",
+  "scene_hash": "sha256:2a213897d2a426c6d845b42d8a22d2252c1be279ee4bf83955b5e1bba90822b6",
+  "scene_revision": 1,
+  "schema_version": 1,
+  "source": "hand-constructed-reference",
+  "validation": {
+    "margin": 0.0,
+    "max_samples": 100000,
+    "rotation_step": 0.08,
+    "surface_step": 0.08,
+    "tolerance": 1e-08,
+    "translation_step": 0.08,
+    "use_bvh": true
+  },
+  "validation_claim": "Requires revalidation on load; discrete sampling only"
+}

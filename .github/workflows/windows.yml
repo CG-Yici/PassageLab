@@ -20,16 +20,12 @@ jobs:
       - name: Configure, build, test
         shell: pwsh
         run: ./tools/build.ps1
-      - name: Validate scene assets and solve regression demos
+      - name: Validate references and original/optimized paths
         shell: pwsh
-        run: |
-          $cli = './build/windows/Release/passagelab_cli.exe'
-          & $cli generate-scenes --out results/generated
-          if ($LASTEXITCODE) { throw 'Reference validation failed' }
-          foreach ($demo in 0,1,2) {
-            & $cli plan --demo $demo --seconds 0 --seed 42 --out "results/demo-$demo"
-            if ($LASTEXITCODE) { throw "Demo $demo failed" }
-          }
+        run: ./tools/verify.ps1 -SkipDesktop -OutputDirectory results/ci-acceptance
+      - name: Package portable Windows build
+        shell: pwsh
+        run: ./tools/package.ps1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -37,3 +33,4 @@ jobs:
           path: |
             results/
             build/windows/Testing/Temporary/LastTest.log
+            dist/*.zip

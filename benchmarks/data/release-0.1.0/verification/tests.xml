@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="passagelab_tests.exe" errors="0" failures="0" skipped="0" tests="1951" hostname="tbd" time="0.011" timestamp="2026-10-28T22:29:43Z">
+    <properties>
+      <property name="random-seed" value="2462591356"/>
+    </properties>
+    <testcase classname="passagelab_tests.exe.global" name="motion reports sample exhaustion and cancellation" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="BVH distance traversal prunes by lower bound and matches brute force" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="solve distinguishes invalid endpoints" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="OMPL planning returns only independently validated exact solutions" time="0.000" status="run">
+      <system-out>
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 6 states (2 start + 4 goal)
+Info:    Solution found in 0.000056 seconds
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 6 states (2 start + 4 goal)
+Info:    Solution found in 0.000021 seconds
+      </system-out>
+    </testcase>
+    <testcase classname="passagelab_tests.exe.global" name="Hashes cover inputs and stale paths cannot be validated" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="validator stops at hard narrow-query budget without exceeding it" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="validation refuses weaker precision and honors singleton cancellation" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="OMPL obeys cancellation and tiny node budgets" time="0.000" status="run">
+      <system-out>
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 1 states (1 start + 0 goal)
+Info:    No solution found after 0.000011 seconds
+      </system-out>
+    </testcase>
+    <testcase classname="passagelab_tests.exe.global" name="BVH and brute force agree including positive margins" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="invalid scene geometry and identifiers stop validation" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="rigid transforms and shortest arc are stable" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="RRT Connect finds and verifies a detour around an obstacle" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="OBB SAT collision relation agrees with FCL for randomized separated and overlapping poses" time="0.002" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="skew edge pair has exact symmetric closest feature distance" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="max iteration budget counts extensions, including connect" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="search operation budgets and cancellation terminate" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="discrete motion detects thin obstacle between clear endpoints" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="optimizer preserves scene metadata and declares shortcut source" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="path validation rejects stale metadata and endpoint changes" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="rotation samples the swept footprint" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="narrow geometry query budget never exceeds its hard limit" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="path metrics retain incomplete clearance as absent" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="Physical boundaries reject external bypass and negative scenes reject direct motion" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="physical wall witness lies on rotated body support" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="All frozen demonstration reference motions pass discrete validation" time="0.006" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="path metrics include physical boundary clearance when obstacles are absent" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="sphere distances and OBB SAT classify separation contact and containment" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="validator rejects invalid state and physical boundary overflow" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="RRT Connect handles an identical start and goal" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="physical boundary clearance contributes distance and rejects margin" time="0.000" status="run"/>
+    <testcase classname="passagelab_tests.exe.global" name="Scene JSON preserves geometry and rejects invalid conventions" time="0.000" status="run"/>
+    <system-out>
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 6 states (2 start + 4 goal)
+Info:    Solution found in 0.000056 seconds
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 6 states (2 start + 4 goal)
+Info:    Solution found in 0.000021 seconds
+Info:    RRTConnect: Starting planning with 1 states already in datastructure
+Info:    RRTConnect: Created 1 states (1 start + 0 goal)
+Info:    No solution found after 0.000011 seconds
+    </system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

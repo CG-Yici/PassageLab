@@ -1,0 +1,16 @@
+{
+  "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+  "runs": 690,
+  "status_counts": {
+    "solved": 640,
+    "budget_exhausted": 50
+  },
+  "all_solved_metrics_complete": true,
+  "all_solved_paths_verified": true,
+  "all_optimized_objectives_nonincreasing": true,
+  "datasets": [
+    "baseline",
+    "comparisons",
+    "design"
+  ]
+}

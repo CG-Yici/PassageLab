@@ -16,4 +16,4 @@ PassageLab's original source is MIT licensed. Dependencies retain their own lice
 | nlohmann/json | JSON serialization | MIT |
 | Catch2 | Tests only | BSL-1.0 |
 
-The rendered geometry and scenes are generated from project parameters. No external model or image assets are used. RRT-Connect is an established algorithm (Kuffner and LaValle, 2000); PassageLab implements it rather than claiming to invent it. Microsoft Visual C++ runtime redistribution follows Microsoft's runtime terms; the package requires the supported x64 Visual C++ runtime if absent on the host.
+The rendered geometry and scenes are generated from project parameters. No external model or image assets are used. RRT-Connect is an established algorithm (Kuffner and LaValle, 2000); PassageLab implements it rather than claiming to invent it. Microsoft Visual C++ runtime redistribution follows Microsoft's runtime terms; version 0.2.0 packages include app-local x64 runtime DLLs from the installed Visual Studio redistributable directory. These Microsoft binaries retain their own license terms.

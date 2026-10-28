@@ -1,0 +1,10 @@
+﻿{
+    "verified_utc":  "2026-10-28T23:19:29.9378415Z",
+    "source_sha256":  "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "software_version":  "0.2.0",
+    "git_commit":  "c9881a2",
+    "git_tracked_dirty":  true,
+    "desktop_executed":  true,
+    "cli_sha256":  "C30C081580389E6D239A1AB9CAD08B8B21C1BB89159B7877535DA7457D469CB9",
+    "desktop_sha256":  "84559AE067F14130A768F19F23488506CF31948E76A46272D1C0BD65944734F2"
+}

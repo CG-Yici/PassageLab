@@ -1,0 +1,11 @@
+{
+  "cancel_latency_ms": 31.436,
+  "cancel_target_ms": 1000,
+  "checks": [
+    "snapshot invalidation",
+    "cancellation",
+    "import revalidation",
+    "scene and path round trip"
+  ],
+  "passed": true
+}

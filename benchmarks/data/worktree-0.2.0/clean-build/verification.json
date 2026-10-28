@@ -1,0 +1,9 @@
+﻿{
+    "passed":  true,
+    "verified_utc":  "2026-10-28T23:18:50.2044615Z",
+    "source_sha256":  "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "source_only_copy":  true,
+    "preexisting_build_artifacts":  false,
+    "reused_pinned_dependency_installation":  true,
+    "host":  "Same Windows host; not a new physical machine or VM"
+}

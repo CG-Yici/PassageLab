@@ -1,0 +1,3422 @@
+[
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0007699,
+    "git_commit": "c9881a2",
+    "iterations": 15,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.3153409035814819,
+          2.0460014491660203,
+          1.3752545930138407
+        ],
+        "quaternion": [
+          -0.03455047633476773,
+          -0.08431582428000114,
+          0.5846306848816816,
+          0.8061662785404762
+        ]
+      },
+      "min_sampled_clearance_m": 0.1032061325895306,
+      "objective_m": 8.423509894924587,
+      "rotation_rad": 2.8640668153974724,
+      "samples": 111,
+      "translation_m": 4.700223034907872
+    },
+    "nodes": 15,
+    "optimization_seconds": 0.001333,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.4644797745073539,
+          1.3553407067991696,
+          1.485790173269181
+        ],
+        "quaternion": [
+          -0.09307631946869038,
+          -0.03387759493050876,
+          0.6281505861874416,
+          0.7717615877900768
+        ]
+      },
+      "min_sampled_clearance_m": 0.15150507566100108,
+      "objective_m": 6.694302787712339,
+      "rotation_rad": 1.75389552478057,
+      "samples": 84,
+      "translation_m": 4.414238605497598
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1000,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 572,
+      "motions": 27,
+      "narrow": 38,
+      "samples": 274,
+      "states": 286
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1000-1793226459418",
+    "scene_hash": "sha256:851504132e09ef806e14ae1df7ecea41b91f112d73e07bc68cb5e4acc7256ac1",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003992,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0005956,
+    "unix_time_ms": 1793226459418,
+    "validation_seconds": 0.0001031,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 123,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008372,
+    "git_commit": "c9881a2",
+    "iterations": 41,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7548947156169674,
+          0.7358758893488981,
+          1.3331534631159543
+        ],
+        "quaternion": [
+          0.060968857165896444,
+          -0.3669606595139967,
+          0.1743365806038724,
+          0.9117178453273176
+        ]
+      },
+      "min_sampled_clearance_m": 0.01590570715664586,
+      "objective_m": 10.228872649167508,
+      "rotation_rad": 3.6832505326719747,
+      "samples": 134,
+      "translation_m": 5.440646956693941
+    },
+    "nodes": 31,
+    "optimization_seconds": 0.0010048,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7192773262217683,
+          0.7630824758414703,
+          1.3257809106011322
+        ],
+        "quaternion": [
+          0.07081617762780637,
+          -0.3560067274380973,
+          0.1893858873033986,
+          0.9123471185329122
+        ]
+      },
+      "min_sampled_clearance_m": 0.016983374028119703,
+      "objective_m": 7.379638165233441,
+      "rotation_rad": 2.219877213423424,
+      "samples": 93,
+      "translation_m": 4.49379778778299
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1001,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 1067,
+      "motions": 55,
+      "narrow": 97,
+      "samples": 501,
+      "states": 534
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1001-1793226459435",
+    "scene_hash": "sha256:c43d6a0d679c9e00f8cf27bfeca086de2babd873137185bceca18e2a8730a856",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0006698,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.000856,
+    "unix_time_ms": 1793226459435,
+    "validation_seconds": 8.51e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 148,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0006786,
+    "git_commit": "c9881a2",
+    "iterations": 24,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5376491435705486,
+          1.8140296634438176,
+          1.3549557922608824
+        ],
+        "quaternion": [
+          0.0354015356236652,
+          0.0016304842758703855,
+          0.747320603485735,
+          0.6635178885322004
+        ]
+      },
+      "min_sampled_clearance_m": 0.01778571655792998,
+      "objective_m": 9.699079906138785,
+      "rotation_rad": 3.690256480342096,
+      "samples": 127,
+      "translation_m": 4.901746481694061
+    },
+    "nodes": 21,
+    "optimization_seconds": 0.0019833,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5658371465437904,
+          1.7785042480927578,
+          1.3575694182849958
+        ],
+        "quaternion": [
+          0.03231032786595299,
+          0.007474066579758305,
+          0.7407515847932277,
+          0.6709599620456332
+        ]
+      },
+      "min_sampled_clearance_m": 0.020526310669955524,
+      "objective_m": 6.612874848421717,
+      "rotation_rad": 1.7895735133074895,
+      "samples": 83,
+      "translation_m": 4.28642928112198
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1002,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 793,
+      "motions": 37,
+      "narrow": 112,
+      "samples": 373,
+      "states": 397
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1002-1793226459454",
+    "scene_hash": "sha256:eeb81d7008bbf77abfd8fd3f5171984cc098b163831bdc3d2907e4c640a71649",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0005196,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0008088,
+    "unix_time_ms": 1793226459454,
+    "validation_seconds": 0.0001862,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 140,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008205,
+    "git_commit": "c9881a2",
+    "iterations": 24,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.4491598244001341,
+          1.9704018676488702,
+          1.3213883013676713
+        ],
+        "quaternion": [
+          -0.03484597589925392,
+          0.15637520580194852,
+          0.621975156784201,
+          0.7664720851520266
+        ]
+      },
+      "min_sampled_clearance_m": 0.0010081131354158224,
+      "objective_m": 12.46688144484813,
+      "rotation_rad": 5.531680702380349,
+      "samples": 164,
+      "translation_m": 5.275696531753676
+    },
+    "nodes": 22,
+    "optimization_seconds": 0.0009002,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.0982992975276964,
+          -0.03811786072575071,
+          1.2214981748514608
+        ],
+        "quaternion": [
+          -0.46500719436591875,
+          -0.07417850541211815,
+          -0.28953410677123503,
+          0.8333281823741138
+        ]
+      },
+      "min_sampled_clearance_m": 0.24097106038534333,
+      "objective_m": 9.339132874851423,
+      "rotation_rad": 3.523605763514304,
+      "samples": 115,
+      "translation_m": 4.758445382282826
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1003,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 884,
+      "motions": 41,
+      "narrow": 12,
+      "samples": 417,
+      "states": 442
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1003-1793226459470",
+    "scene_hash": "sha256:f1a5e33bdd2a7265e7cd3432bc7fa8ff2c01b8d0457071ac04c68cddab792ff6",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0002579,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0004325,
+    "unix_time_ms": 1793226459470,
+    "validation_seconds": 7.54e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 181,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009013,
+    "git_commit": "c9881a2",
+    "iterations": 29,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.2304155716853487,
+          0.7412184072937047,
+          1.2931696232962053
+        ],
+        "quaternion": [
+          0.07983061699029609,
+          0.003970884259713356,
+          0.2684731526603846,
+          0.9599653488380393
+        ]
+      },
+      "min_sampled_clearance_m": 0.02819448233166999,
+      "objective_m": 10.002455076498238,
+      "rotation_rad": 3.5585105139780913,
+      "samples": 131,
+      "translation_m": 5.37639140832672
+    },
+    "nodes": 24,
+    "optimization_seconds": 0.0005502,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5923820393476161,
+          0.7988741866588353,
+          1.4363769823629984
+        ],
+        "quaternion": [
+          0.1641162927786648,
+          0.08011803696272485,
+          0.4325961905965213,
+          0.8828972071986667
+        ]
+      },
+      "min_sampled_clearance_m": 0.28250041985632895,
+      "objective_m": 6.915411297227739,
+      "rotation_rad": 1.7828510993480664,
+      "samples": 87,
+      "translation_m": 4.597704868075253
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1004,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 846,
+      "motions": 43,
+      "narrow": 28,
+      "samples": 401,
+      "states": 423
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1004-1793226459487",
+    "scene_hash": "sha256:08e1fa60fa077f11e98bde058eb3f17ddc10d74c560e8bdcbdd61befa9c99e66",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003552,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0005178,
+    "unix_time_ms": 1793226459487,
+    "validation_seconds": 6.28e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 145,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009572,
+    "git_commit": "c9881a2",
+    "iterations": 22,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.8834350946103389,
+          0.583339177604148,
+          1.5336685194648711
+        ],
+        "quaternion": [
+          -0.20605595432533205,
+          -0.15968092347153792,
+          0.03009446467906973,
+          0.9649545427438714
+        ]
+      },
+      "min_sampled_clearance_m": 0.002476309906831231,
+      "objective_m": 11.948272265310898,
+      "rotation_rad": 5.066597938028405,
+      "samples": 156,
+      "translation_m": 5.36169494587397
+    },
+    "nodes": 20,
+    "optimization_seconds": 0.0012065,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.427156918210769,
+          0.9625053010705111,
+          1.4299567211576845
+        ],
+        "quaternion": [
+          0.01964584297504709,
+          -0.006312864004992331,
+          0.5273758322879889,
+          0.8493814926877118
+        ]
+      },
+      "min_sampled_clearance_m": 0.16016953040491366,
+      "objective_m": 8.180421061016899,
+      "rotation_rad": 2.996941967002038,
+      "samples": 102,
+      "translation_m": 4.28439650391425
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1005,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 776,
+      "motions": 38,
+      "narrow": 17,
+      "samples": 372,
+      "states": 388
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1005-1793226459503",
+    "scene_hash": "sha256:9630d5c79ed3daf94c0646f417e464e969e3ce8518e876e8b3186fd896124e6b",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003177,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0004914,
+    "unix_time_ms": 1793226459503,
+    "validation_seconds": 7.69e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 172,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.001209,
+    "git_commit": "c9881a2",
+    "iterations": 40,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.95274548564334,
+          1.2023203514385807,
+          1.420366173047157
+        ],
+        "quaternion": [
+          0.24491327583371528,
+          0.08557810527357738,
+          0.4772132055082468,
+          0.8396198137887927
+        ]
+      },
+      "min_sampled_clearance_m": 0.016791541457400916,
+      "objective_m": 12.298699366544437,
+      "rotation_rad": 5.071529443959185,
+      "samples": 160,
+      "translation_m": 5.705711089397496
+    },
+    "nodes": 32,
+    "optimization_seconds": 0.0011201,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7335256688293944,
+          0.8086748917909967,
+          1.3378488092715664
+        ],
+        "quaternion": [
+          0.11477908385890097,
+          -0.1546189186808358,
+          0.3377703165319924,
+          0.921319686734392
+        ]
+      },
+      "min_sampled_clearance_m": 0.04752902717538215,
+      "objective_m": 7.033745381422637,
+      "rotation_rad": 1.8648969128803028,
+      "samples": 88,
+      "translation_m": 4.6093793946782435
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1006,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 1126,
+      "motions": 57,
+      "narrow": 53,
+      "samples": 532,
+      "states": 563
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1006-1793226459520",
+    "scene_hash": "sha256:6b2fb3f53c859e86bb4df68d4e45002705c855c438e13987a2469439d2913021",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0005014,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0007295,
+    "unix_time_ms": 1793226459520,
+    "validation_seconds": 0.0001249,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 177,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008107,
+    "git_commit": "c9881a2",
+    "iterations": 26,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.7073942409668847,
+          0.3172222416785584,
+          1.7696510265968768
+        ],
+        "quaternion": [
+          -0.03764572660565138,
+          -0.05623129933517629,
+          -0.20937699490992573,
+          0.9754907043359764
+        ]
+      },
+      "min_sampled_clearance_m": 0.08890933382915622,
+      "objective_m": 10.967251844071484,
+      "rotation_rad": 4.106679216543872,
+      "samples": 143,
+      "translation_m": 5.62856886256445
+    },
+    "nodes": 21,
+    "optimization_seconds": 0.0005621,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.2936155066203727,
+          0.3280005917491081,
+          1.595446969779804
+        ],
+        "quaternion": [
+          -0.15750231776865806,
+          -0.16008784588418315,
+          -0.14277990386991624,
+          0.9639392099860655
+        ]
+      },
+      "min_sampled_clearance_m": 0.13672688468553834,
+      "objective_m": 8.081570249483207,
+      "rotation_rad": 2.7222819717305438,
+      "samples": 100,
+      "translation_m": 4.542603686233499
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1007,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 870,
+      "motions": 41,
+      "narrow": 16,
+      "samples": 408,
+      "states": 435
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1007-1793226459537",
+    "scene_hash": "sha256:91716fb4b04611a178dbac1603d8dc134828d061255c3b5dcb0f9a82902fe7f5",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0002634,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0004087,
+    "unix_time_ms": 1793226459537,
+    "validation_seconds": 5.02e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 158,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0012176,
+    "git_commit": "c9881a2",
+    "iterations": 32,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5231640843698521,
+          1.613241668516823,
+          1.5169146521450427
+        ],
+        "quaternion": [
+          -0.40887755458595326,
+          0.288061705449623,
+          0.18106494361363434,
+          0.8467910517969927
+        ]
+      },
+      "min_sampled_clearance_m": 0.026768271998604876,
+      "objective_m": 13.674564071743795,
+      "rotation_rad": 6.3725837466323405,
+      "samples": 178,
+      "translation_m": 5.390205201121752
+    },
+    "nodes": 27,
+    "optimization_seconds": 0.0010073,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.1990490324421592,
+          0.757017671366524,
+          1.5001085399931209
+        ],
+        "quaternion": [
+          -0.5342969264301821,
+          0.28598984038227915,
+          -0.19855485708336024,
+          0.7702678588218422
+        ]
+      },
+      "min_sampled_clearance_m": 0.01866739253789636,
+      "objective_m": 9.802489484619672,
+      "rotation_rad": 4.177681020170385,
+      "samples": 121,
+      "translation_m": 4.371504158398171
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1008,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 1058,
+      "motions": 51,
+      "narrow": 22,
+      "samples": 495,
+      "states": 529
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1008-1793226459554",
+    "scene_hash": "sha256:af11d97f4983c0ad4da83d262a34ba563980060d56b78d73ad441ec6e0617ca1",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0002954,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0004559,
+    "unix_time_ms": 1793226459554,
+    "validation_seconds": 6.4e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 197,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0007569,
+    "git_commit": "c9881a2",
+    "iterations": 29,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.8969468492746425,
+          0.6125129001709408,
+          1.6903730354971436
+        ],
+        "quaternion": [
+          0.15348539396216082,
+          -0.15124473705807231,
+          0.16771161343212992,
+          0.9619979615739873
+        ]
+      },
+      "min_sampled_clearance_m": 0.052570510036496355,
+      "objective_m": 10.565968313994404,
+      "rotation_rad": 4.106768979874231,
+      "samples": 137,
+      "translation_m": 5.2271686401579025
+    },
+    "nodes": 22,
+    "optimization_seconds": 0.0006861,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.3275891002986999,
+          1.2289081492152287,
+          1.621644314813666
+        ],
+        "quaternion": [
+          0.21367293499638365,
+          -0.06881120475599384,
+          0.4336042860524747,
+          0.8726948023604723
+        ]
+      },
+      "min_sampled_clearance_m": 0.11152074021405207,
+      "objective_m": 7.031233409170166,
+      "rotation_rad": 1.8892525948828052,
+      "samples": 88,
+      "translation_m": 4.575205035822519
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1009,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 868,
+      "motions": 43,
+      "narrow": 16,
+      "samples": 409,
+      "states": 434
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1009-1793226459570",
+    "scene_hash": "sha256:c115827dd4b596380a836db2b154ebea083da6c5ccdd35ae89a005c5dce9ef26",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0002647,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0004086,
+    "unix_time_ms": 1793226459570,
+    "validation_seconds": 4.82e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 151,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0010352,
+    "git_commit": "c9881a2",
+    "iterations": 62,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.4498808655662097,
+          1.5586995928265233,
+          1.307425656905001
+        ],
+        "quaternion": [
+          0.005300128245271111,
+          0.019968376556642912,
+          0.3931611074560141,
+          0.9192374645118836
+        ]
+      },
+      "min_sampled_clearance_m": 0.005343969371489843,
+      "objective_m": 11.130145511321652,
+      "rotation_rad": 4.334789666458441,
+      "samples": 147,
+      "translation_m": 5.494918944925678
+    },
+    "nodes": 43,
+    "optimization_seconds": 0.0009827,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7739253507511837,
+          0.9362593224371285,
+          1.2493625525710024
+        ],
+        "quaternion": [
+          0.18474741224567542,
+          0.1777739568030349,
+          0.3435846817928156,
+          0.9034458369976858
+        ]
+      },
+      "min_sampled_clearance_m": 0.00350819090713661,
+      "objective_m": 7.008188476021919,
+      "rotation_rad": 1.961924148279714,
+      "samples": 88,
+      "translation_m": 4.457687083258291
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1010,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 1499,
+      "motions": 77,
+      "narrow": 108,
+      "samples": 697,
+      "states": 750
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1010-1793226459587",
+    "scene_hash": "sha256:718cb7c9575c3b5398f2a8f465483a23a746b4cb9d566b362d4d1669f2c4934c",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0008221,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0010304,
+    "unix_time_ms": 1793226459587,
+    "validation_seconds": 9.14e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 162,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008663,
+    "git_commit": "c9881a2",
+    "iterations": 51,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -2.028560211556789,
+          0.8004365887118949,
+          1.2223750544058603
+        ],
+        "quaternion": [
+          0.048154439757343265,
+          0.11249823317749184,
+          0.30423737507123255,
+          0.9447036133483164
+        ]
+      },
+      "min_sampled_clearance_m": 0.033463980190474585,
+      "objective_m": 12.009059715131096,
+      "rotation_rad": 4.894996179874986,
+      "samples": 157,
+      "translation_m": 5.645564681293615
+    },
+    "nodes": 34,
+    "optimization_seconds": 0.0011263,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.6409686189235758,
+          1.5303873409363535,
+          1.475074640032931
+        ],
+        "quaternion": [
+          -0.18429087666562238,
+          -0.0946819820102052,
+          0.7225809683425827,
+          0.6595065877226179
+        ]
+      },
+      "min_sampled_clearance_m": 0.2601306538733892,
+      "objective_m": 7.684278408033705,
+      "rotation_rad": 2.5906615703480522,
+      "samples": 95,
+      "translation_m": 4.316418366581238
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1011,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 1288,
+      "motions": 67,
+      "narrow": 102,
+      "samples": 609,
+      "states": 644
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1011-1793226459605",
+    "scene_hash": "sha256:c37d5c72985dbbb44f73c59734876db1fcfc5b5170e389524ef99efa2b8c4787",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0005682,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0008704,
+    "unix_time_ms": 1793226459605,
+    "validation_seconds": 0.0001954,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 173,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008966,
+    "git_commit": "c9881a2",
+    "iterations": 31,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5218826518725027,
+          1.4816122095400615,
+          1.3883258701454158
+        ],
+        "quaternion": [
+          -0.00014512976384523253,
+          0.04789061290825767,
+          0.6290685514786566,
+          0.775873202058924
+        ]
+      },
+      "min_sampled_clearance_m": 0.012621341091408889,
+      "objective_m": 9.2073329428431,
+      "rotation_rad": 3.462286985246083,
+      "samples": 121,
+      "translation_m": 4.706359862023192
+    },
+    "nodes": 25,
+    "optimization_seconds": 0.0019639,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.4661930701098522,
+          1.53630221095473,
+          1.4086138290354597
+        ],
+        "quaternion": [
+          0.02706570296496251,
+          0.03885345263120901,
+          0.6631901377803279,
+          0.7469516035812204
+        ]
+      },
+      "min_sampled_clearance_m": 0.06917266326114672,
+      "objective_m": 7.9020198571186135,
+      "rotation_rad": 2.676050514524272,
+      "samples": 98,
+      "translation_m": 4.42315418823706
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1012,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 894,
+      "motions": 44,
+      "narrow": 42,
+      "samples": 423,
+      "states": 447
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1012-1793226459623",
+    "scene_hash": "sha256:62dcf0e5244e152e6e0b6ce1e430d40054e44a5e52bec90da468aaa77d0c04c9",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0004224,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0006387,
+    "unix_time_ms": 1793226459623,
+    "validation_seconds": 0.000105,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 134,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008596,
+    "git_commit": "c9881a2",
+    "iterations": 35,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.4205637928077863,
+          1.4285375604056376,
+          1.3114041684783209
+        ],
+        "quaternion": [
+          0.19515832491589039,
+          0.13449488655077707,
+          0.4802566479825465,
+          0.8444986120629718
+        ]
+      },
+      "min_sampled_clearance_m": 0.043155549668154616,
+      "objective_m": 9.35546432620301,
+      "rotation_rad": 3.134777360464626,
+      "samples": 124,
+      "translation_m": 5.280253757598997
+    },
+    "nodes": 23,
+    "optimization_seconds": 0.0007449,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.29722766267735684,
+          1.4210520996512206,
+          1.3164384563460483
+        ],
+        "quaternion": [
+          0.17175446807471018,
+          0.16091249452654324,
+          0.5088922926920477,
+          0.8280315249072646
+        ]
+      },
+      "min_sampled_clearance_m": 0.1896080485951573,
+      "objective_m": 7.2312475496143005,
+      "rotation_rad": 2.0608582709598036,
+      "samples": 91,
+      "translation_m": 4.552131797366556
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1013,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 896,
+      "motions": 48,
+      "narrow": 33,
+      "samples": 419,
+      "states": 448
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1013-1793226459639",
+    "scene_hash": "sha256:d8a34ebd603c8af2daaf66471360a1c3093cff0f5269bbb4baf7e4065c2045cc",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003398,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0004895,
+    "unix_time_ms": 1793226459639,
+    "validation_seconds": 5.61e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 137,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.000823,
+    "git_commit": "c9881a2",
+    "iterations": 21,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.045275719957786,
+          1.0702592036313123,
+          1.4630587598748939
+        ],
+        "quaternion": [
+          0.056382147102301244,
+          -0.08367593295879638,
+          0.45087959935991395,
+          0.886863562569042
+        ]
+      },
+      "min_sampled_clearance_m": 0.0016939028072042728,
+      "objective_m": 9.919769807715614,
+      "rotation_rad": 3.8052520164159636,
+      "samples": 128,
+      "translation_m": 4.97294218637486
+    },
+    "nodes": 20,
+    "optimization_seconds": 0.0011029,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5919659402998682,
+          1.3559039055536564,
+          1.6827182318438685
+        ],
+        "quaternion": [
+          0.03995103080491446,
+          -0.22193167165251068,
+          0.6848026825218336,
+          0.6929614233606716
+        ]
+      },
+      "min_sampled_clearance_m": 0.23262125970139902,
+      "objective_m": 7.852191171587998,
+      "rotation_rad": 2.614500539586262,
+      "samples": 98,
+      "translation_m": 4.453340470125857
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1014,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 688,
+      "motions": 35,
+      "narrow": 33,
+      "samples": 329,
+      "states": 344
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1014-1793226459656",
+    "scene_hash": "sha256:a57a400825e6015998aea383c4e4f371a0a52c5111ba96d4eb61bd0cef193915",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.000377,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0005752,
+    "unix_time_ms": 1793226459656,
+    "validation_seconds": 9.85e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 142,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008411,
+    "git_commit": "c9881a2",
+    "iterations": 19,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3360318656602816,
+          0.6727693333584486,
+          1.3523362619696182
+        ],
+        "quaternion": [
+          0.06360662420636964,
+          -0.29892137038731453,
+          0.278397979918176,
+          0.9105464164227536
+        ]
+      },
+      "min_sampled_clearance_m": 0.07440399861369751,
+      "objective_m": 10.512903972074461,
+      "rotation_rad": 4.2298207840170905,
+      "samples": 138,
+      "translation_m": 5.014136952852244
+    },
+    "nodes": 17,
+    "optimization_seconds": 0.0008814,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.501782588769761,
+          1.4472051825209205,
+          1.4970706205762514
+        ],
+        "quaternion": [
+          0.059776093572837787,
+          -0.30670033934134133,
+          0.601095412057381,
+          0.7355583091017631
+        ]
+      },
+      "min_sampled_clearance_m": 0.04626067500196756,
+      "objective_m": 7.527674523742865,
+      "rotation_rad": 2.4090659117741255,
+      "samples": 94,
+      "translation_m": 4.395888838436502
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1015,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 712,
+      "motions": 33,
+      "narrow": 28,
+      "samples": 340,
+      "states": 356
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1015-1793226459673",
+    "scene_hash": "sha256:2bc4a190db68a1e5632597a345a6e06712849b65838d5b910bc638ba467ec9f5",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003194,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0004828,
+    "unix_time_ms": 1793226459673,
+    "validation_seconds": 7.13e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 152,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0007998,
+    "git_commit": "c9881a2",
+    "iterations": 30,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.4955565290887554,
+          0.6193111076594913,
+          1.4394805159322197
+        ],
+        "quaternion": [
+          0.07094666345321493,
+          -0.052997082141273445,
+          0.21209109330368545,
+          0.9732292886933762
+        ]
+      },
+      "min_sampled_clearance_m": 0.07035391318504702,
+      "objective_m": 10.430919441628143,
+      "rotation_rad": 4.075449852468887,
+      "samples": 136,
+      "translation_m": 5.1328346334185895
+    },
+    "nodes": 24,
+    "optimization_seconds": 0.0007728,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5788755745784443,
+          1.430608155943468,
+          1.408865628599285
+        ],
+        "quaternion": [
+          -0.17457906196411388,
+          -0.16597913759033978,
+          0.6887571380696075,
+          0.6838031016064938
+        ]
+      },
+      "min_sampled_clearance_m": 0.2873631972253414,
+      "objective_m": 7.407899573331019,
+      "rotation_rad": 2.3576761069876326,
+      "samples": 93,
+      "translation_m": 4.342920634247096
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1016,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 918,
+      "motions": 44,
+      "narrow": 35,
+      "samples": 437,
+      "states": 459
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1016-1793226459689",
+    "scene_hash": "sha256:30204d252f6993da27631ddf67e782d60011e0c08923ce928f6293fb7cda5754",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003777,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0005672,
+    "unix_time_ms": 1793226459689,
+    "validation_seconds": 8.39e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 150,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009539,
+    "git_commit": "c9881a2",
+    "iterations": 23,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.0914541382776186,
+          0.98232994238527,
+          1.5681339456956551
+        ],
+        "quaternion": [
+          0.34211670028791635,
+          0.15322629461154672,
+          -0.03851145521240577,
+          0.9262800515185171
+        ]
+      },
+      "min_sampled_clearance_m": 0.009179027436508808,
+      "objective_m": 10.64702158183507,
+      "rotation_rad": 4.359205201909904,
+      "samples": 140,
+      "translation_m": 4.980054819352193
+    },
+    "nodes": 21,
+    "optimization_seconds": 0.0014585,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.4803597260867976,
+          0.6852571904254323,
+          1.5720132046218642
+        ],
+        "quaternion": [
+          0.4118689904733766,
+          0.14911681621037423,
+          -0.18001308499163032,
+          0.8807516102974319
+        ]
+      },
+      "min_sampled_clearance_m": 0.032427066369561386,
+      "objective_m": 8.8617583278143,
+      "rotation_rad": 3.4749521760293836,
+      "samples": 110,
+      "translation_m": 4.3443204989761
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1017,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 824,
+      "motions": 38,
+      "narrow": 80,
+      "samples": 383,
+      "states": 412
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1017-1793226459706",
+    "scene_hash": "sha256:c1e1a491bfc39ef2d303dd0839548bc76208e56dae6cffe66f02c1df7a5e681e",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0004577,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0007166,
+    "unix_time_ms": 1793226459706,
+    "validation_seconds": 0.0001632,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 155,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009023,
+    "git_commit": "c9881a2",
+    "iterations": 30,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.9205831058347711,
+          0.6899157237287983,
+          1.5719284311880157
+        ],
+        "quaternion": [
+          -0.06324521977549953,
+          -0.21995916549081615,
+          0.20459294898470767,
+          0.9517141025107664
+        ]
+      },
+      "min_sampled_clearance_m": 0.012418902448096958,
+      "objective_m": 8.861885439213445,
+      "rotation_rad": 2.766462851204411,
+      "samples": 117,
+      "translation_m": 5.26548373264771
+    },
+    "nodes": 25,
+    "optimization_seconds": 0.0011479,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.8712332618937614,
+          0.7115314220130287,
+          1.4108992136772769
+        ],
+        "quaternion": [
+          -0.05274890971371509,
+          -0.1810662462368638,
+          0.20859781825505758,
+          0.9596455164366349
+        ]
+      },
+      "min_sampled_clearance_m": 0.0065007201558598005,
+      "objective_m": 6.909053608775245,
+      "rotation_rad": 1.8363114654711943,
+      "samples": 86,
+      "translation_m": 4.521848703662693
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1018,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 854,
+      "motions": 42,
+      "narrow": 66,
+      "samples": 404,
+      "states": 427
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1018-1793226459723",
+    "scene_hash": "sha256:cb13a7e1e7efe713878a9a0c7a4b40df4b21246ea082141695a4a1c2431693fe",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0004724,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0007026,
+    "unix_time_ms": 1793226459723,
+    "validation_seconds": 0.0001327,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 129,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008509,
+    "git_commit": "c9881a2",
+    "iterations": 22,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5882691275486627,
+          1.8345448808726166,
+          1.552165246450949
+        ],
+        "quaternion": [
+          -0.12380026517431285,
+          0.12278804768840663,
+          0.7665041876396427,
+          0.6181164291770045
+        ]
+      },
+      "min_sampled_clearance_m": 0.009789484467348598,
+      "objective_m": 8.876546559790548,
+      "rotation_rad": 3.084711339113389,
+      "samples": 118,
+      "translation_m": 4.866421818943141
+    },
+    "nodes": 20,
+    "optimization_seconds": 0.0015967,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.4877448003189399,
+          1.7275647110333212,
+          1.454294359366271
+        ],
+        "quaternion": [
+          -0.08596221118797692,
+          0.12331684558545343,
+          0.7555246279246556,
+          0.6376409573120579
+        ]
+      },
+      "min_sampled_clearance_m": 0.1261592076261501,
+      "objective_m": 7.255286089628903,
+      "rotation_rad": 2.2663765119994297,
+      "samples": 91,
+      "translation_m": 4.3089966240296445
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1019,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 702,
+      "motions": 35,
+      "narrow": 41,
+      "samples": 334,
+      "states": 351
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1019-1793226459740",
+    "scene_hash": "sha256:6a9778afc95a71a423a3491d1651ec227bcbea034e519649aba79c6e00e5e96f",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.000344,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0005745,
+    "unix_time_ms": 1793226459740,
+    "validation_seconds": 0.0001342,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 131,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0010569,
+    "git_commit": "c9881a2",
+    "iterations": 24,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7028666721271397,
+          1.8174423459687707,
+          1.4848936731104707
+        ],
+        "quaternion": [
+          -0.06474273928420406,
+          -0.029739275526264937,
+          0.1689198389929758,
+          0.9830513929575289
+        ]
+      },
+      "min_sampled_clearance_m": 0.0063001853799991014,
+      "objective_m": 10.766728286808814,
+      "rotation_rad": 4.061819511697725,
+      "samples": 141,
+      "translation_m": 5.486362921601771
+    },
+    "nodes": 22,
+    "optimization_seconds": 0.0012471,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7446444966633096,
+          1.2722082166632727,
+          1.3623566195832213
+        ],
+        "quaternion": [
+          -0.15179221660418682,
+          -0.1280865526717022,
+          0.14344542909692815,
+          0.96952378355266
+        ]
+      },
+      "min_sampled_clearance_m": 0.028646129847059054,
+      "objective_m": 7.804026076591439,
+      "rotation_rad": 2.629651899876689,
+      "samples": 97,
+      "translation_m": 4.385478606751743
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1020,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 829,
+      "motions": 39,
+      "narrow": 40,
+      "samples": 389,
+      "states": 415
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1020-1793226459758",
+    "scene_hash": "sha256:f979433cfb393cabdc56d9c07bc5778155fee44e0a56aba734677251d93ecbe0",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003956,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.000582,
+    "unix_time_ms": 1793226459758,
+    "validation_seconds": 9.26e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 156,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008809,
+    "git_commit": "c9881a2",
+    "iterations": 18,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5820674030694288,
+          1.7503392047609818,
+          1.4442147691716534
+        ],
+        "quaternion": [
+          -0.12129717793235895,
+          -0.10013083974201763,
+          0.26358994110415546,
+          0.9517253556078623
+        ]
+      },
+      "min_sampled_clearance_m": 0.007096679427699426,
+      "objective_m": 10.191930754928453,
+      "rotation_rad": 4.229065092080495,
+      "samples": 133,
+      "translation_m": 4.694146135223811
+    },
+    "nodes": 18,
+    "optimization_seconds": 0.0013275,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.46177086609999,
+          0.3933091701668431,
+          1.3082255600442365
+        ],
+        "quaternion": [
+          -0.18565004678882013,
+          0.09957789623568991,
+          -0.22677059412250838,
+          0.9508908456546985
+        ]
+      },
+      "min_sampled_clearance_m": 0.04236065390019882,
+      "objective_m": 8.42656774550191,
+      "rotation_rad": 3.099158147165384,
+      "samples": 105,
+      "translation_m": 4.397662154186911
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1021,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 706,
+      "motions": 32,
+      "narrow": 54,
+      "samples": 332,
+      "states": 353
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1021-1793226459775",
+    "scene_hash": "sha256:5b66d430d86b67510f2a2830f1755014d0c8926668fbf5a2d5d76a1065a3e953",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003653,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0005926,
+    "unix_time_ms": 1793226459775,
+    "validation_seconds": 0.0001332,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 147,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008162,
+    "git_commit": "c9881a2",
+    "iterations": 18,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3017093068794892,
+          0.8609537974786955,
+          1.5089638287842706
+        ],
+        "quaternion": [
+          -0.11106081265510138,
+          0.013505838742241595,
+          0.332738213296991,
+          0.9363591029216212
+        ]
+      },
+      "min_sampled_clearance_m": 0.007611659217601874,
+      "objective_m": 8.164193348366615,
+      "rotation_rad": 2.757488415420127,
+      "samples": 108,
+      "translation_m": 4.579458408320449
+    },
+    "nodes": 14,
+    "optimization_seconds": 0.0014073,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5074667630728565,
+          1.3917044154283,
+          1.5949945508166405
+        ],
+        "quaternion": [
+          -0.12251436759506949,
+          0.08412902589276763,
+          0.5994433272605697,
+          0.7864987184591542
+        ]
+      },
+      "min_sampled_clearance_m": 0.017103418158629147,
+      "objective_m": 6.645715852782505,
+      "rotation_rad": 1.744377928810922,
+      "samples": 84,
+      "translation_m": 4.378024545328306
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1022,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 608,
+      "motions": 29,
+      "narrow": 53,
+      "samples": 290,
+      "states": 304
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1022-1793226459793",
+    "scene_hash": "sha256:68dbd1e16eea0c2eb1523b46a68b18d639b1a1581778db6499f12f3d3193cd64",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003757,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0005888,
+    "unix_time_ms": 1793226459793,
+    "validation_seconds": 0.00012,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 119,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0005574,
+    "git_commit": "c9881a2",
+    "iterations": 32,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.0187965675733208,
+          0.8050069702366769,
+          1.2231623243742897
+        ],
+        "quaternion": [
+          -0.28255255840572546,
+          -0.44794801581510113,
+          0.2898714942556156,
+          0.7971707117573436
+        ]
+      },
+      "min_sampled_clearance_m": 0.17866915205672906,
+      "objective_m": 10.621999258528826,
+      "rotation_rad": 4.117622602920123,
+      "samples": 138,
+      "translation_m": 5.269089874732666
+    },
+    "nodes": 25,
+    "optimization_seconds": 0.0010114,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7280015769622046,
+          1.112076502126419,
+          1.2771583295322504
+        ],
+        "quaternion": [
+          -0.253446989949836,
+          -0.27433340882446766,
+          0.46278967771043533,
+          0.8039474599081626
+        ]
+      },
+      "min_sampled_clearance_m": 0.12201852961279705,
+      "objective_m": 7.846963135054196,
+      "rotation_rad": 2.6167120600056677,
+      "samples": 97,
+      "translation_m": 4.445237457046828
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1023,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 970,
+      "motions": 47,
+      "narrow": 47,
+      "samples": 455,
+      "states": 485
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1023-1793226459809",
+    "scene_hash": "sha256:c448074aca72b5df61ab2d3bcb77d46cfc322dd673dbc90c9ad6668720c39dc8",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0004443,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0006065,
+    "unix_time_ms": 1793226459809,
+    "validation_seconds": 6.66e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 153,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009231,
+    "git_commit": "c9881a2",
+    "iterations": 27,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.12966854279009,
+          0.7162053149435225,
+          1.5633344092776134
+        ],
+        "quaternion": [
+          0.264402831226621,
+          0.2884026842809115,
+          0.11720254847024059,
+          0.9127861727540535
+        ]
+      },
+      "min_sampled_clearance_m": 0.01980160402033181,
+      "objective_m": 11.400295649450738,
+      "rotation_rad": 4.719625611670378,
+      "samples": 148,
+      "translation_m": 5.264782354279246
+    },
+    "nodes": 21,
+    "optimization_seconds": 0.0014097,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.9476172945738626,
+          0.9141108199410771,
+          1.605191518444171
+        ],
+        "quaternion": [
+          0.3345053586466187,
+          0.23077149465373312,
+          0.2652370882739971,
+          0.8743568889737823
+        ]
+      },
+      "min_sampled_clearance_m": 0.03681214866074921,
+      "objective_m": 7.528504477342478,
+      "rotation_rad": 2.410720950923692,
+      "samples": 94,
+      "translation_m": 4.3945672411416785
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1024,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 908,
+      "motions": 43,
+      "narrow": 48,
+      "samples": 430,
+      "states": 454
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1024-1793226459826",
+    "scene_hash": "sha256:c68d5a0c400f9afaa9cff67ab1cad73b78bc24187b96822d50bc073a93ba271a",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.000396,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0006693,
+    "unix_time_ms": 1793226459826,
+    "validation_seconds": 0.0001752,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 164,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0007804,
+    "git_commit": "c9881a2",
+    "iterations": 16,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.955071982817351,
+          1.1502428224806218,
+          1.4322849221093756
+        ],
+        "quaternion": [
+          0.0823803169020247,
+          0.010995709228579986,
+          0.48671194066843854,
+          0.8695999451336487
+        ]
+      },
+      "min_sampled_clearance_m": 0.01206981893599468,
+      "objective_m": 8.199402226339954,
+      "rotation_rad": 2.733424492133545,
+      "samples": 107,
+      "translation_m": 4.645950386566346
+    },
+    "nodes": 16,
+    "optimization_seconds": 0.0012657,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.49182666228368593,
+          1.4616214367068874,
+          1.4927794135503578
+        ],
+        "quaternion": [
+          0.13874368097415293,
+          0.07159440241563321,
+          0.5987431703443589,
+          0.785576888979352
+        ]
+      },
+      "min_sampled_clearance_m": 0.013690904690632071,
+      "objective_m": 6.631589843104809,
+      "rotation_rad": 1.7538590670250962,
+      "samples": 84,
+      "translation_m": 4.351573055972184
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1025,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 586,
+      "motions": 27,
+      "narrow": 48,
+      "samples": 280,
+      "states": 293
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1025-1793226459844",
+    "scene_hash": "sha256:cc91062feba92ec178448f68045167bec39c2f09fb516d3e163ba85294d8f1f7",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0004473,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0006821,
+    "unix_time_ms": 1793226459844,
+    "validation_seconds": 0.0001291,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 118,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0007659,
+    "git_commit": "c9881a2",
+    "iterations": 16,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.109134980371463,
+          0.8625358238546491,
+          1.4594095032897814
+        ],
+        "quaternion": [
+          -0.0011746291020599772,
+          0.014796313438973727,
+          0.33822892416259015,
+          0.940946802011094
+        ]
+      },
+      "min_sampled_clearance_m": 0.02134976816105305,
+      "objective_m": 8.14691787510669,
+      "rotation_rad": 2.7781046730558403,
+      "samples": 108,
+      "translation_m": 4.535381800134097
+    },
+    "nodes": 15,
+    "optimization_seconds": 0.0007377,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.536631096815233,
+          1.3454324859091635,
+          1.6081701114560938
+        ],
+        "quaternion": [
+          -0.033818758085404604,
+          -0.11007298645406677,
+          0.6293071631380607,
+          0.7685783783569312
+        ]
+      },
+      "min_sampled_clearance_m": 0.14949995175098987,
+      "objective_m": 6.711084448374643,
+      "rotation_rad": 1.7748656439905341,
+      "samples": 84,
+      "translation_m": 4.4037591111869485
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1026,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 576,
+      "motions": 27,
+      "narrow": 23,
+      "samples": 276,
+      "states": 288
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1026-1793226459861",
+    "scene_hash": "sha256:89d3cbce3f03eb975f326b4ab9ae65821c579f5997718b2b157ae505fe6171f6",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0002879,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0004768,
+    "unix_time_ms": 1793226459861,
+    "validation_seconds": 8.84e-05,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 119,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0007799,
+    "git_commit": "c9881a2",
+    "iterations": 17,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.4232585512902434,
+          0.9386732204591934,
+          1.3014685707131939
+        ],
+        "quaternion": [
+          -0.11301375451657125,
+          0.05511921772462278,
+          0.3777662018723209,
+          0.9173235306316168
+        ]
+      },
+      "min_sampled_clearance_m": 0.0010269101740376652,
+      "objective_m": 8.853291419573793,
+      "rotation_rad": 3.2993618386356207,
+      "samples": 115,
+      "translation_m": 4.564121029347486
+    },
+    "nodes": 16,
+    "optimization_seconds": 0.0010819,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5553684270400974,
+          1.5104953716076321,
+          1.3031768345741428
+        ],
+        "quaternion": [
+          -0.09008754686235103,
+          0.1731709626587827,
+          0.6949473702282586,
+          0.6920579485888316
+        ]
+      },
+      "min_sampled_clearance_m": 0.11650022387378081,
+      "objective_m": 7.186597292540413,
+      "rotation_rad": 2.194117155255218,
+      "samples": 89,
+      "translation_m": 4.33424499070863
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1027,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 622,
+      "motions": 29,
+      "narrow": 49,
+      "samples": 296,
+      "states": 311
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1027-1793226459878",
+    "scene_hash": "sha256:99c7f1e2b7797d2aa1ca8d2d9f19ffeac9c8e7913e416be6d0493dd6a9615e2f",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003369,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.000553,
+    "unix_time_ms": 1793226459878,
+    "validation_seconds": 0.0001267,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 127,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0007815,
+    "git_commit": "c9881a2",
+    "iterations": 21,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.4668039269243072,
+          1.0380928450630207,
+          1.364909911979179
+        ],
+        "quaternion": [
+          -0.011322007320668605,
+          -0.06733999407475681,
+          0.4317776805695494,
+          0.8993915565037415
+        ]
+      },
+      "min_sampled_clearance_m": 0.011965657609993352,
+      "objective_m": 9.141751297366653,
+      "rotation_rad": 3.547704433366097,
+      "samples": 120,
+      "translation_m": 4.529735533990728
+    },
+    "nodes": 18,
+    "optimization_seconds": 0.0010748,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5997040460048643,
+          1.7128227971574772,
+          1.3856487394476893
+        ],
+        "quaternion": [
+          -0.013497355302727915,
+          0.07338662110613714,
+          0.7694325141841384,
+          0.6343546573950031
+        ]
+      },
+      "min_sampled_clearance_m": 0.1502637250524967,
+      "objective_m": 8.131862459620429,
+      "rotation_rad": 2.950459279107892,
+      "samples": 101,
+      "translation_m": 4.296265396780169
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1028,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 682,
+      "motions": 34,
+      "narrow": 75,
+      "samples": 327,
+      "states": 341
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1028-1793226459896",
+    "scene_hash": "sha256:f5a7d0449b464060bdff2b8e83f9b685bc06edb2f3e4c618b6954bb04fcf2772",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0006779,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0009308,
+    "unix_time_ms": 1793226459896,
+    "validation_seconds": 0.0001592,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 133,
+      "status": 0
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008794,
+    "git_commit": "c9881a2",
+    "iterations": 21,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3443230083470452,
+          0.9895887615559915,
+          1.4261770714013655
+        ],
+        "quaternion": [
+          -0.133449109852993,
+          -0.18599479852477427,
+          0.3916358689156502,
+          0.8911894389970384
+        ]
+      },
+      "min_sampled_clearance_m": 0.01662438807270017,
+      "objective_m": 9.114554833572761,
+      "rotation_rad": 3.468095823916293,
+      "samples": 118,
+      "translation_m": 4.606030262481579
+    },
+    "nodes": 18,
+    "optimization_seconds": 0.001093,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.501967736759997,
+          1.3975904349581725,
+          1.3678841113740017
+        ],
+        "quaternion": [
+          0.10999568431218106,
+          0.012255955044334445,
+          0.6391087878857887,
+          0.76111148870964
+        ]
+      },
+      "min_sampled_clearance_m": 0.1319141808785238,
+      "objective_m": 6.692668694557782,
+      "rotation_rad": 1.7823024366521305,
+      "samples": 84,
+      "translation_m": 4.375675526910013
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1029,
+      "shortcut_attempts": 100,
+      "time_limit": 5.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "ompl-rrt-connect",
+    "queries": {
+      "broad": 666,
+      "motions": 34,
+      "narrow": 62,
+      "samples": 319,
+      "states": 333
+    },
+    "reason": "OMPL RRT-Connect exact solution independently validated. WeightedSE3Space uses PassageLab's pose_distance and interpolation. OMPL maps iteration and node budgets conservatively to motion-check ceilings (may stop early); cfg.goal_bias is not applied.",
+    "run_id": "B-L-corner-1029-1793226459913",
+    "scene_hash": "sha256:305bf8ce7e364db9372b7a1108acfd1837343675ecb08d2348c8a7be24c78042",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0004582,
+    "software_version": "0.1.0",
+    "status": "solved",
+    "total_seconds": 0.0007004,
+    "unix_time_ms": 1793226459913,
+    "validation_seconds": 0.0001419,
+    "verification": {
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 131,
+      "status": 0
+    }
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "body": "long-arm",
+  "expected": "invalid_start",
+  "obstacle": "inner-corner",
+  "reason": "collision or contact",
+  "valid": false
+}

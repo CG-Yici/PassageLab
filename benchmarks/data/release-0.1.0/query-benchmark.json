@@ -1,0 +1,19 @@
+{
+  "brute": {
+    "agrees": true,
+    "broad_nodes": 0,
+    "narrow_queries": 134830,
+    "seconds": 0.4197851
+  },
+  "build": "Release",
+  "bvh": {
+    "agrees": true,
+    "broad_nodes": 7342,
+    "narrow_queries": 1163,
+    "seconds": 0.0051572
+  },
+  "git_commit": "c9881a2",
+  "obstacles": 144,
+  "samples": 1000,
+  "scene_hash": "sha256:feb1007a16083eda6b1b1449aaab6f6de91618ea21fa789f312ecff6be585727"
+}

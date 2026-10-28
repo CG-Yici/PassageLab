@@ -6,9 +6,13 @@ A pose has a translation and unit quaternion. Quaternion sign is not a physical 
 
 All motion uses linear translation and shortest-arc SLERP. Uniform orientation sampling avoids uniformly sampling Euler angles. Seeds are deterministic within a fixed implementation/toolchain and operation-budget run; they do not imply identical random sequences across standard libraries or planners.
 
+`planar-xy` is an explicit optional restriction: translation Z stays at the start height and orientation is a world-Z yaw applied to the start quaternion. Thus a tilted initial body retains its initial tilt. The self-written and OMPL samplers, interpolation and shared state validator all enforce the same subspace. A goal outside that subspace is invalid; the program never projects it silently. Default `se3` JSON hashes remain compatible with older scenes. A budget-exhausted planar search does not prove that no planar path exists.
+
 ## Geometry
 
 Sphere queries are analytical. OBB collision classification checks six face axes and nine edge cross-product axes, with a conservative contact tolerance. SAT projection gaps are never reported as Euclidean distance. Compound bodies are unions of local parts; parts do not collide against each other.
+
+Public point/segment and point/box queries return the closest point and distance, including degenerate segments and containment. The ray/triangle query returns ray parameter and barycentric coordinates, rejects degenerate triangles, and accepts boundary hits. Desktop box/sphere picking uses analytic shape intersections rather than approximating these shapes with triangles.
 
 The original design selected FCL as the box-distance backend. Testing found argument-order-dependent distances in the pinned FCL 0.7.0 LIBCCD and independent GJK paths, including an axis-aligned expected 0.5 m case returning about 0.5831 m with the default backend. The implementation therefore enumerates both sets of eight vertex-to-box projections and all 12-by-12 edge segment pairs. For separated boxes, a minimum is attained by one of those feature pairs; its witnesses lie on the actual shapes. This is a bounded box-specific method, not a general convex-body solver. FCL GST_INDEP (distance tolerance 1e-9) remains an audit; disagreement is retained in `QueryResult.reason`. Randomized reversal, rigid-transform, witness-surface and known skew-edge cases cover this deviation from the initial design.
 

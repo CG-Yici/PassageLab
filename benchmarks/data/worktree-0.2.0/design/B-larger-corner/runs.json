@@ -1,0 +1,4022 @@
+[
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009896,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 82,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          0.010987493409628526,
+          1.3664341216292033,
+          1.3314249349435445
+        ],
+        "quaternion": [
+          -0.3602335616011703,
+          0.05858548189238143,
+          0.4230062837890202,
+          0.8293763960244928
+        ]
+      },
+      "min_clearance_position": 0.7058823529411765,
+      "min_sampled_clearance_m": 0.0740894614537142,
+      "objective_m": 12.497918246336255,
+      "rotation_rad": 4.608871394823864,
+      "samples": 163,
+      "translation_m": 6.5063854330652315
+    },
+    "motion_space": "se3",
+    "nodes": 35,
+    "optimization_seconds": 0.001058,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5252016728058605,
+          0.6051227561010373,
+          1.4111603121503702
+        ],
+        "quaternion": [
+          -0.516610092892636,
+          -0.036519802261624885,
+          0.22793872272240365,
+          0.8245145569654383
+        ]
+      },
+      "min_clearance_position": 0.4,
+      "min_sampled_clearance_m": 0.08907449963968525,
+      "objective_m": 8.743637073670556,
+      "rotation_rad": 2.9986990674762253,
+      "samples": 110,
+      "translation_m": 4.845328285951463
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1000,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1620,
+      "motions": 99,
+      "narrow": 64,
+      "samples": 807,
+      "states": 810
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296280080764-0",
+    "run_id": "B-L-corner-1000-1793229628012",
+    "scene_hash": "sha256:26f9335fb57ddd6f0eaf1b882222426bb9eb9e403a9dd205532112d57edc33f7",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0004357,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0005436,
+    "unix_time_ms": 1793229628012,
+    "validation_seconds": 8.86e-05,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 162,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.05212752447062469,
+        "surface_m": 0.07998053046696534,
+        "translation_m": 0.05522005997791418
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 180,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008985,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 84,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -2.2495738599190647,
+          0.11486705956386817,
+          1.3877068160673718
+        ],
+        "quaternion": [
+          0.003091571450962383,
+          -0.011987072475705077,
+          0.10715670064158146,
+          0.9941650737111198
+        ]
+      },
+      "min_clearance_position": 0.05,
+      "min_sampled_clearance_m": 0.04593504229803225,
+      "objective_m": 14.646969220243912,
+      "rotation_rad": 6.25567760113258,
+      "samples": 191,
+      "translation_m": 6.514588338771558
+    },
+    "motion_space": "se3",
+    "nodes": 43,
+    "optimization_seconds": 0.0021993,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3932722378144269,
+          0.36607249931890246,
+          1.5642904188336755
+        ],
+        "quaternion": [
+          0.4558160720055686,
+          0.16896717704657632,
+          0.3723145272415678,
+          0.790609697883357
+        ]
+      },
+      "min_clearance_position": 0.25,
+      "min_sampled_clearance_m": 0.07383566781132876,
+      "objective_m": 10.533838612598174,
+      "rotation_rad": 4.50763428643872,
+      "samples": 130,
+      "translation_m": 4.673914040227837
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1001,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1744,
+      "motions": 104,
+      "narrow": 141,
+      "samples": 872,
+      "states": 875
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296280268507-0",
+    "run_id": "B-L-corner-1001-1793229628031",
+    "scene_hash": "sha256:18d2b9291c5fc4f503333a579474a7e2cf1e4dd878e349c3e59198d9aff5553c",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0006448000000000001,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0008829,
+    "unix_time_ms": 1793229628031,
+    "validation_seconds": 0.0002118,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 190,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.05129586960854821,
+        "surface_m": 0.07944715139155524,
+        "translation_m": 0.04727948383494837
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 211,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0010854,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 78,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.35871286904116884,
+          1.3320520474419482,
+          1.5530005554357338
+        ],
+        "quaternion": [
+          0.07249515802529749,
+          -0.3192225848438702,
+          0.7668004276897491,
+          0.552139925637789
+        ]
+      },
+      "min_clearance_position": 0.65,
+      "min_sampled_clearance_m": 0.013347820571129062,
+      "objective_m": 12.014777631894072,
+      "rotation_rad": 4.9288864589650645,
+      "samples": 156,
+      "translation_m": 5.607225235239488
+    },
+    "motion_space": "se3",
+    "nodes": 34,
+    "optimization_seconds": 0.0022398,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.466236337708247,
+          0.4139198890982242,
+          1.5369338262408534
+        ],
+        "quaternion": [
+          0.11224643808713437,
+          -0.05062072616787776,
+          0.32875540688622745,
+          0.9363536520258032
+        ]
+      },
+      "min_clearance_position": 0.3214285714285714,
+      "min_sampled_clearance_m": 0.008012451467965143,
+      "objective_m": 8.74467189869345,
+      "rotation_rad": 3.2696752289785573,
+      "samples": 109,
+      "translation_m": 4.494094101021327
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1002,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1366,
+      "motions": 94,
+      "narrow": 147,
+      "samples": 685,
+      "states": 688
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296280453939-0",
+    "run_id": "B-L-corner-1002-1793229628050",
+    "scene_hash": "sha256:35d3126620719100e73b4afac4af6d5bb4e21831179d237a3507f7a63ed7c1f1",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.000697,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0008561,
+    "unix_time_ms": 1793229628050,
+    "validation_seconds": 0.0001393,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 155,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04500950017148135,
+        "surface_m": 0.07873732194520283,
+        "translation_m": 0.04885032221736949
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 172,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0008884,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 73,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5405248651002134,
+          1.0057967034216524,
+          1.3831978485268788
+        ],
+        "quaternion": [
+          -0.436316562141567,
+          -0.28207151844045036,
+          -0.15527665949291947,
+          0.8402098994313164
+        ]
+      },
+      "min_clearance_position": 0.5352941176470588,
+      "min_sampled_clearance_m": 0.07177454548246982,
+      "objective_m": 12.28775340666299,
+      "rotation_rad": 5.049993506317359,
+      "samples": 159,
+      "translation_m": 5.722761848450423
+    },
+    "motion_space": "se3",
+    "nodes": 31,
+    "optimization_seconds": 0.0009417,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          0.010335697689509232,
+          2.1098662977956817,
+          1.3744607660945722
+        ],
+        "quaternion": [
+          -0.19494198506033236,
+          -0.1384622030964625,
+          0.4019159016432763,
+          0.8839057918017528
+        ]
+      },
+      "min_clearance_position": 0.8873239436619719,
+      "min_sampled_clearance_m": 0.12939154503682015,
+      "objective_m": 9.954636629308112,
+      "rotation_rad": 4.094953219850693,
+      "samples": 123,
+      "translation_m": 4.631197443502211
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1003,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1378,
+      "motions": 90,
+      "narrow": 59,
+      "samples": 688,
+      "states": 691
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296280644316-0",
+    "run_id": "B-L-corner-1003-1793229628068",
+    "scene_hash": "sha256:7e4fe788c8ef13a564bc686bcd98fde02c51695b678243218763b76ba4ca4ab3",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.00035539999999999997,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0004784,
+    "unix_time_ms": 1793229628068,
+    "validation_seconds": 0.0001033,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 158,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.044260809658259695,
+        "surface_m": 0.0798552255810156,
+        "translation_m": 0.047619299436690674
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 176,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0010908,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 42,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.2024694232200428,
+          0.4921400696172809,
+          1.4076273453222063
+        ],
+        "quaternion": [
+          0.2067864180093043,
+          0.09691704614513684,
+          0.3387628835627944,
+          0.9127355434152894
+        ]
+      },
+      "min_clearance_position": 0.35333333333333333,
+      "min_sampled_clearance_m": 0.003077529527277134,
+      "objective_m": 11.269346264328036,
+      "rotation_rad": 4.575847344770903,
+      "samples": 147,
+      "translation_m": 5.32074471612586
+    },
+    "motion_space": "se3",
+    "nodes": 21,
+    "optimization_seconds": 0.0022075,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.2498512671241819,
+          1.5931247433957902,
+          1.3446881398445527
+        ],
+        "quaternion": [
+          0.024070680468442945,
+          0.006593469910611585,
+          0.8836520382954508,
+          0.46747855962880175
+        ]
+      },
+      "min_clearance_position": 0.6666666666666666,
+      "min_sampled_clearance_m": 0.07858719252153046,
+      "objective_m": 8.707243189265359,
+      "rotation_rad": 3.052540814468938,
+      "samples": 108,
+      "translation_m": 4.73894013045574
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1004,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 943,
+      "motions": 57,
+      "narrow": 102,
+      "samples": 469,
+      "states": 472
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296280821044-0",
+    "run_id": "B-L-corner-1004-1793229628087",
+    "scene_hash": "sha256:429bef72aba730bde17dbf3ab1a9bef26397e0d98ef9a6752003af6a26b9a2eb",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.00042040000000000003,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0006654,
+    "unix_time_ms": 1793229628087,
+    "validation_seconds": 0.0002251,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 146,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04358904204368095,
+        "surface_m": 0.07715964106075446,
+        "translation_m": 0.04880997377844319
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 162,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0010613,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 49,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.47323744803611856,
+          1.4386310746567101,
+          1.6348960092438876
+        ],
+        "quaternion": [
+          -0.10906060777085301,
+          -0.05300490846858842,
+          0.8032184773839423,
+          0.5832120892950609
+        ]
+      },
+      "min_clearance_position": 0.5785714285714285,
+      "min_sampled_clearance_m": 0.04803918081697302,
+      "objective_m": 10.651777214618546,
+      "rotation_rad": 4.28938889702409,
+      "samples": 138,
+      "translation_m": 5.075571648487228
+    },
+    "motion_space": "se3",
+    "nodes": 24,
+    "optimization_seconds": 0.0025823,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.47323744803611856,
+          1.4386310746567101,
+          1.6348960092438876
+        ],
+        "quaternion": [
+          -0.10906060777085301,
+          -0.05300490846858842,
+          0.8032184773839423,
+          0.5832120892950609
+        ]
+      },
+      "min_clearance_position": 0.6833333333333332,
+      "min_sampled_clearance_m": 0.04803918081697302,
+      "objective_m": 8.28907926166912,
+      "rotation_rad": 2.9462860355912808,
+      "samples": 105,
+      "translation_m": 4.4589074154004535
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1005,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 978,
+      "motions": 63,
+      "narrow": 144,
+      "samples": 488,
+      "states": 491
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296281023563-0",
+    "run_id": "B-L-corner-1005-1793229628108",
+    "scene_hash": "sha256:503e2cced9000b1dcbaf786c660f51dce3360f2cc9d88d3f34348e6aafc0799c",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0005273,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0008124,
+    "unix_time_ms": 1793229628108,
+    "validation_seconds": 0.0002659,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 137,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04222751379943302,
+        "surface_m": 0.07917614254287555,
+        "translation_m": 0.04827572674947577
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 152,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009407,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 82,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.019751699531262067,
+          1.390783371904287,
+          1.4104908409461019
+        ],
+        "quaternion": [
+          0.14415550437585584,
+          0.005915290282798449,
+          0.5591046218633883,
+          0.8164473171675012
+        ]
+      },
+      "min_clearance_position": 0.7529411764705882,
+      "min_sampled_clearance_m": 0.013793012128028082,
+      "objective_m": 12.67984864994917,
+      "rotation_rad": 5.056163726060952,
+      "samples": 165,
+      "translation_m": 6.106835806069931
+    },
+    "motion_space": "se3",
+    "nodes": 32,
+    "optimization_seconds": 0.0008192,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.13934034965568862,
+          1.075686019905784,
+          1.5912668074216838
+        ],
+        "quaternion": [
+          0.10284397368461107,
+          0.15584801609185872,
+          0.32402223626235427,
+          0.9274395416222742
+        ]
+      },
+      "min_clearance_position": 0.7880434782608696,
+      "min_sampled_clearance_m": 0.020654316920174498,
+      "objective_m": 8.11622359883654,
+      "rotation_rad": 2.3295937152107813,
+      "samples": 102,
+      "translation_m": 5.087751769062523
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1006,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1438,
+      "motions": 99,
+      "narrow": 107,
+      "samples": 716,
+      "states": 719
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296281223380-0",
+    "run_id": "B-L-corner-1006-1793229628125",
+    "scene_hash": "sha256:fc96149a06b82232533c5d338470063f5b0600f84a370d19b5b38cc5e1728092",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0005624,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.000647,
+    "unix_time_ms": 1793229628125,
+    "validation_seconds": 6.48e-05,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 164,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04154993348789471,
+        "surface_m": 0.07938781817008592,
+        "translation_m": 0.04705283468664151
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 182,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009946,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 105,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.9510288116420655,
+          0.28124086641052853,
+          1.5997482161051377
+        ],
+        "quaternion": [
+          -0.19002833158854912,
+          -0.06998092814902039,
+          0.20671732714574934,
+          0.9572146308674933
+        ]
+      },
+      "min_clearance_position": 0.13529411764705881,
+      "min_sampled_clearance_m": 0.008525256384706914,
+      "objective_m": 12.198472741250352,
+      "rotation_rad": 5.221895398805711,
+      "samples": 160,
+      "translation_m": 5.410008722802929
+    },
+    "motion_space": "se3",
+    "nodes": 42,
+    "optimization_seconds": 0.0033482,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.136889092717319,
+          0.6284114228442051,
+          1.6534563614399191
+        ],
+        "quaternion": [
+          -0.31036983736424234,
+          0.023725984853591838,
+          0.5236909423781987,
+          0.7930040596165036
+        ]
+      },
+      "min_clearance_position": 0.41496598639455784,
+      "min_sampled_clearance_m": 0.00925050210510128,
+      "objective_m": 9.112578523330114,
+      "rotation_rad": 3.5119966916345278,
+      "samples": 113,
+      "translation_m": 4.546982824205228
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1007,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1762,
+      "motions": 122,
+      "narrow": 289,
+      "samples": 884,
+      "states": 887
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296281399615-0",
+    "run_id": "B-L-corner-1007-1793229628146",
+    "scene_hash": "sha256:03e99dc4a17557e40acc94dc05367d46aa853e2305147eb80fd042e86b23710c",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0011744,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0014823,
+    "unix_time_ms": 1793229628146,
+    "validation_seconds": 0.0002884,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 159,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04412920300406099,
+        "surface_m": 0.07818155338686007,
+        "translation_m": 0.048945077895999715
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 177,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0013029,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 68,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -2.1982958819284852,
+          0.05455418734668882,
+          1.3795455825953264
+        ],
+        "quaternion": [
+          -0.02434739681881454,
+          0.10866015386394746,
+          0.01463959081853322,
+          0.9936729127892521
+        ]
+      },
+      "min_clearance_position": 0.041666666666666664,
+      "min_sampled_clearance_m": 0.03979064430655055,
+      "objective_m": 16.54153433678473,
+      "rotation_rad": 8.106554418815584,
+      "samples": 215,
+      "translation_m": 6.00301359232447
+    },
+    "motion_space": "se3",
+    "nodes": 33,
+    "optimization_seconds": 0.0020931,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.2624859131361408,
+          0.485405217821618,
+          1.4109945896775957
+        ],
+        "quaternion": [
+          -0.37265349149150445,
+          -0.21287843940148352,
+          0.32600865661215467,
+          0.8423363349227662
+        ]
+      },
+      "min_clearance_position": 0.26865671641791045,
+      "min_sampled_clearance_m": 0.11153686145183343,
+      "objective_m": 9.36280036114935,
+      "rotation_rad": 3.655284945259793,
+      "samples": 115,
+      "translation_m": 4.6109299323116195
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1008,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1450,
+      "motions": 92,
+      "narrow": 67,
+      "samples": 724,
+      "states": 727
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296281615861-0",
+    "run_id": "B-L-corner-1008-1793229628166",
+    "scene_hash": "sha256:a49212a7bf7f87744e68eeafa34c83153be9b6f2de0e199a4df2bd6173a77097",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.00043480000000000005,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.000585,
+    "unix_time_ms": 1793229628166,
+    "validation_seconds": 0.0001336,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 214,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.052289041173573185,
+        "surface_m": 0.07980385647425664,
+        "translation_m": 0.04798260563566294
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 239,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0010673,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 57,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5229207399154587,
+          1.2858244321045387,
+          1.739808730102797
+        ],
+        "quaternion": [
+          -0.17440487943446883,
+          0.11731134546142775,
+          0.7524931964671838,
+          0.6241594151545569
+        ]
+      },
+      "min_clearance_position": 0.5764705882352942,
+      "min_sampled_clearance_m": 0.034155035823201625,
+      "objective_m": 12.703197390816275,
+      "rotation_rad": 5.364260536976427,
+      "samples": 164,
+      "translation_m": 5.72965869274692
+    },
+    "motion_space": "se3",
+    "nodes": 28,
+    "optimization_seconds": 0.0023014,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.5229207399154587,
+          1.2858244321045387,
+          1.739808730102797
+        ],
+        "quaternion": [
+          -0.17440487943446883,
+          0.11731134546142775,
+          0.7524931964671838,
+          0.6241594151545569
+        ]
+      },
+      "min_clearance_position": 0.6333333333333333,
+      "min_sampled_clearance_m": 0.034155035823201625,
+      "objective_m": 8.701267299404826,
+      "rotation_rad": 3.2418335603533377,
+      "samples": 111,
+      "translation_m": 4.4868836709454865
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1009,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1282,
+      "motions": 74,
+      "narrow": 223,
+      "samples": 639,
+      "states": 642
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296281834386-0",
+    "run_id": "B-L-corner-1009-1793229628189",
+    "scene_hash": "sha256:2a296cab1f56355d91288d9c05b96bc4b4a3bb49aae07c9ae741f0eef3b948e8",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.000809,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0011942,
+    "unix_time_ms": 1793229628189,
+    "validation_seconds": 0.0003644,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 163,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04491320295100623,
+        "surface_m": 0.07985606718234431,
+        "translation_m": 0.055926488891251985
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 181,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009168,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 77,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.14657405371217497,
+          1.3893650446090786,
+          1.1319352046408782
+        ],
+        "quaternion": [
+          0.0628205951446139,
+          -0.13218906162853744,
+          0.7048009076107663,
+          0.6941435769655175
+        ]
+      },
+      "min_clearance_position": 0.75,
+      "min_sampled_clearance_m": 0.005880405374421915,
+      "objective_m": 11.642554907492109,
+      "rotation_rad": 4.74023060730796,
+      "samples": 149,
+      "translation_m": 5.480255117991762
+    },
+    "motion_space": "se3",
+    "nodes": 32,
+    "optimization_seconds": 0.0017682,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3284096248074633,
+          0.4730816543592079,
+          1.2210816497477082
+        ],
+        "quaternion": [
+          0.043892362657626235,
+          0.010317843445684361,
+          0.43473442814389257,
+          0.8994292521334654
+        ]
+      },
+      "min_clearance_position": 0.24615384615384617,
+      "min_sampled_clearance_m": 0.057068859049947185,
+      "objective_m": 7.466697911888335,
+      "rotation_rad": 2.146255876715148,
+      "samples": 93,
+      "translation_m": 4.676565272158643
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1010,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1388,
+      "motions": 93,
+      "narrow": 148,
+      "samples": 698,
+      "states": 701
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296282040858-0",
+    "run_id": "B-L-corner-1010-1793229628208",
+    "scene_hash": "sha256:225e2b7a8081cb04d976099ae1ea789fb8215922a33e8a32e76909c372b808c2",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0008049999999999999,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0010354,
+    "unix_time_ms": 1793229628208,
+    "validation_seconds": 0.0002059,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 148,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.052010017076192044,
+        "surface_m": 0.07984452913739754,
+        "translation_m": 0.06798109632043706
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 165,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0010107,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 67,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7656866260784091,
+          0.6791359707274677,
+          1.4948613740287986
+        ],
+        "quaternion": [
+          0.38386233856973206,
+          -0.35657779429237313,
+          0.669137963414447,
+          0.5270259647900936
+        ]
+      },
+      "min_clearance_position": 0.5555555555555556,
+      "min_sampled_clearance_m": 0.023200291244605875,
+      "objective_m": 12.904257379211845,
+      "rotation_rad": 5.58718179011992,
+      "samples": 169,
+      "translation_m": 5.6409210520559485
+    },
+    "motion_space": "se3",
+    "nodes": 33,
+    "optimization_seconds": 0.0023139,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.444895380401923,
+          1.0548132513739896,
+          1.6126781965136787
+        ],
+        "quaternion": [
+          0.3312605638716643,
+          -0.19965683117525745,
+          0.8042882633117557,
+          0.45113631874128884
+        ]
+      },
+      "min_clearance_position": 0.5679012345679012,
+      "min_sampled_clearance_m": 0.062427901187829926,
+      "objective_m": 9.446323420626616,
+      "rotation_rad": 3.7416108972115616,
+      "samples": 117,
+      "translation_m": 4.582229254251587
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1011,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1366,
+      "motions": 85,
+      "narrow": 61,
+      "samples": 684,
+      "states": 687
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296282227604-0",
+    "run_id": "B-L-corner-1011-1793229628228",
+    "scene_hash": "sha256:babda5cd5e8dc2f3981bba1d395c922a6ff64504268f6e871a57e36c8fa1914b",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.00036149999999999995,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0004962,
+    "unix_time_ms": 1793229628228,
+    "validation_seconds": 0.0001129,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 168,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04472407582045516,
+        "surface_m": 0.07950500772389679,
+        "translation_m": 0.048937741043510306
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 187,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.000922,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 31,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.21296802338582077,
+          1.452565259879297,
+          1.3299782069427994
+        ],
+        "quaternion": [
+          0.0621659704845566,
+          0.05169406639628263,
+          0.7687745482321424,
+          0.6343885320555499
+        ]
+      },
+      "min_clearance_position": 0.6357142857142858,
+      "min_sampled_clearance_m": 0.0005862669313992382,
+      "objective_m": 9.845707372179874,
+      "rotation_rad": 3.491796507697374,
+      "samples": 128,
+      "translation_m": 5.3063719121732875
+    },
+    "motion_space": "se3",
+    "nodes": 18,
+    "optimization_seconds": 0.0027914,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.21296802338582077,
+          1.452565259879297,
+          1.3299782069427994
+        ],
+        "quaternion": [
+          0.0621659704845566,
+          0.05169406639628263,
+          0.7687745482321424,
+          0.6343885320555499
+        ]
+      },
+      "min_clearance_position": 0.725,
+      "min_sampled_clearance_m": 0.0005862669313992382,
+      "objective_m": 7.204649419662903,
+      "rotation_rad": 2.095029379208254,
+      "samples": 92,
+      "translation_m": 4.481111226692173
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1012,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 736,
+      "motions": 45,
+      "narrow": 118,
+      "samples": 366,
+      "states": 369
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296282429734-0",
+    "run_id": "B-L-corner-1012-1793229628248",
+    "scene_hash": "sha256:b22cb4ec212f971b6a8626db5bd06df85bfe37659cd1b8e4eb36efad86b7f90b",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.00042229999999999996,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0007161,
+    "unix_time_ms": 1793229628248,
+    "validation_seconds": 0.0002723,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 127,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.05179114578483835,
+        "surface_m": 0.079665112403046,
+        "translation_m": 0.05726203033224876
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 142,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0012673,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 54,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.6836879812996554,
+          1.026693972840627,
+          1.761144354709625
+        ],
+        "quaternion": [
+          -0.47076170459545397,
+          -0.3607587661995554,
+          0.4247235563565836,
+          0.6839930049147968
+        ]
+      },
+      "min_clearance_position": 0.48947368421052634,
+      "min_sampled_clearance_m": 0.00018193145235510786,
+      "objective_m": 14.318146191105637,
+      "rotation_rad": 5.970329187965942,
+      "samples": 185,
+      "translation_m": 6.556718246749911
+    },
+    "motion_space": "se3",
+    "nodes": 28,
+    "optimization_seconds": 0.0034737,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.44322712893535654,
+          1.0851286891804424,
+          1.7051231502012127
+        ],
+        "quaternion": [
+          -0.3663533317293161,
+          -0.4083111449004364,
+          0.4148685603462414,
+          0.7259141291620942
+        ]
+      },
+      "min_clearance_position": 0.5357142857142857,
+      "min_sampled_clearance_m": 0.10592126399627479,
+      "objective_m": 9.1252307080021,
+      "rotation_rad": 3.4429850386086542,
+      "samples": 114,
+      "translation_m": 4.649350157810849
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1013,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1258,
+      "motions": 73,
+      "narrow": 200,
+      "samples": 626,
+      "states": 629
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296282640752-0",
+    "run_id": "B-L-corner-1013-1793229628270",
+    "scene_hash": "sha256:a2204278c9b9bdc91f706ee368fb7b1ad8f0b5999678acf36bd307eb6f6522a4",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0007137999999999999,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0010571,
+    "unix_time_ms": 1793229628270,
+    "validation_seconds": 0.0003228,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 184,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.044593510961289586,
+        "surface_m": 0.07879849439152159,
+        "translation_m": 0.048599834485340644
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 204,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009331,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 30,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.5407924554913959,
+          0.22251420729443716,
+          1.329189596759132
+        ],
+        "quaternion": [
+          0.06660140882073255,
+          -0.006628599655369789,
+          0.21715539717661175,
+          0.9738397442530113
+        ]
+      },
+      "min_clearance_position": 0.20714285714285713,
+      "min_sampled_clearance_m": 0.04264499297690949,
+      "objective_m": 10.210625707534437,
+      "rotation_rad": 3.7278164771921016,
+      "samples": 135,
+      "translation_m": 5.364464287184704
+    },
+    "motion_space": "se3",
+    "nodes": 19,
+    "optimization_seconds": 0.0013791,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.9192634179552411,
+          0.6524887936768596,
+          1.5387890726826923
+        ],
+        "quaternion": [
+          -0.16374526139861872,
+          -0.016950497638967263,
+          0.452064468423494,
+          0.8766629263224682
+        ]
+      },
+      "min_clearance_position": 0.3046875,
+      "min_sampled_clearance_m": 0.020557199946170446,
+      "objective_m": 7.567798971081277,
+      "rotation_rad": 2.1549934652935256,
+      "samples": 95,
+      "translation_m": 4.766307466199693
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1014,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 790,
+      "motions": 44,
+      "narrow": 51,
+      "samples": 392,
+      "states": 395
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296282858298-0",
+    "run_id": "B-L-corner-1014-1793229628290",
+    "scene_hash": "sha256:65af20459099e59a3ead7d901bf76604042df1223998ca3935fbd3949692a568",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.00025969999999999997,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0003864,
+    "unix_time_ms": 1793229628290,
+    "validation_seconds": 0.000106,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 134,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.03681088728270114,
+        "surface_m": 0.07550451749937635,
+        "translation_m": 0.04941727587690268
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 149,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0012291,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 49,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.6795820217606225,
+          0.22224747979179577,
+          1.541566939961574
+        ],
+        "quaternion": [
+          0.17239060938149614,
+          0.23498525641734302,
+          0.1428308956937684,
+          0.9458661333924944
+        ]
+      },
+      "min_clearance_position": 0.17647058823529413,
+      "min_sampled_clearance_m": 0.007480489878070484,
+      "objective_m": 12.29240182743443,
+      "rotation_rad": 5.239700327571399,
+      "samples": 161,
+      "translation_m": 5.480791401591611
+    },
+    "motion_space": "se3",
+    "nodes": 26,
+    "optimization_seconds": 0.002763,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.07987824715988683,
+          1.8455756246890904,
+          1.4073717274211917
+        ],
+        "quaternion": [
+          -0.11251984970337131,
+          -0.06889898530734365,
+          0.9327254777253756,
+          0.33558217540316243
+        ]
+      },
+      "min_clearance_position": 0.6410256410256411,
+      "min_sampled_clearance_m": 0.02445343996682503,
+      "objective_m": 10.126098945813645,
+      "rotation_rad": 4.213320468863144,
+      "samples": 125,
+      "translation_m": 4.648782336291556
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1015,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1093,
+      "motions": 66,
+      "narrow": 107,
+      "samples": 544,
+      "states": 547
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296283053480-0",
+    "run_id": "B-L-corner-1015-1793229628311",
+    "scene_hash": "sha256:93b9ad778506df1b011720d4b5547591f89a5609ae12a5de6322eb96c7ca9a1f",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.000464,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0006991,
+    "unix_time_ms": 1793229628311,
+    "validation_seconds": 0.0002153,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 160,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.05148593680653899,
+        "surface_m": 0.07866157847606813,
+        "translation_m": 0.04749964273188275
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 178,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009643,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 47,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.21772709939096885,
+          1.315731592416455,
+          1.5174800724545179
+        ],
+        "quaternion": [
+          0.0920450064397028,
+          0.19716611699851033,
+          0.715223917903635,
+          0.6641596090969543
+        ]
+      },
+      "min_clearance_position": 0.6153846153846154,
+      "min_sampled_clearance_m": 0.01142454362656716,
+      "objective_m": 9.905083270937059,
+      "rotation_rad": 3.875499128904092,
+      "samples": 128,
+      "translation_m": 4.86693440336174
+    },
+    "motion_space": "se3",
+    "nodes": 23,
+    "optimization_seconds": 0.002621,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.1974511315555771,
+          1.3723126069730103,
+          1.5132843555811424
+        ],
+        "quaternion": [
+          0.08880919257146284,
+          0.19023480284678893,
+          0.715543372956868,
+          0.6662742142077516
+        ]
+      },
+      "min_clearance_position": 0.6785714285714285,
+      "min_sampled_clearance_m": 0.002390846844873007,
+      "objective_m": 7.367335527956657,
+      "rotation_rad": 2.1893161236046694,
+      "samples": 92,
+      "translation_m": 4.521224567270587
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1016,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 931,
+      "motions": 60,
+      "narrow": 103,
+      "samples": 464,
+      "states": 467
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296283260174-0",
+    "run_id": "B-L-corner-1016-1793229628331",
+    "scene_hash": "sha256:ebe13f2b1861aee9db32036f18f87fcae80f45442ac28f25360844ec4662445b",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0004259,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0006108,
+    "unix_time_ms": 1793229628331,
+    "validation_seconds": 0.0001686,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 127,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04260384603781278,
+        "surface_m": 0.07978643015430067,
+        "translation_m": 0.047619799096969756
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 141,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0013435,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 73,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.8294520575109524,
+          0.8926138203421509,
+          1.3809065456643195
+        ],
+        "quaternion": [
+          -0.3345580503353532,
+          -0.4416735139394782,
+          -0.1810638396761247,
+          0.8125338786794675
+        ]
+      },
+      "min_clearance_position": 0.42105263157894735,
+      "min_sampled_clearance_m": 0.001337786097963641,
+      "objective_m": 13.645785399582104,
+      "rotation_rad": 5.350024525329949,
+      "samples": 178,
+      "translation_m": 6.690753516653171
+    },
+    "motion_space": "se3",
+    "nodes": 30,
+    "optimization_seconds": 0.0035661,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.908775703274208,
+          0.7562222217710054,
+          1.4988212802672525
+        ],
+        "quaternion": [
+          -0.35843119704650844,
+          -0.4516543876552171,
+          -0.12504476847659754,
+          0.8074027476868234
+        ]
+      },
+      "min_clearance_position": 0.5555555555555556,
+      "min_sampled_clearance_m": 0.04225156998815423,
+      "objective_m": 9.953679470866792,
+      "rotation_rad": 4.033088465471426,
+      "samples": 123,
+      "translation_m": 4.710664465753939
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1017,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1362,
+      "motions": 92,
+      "narrow": 152,
+      "samples": 678,
+      "states": 681
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296283466576-0",
+    "run_id": "B-L-corner-1017-1793229628353",
+    "scene_hash": "sha256:95ec4c47e141427974886f17050558a39a0153b0c68e67047e4d1b92d42d706e",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.000723,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0009504,
+    "unix_time_ms": 1793229628353,
+    "validation_seconds": 0.0002077,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 177,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.0453587933188349,
+        "surface_m": 0.07961587925818045,
+        "translation_m": 0.05624520609566711
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 197,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0013761,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 128,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.898554521403996,
+          0.816415555003284,
+          1.560758880706802
+        ],
+        "quaternion": [
+          0.5670328281236845,
+          0.20814010881337872,
+          0.21876014445812206,
+          0.7663520510378193
+        ]
+      },
+      "min_clearance_position": 0.5909090909090909,
+      "min_sampled_clearance_m": 0.006243261419813795,
+      "objective_m": 16.41771109551704,
+      "rotation_rad": 7.20630418874127,
+      "samples": 213,
+      "translation_m": 7.049515650153387
+    },
+    "motion_space": "se3",
+    "nodes": 54,
+    "optimization_seconds": 0.004033,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.4914030253691166,
+          0.4174246702825916,
+          1.5285296130535035
+        ],
+        "quaternion": [
+          0.4085074865562111,
+          0.26928825099674497,
+          0.08636969742990651,
+          0.8678397010211663
+        ]
+      },
+      "min_clearance_position": 0.24806201550387597,
+      "min_sampled_clearance_m": 0.0007219929584685314,
+      "objective_m": 9.934750014042821,
+      "rotation_rad": 4.201865210846895,
+      "samples": 123,
+      "translation_m": 4.472325239941857
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1018,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 2322,
+      "motions": 150,
+      "narrow": 388,
+      "samples": 1169,
+      "states": 1172
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296283701317-0",
+    "run_id": "B-L-corner-1018-1793229628377",
+    "scene_hash": "sha256:6bac5a77496bf05bcef223c03fd83cf211674fbdd26e527b05db6385988d079a",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0016942000000000003,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0020249,
+    "unix_time_ms": 1793229628377,
+    "validation_seconds": 0.0003038,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 212,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04471300276779822,
+        "surface_m": 0.07959134387279272,
+        "translation_m": 0.05711926903834719
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 235,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009728,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 54,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.6261926386792593,
+          0.3799326488595328,
+          1.264199249183772
+        ],
+        "quaternion": [
+          0.0011773816815209557,
+          -0.03674557585869687,
+          0.32140261474994686,
+          0.9462286909934015
+        ]
+      },
+      "min_clearance_position": 0.21428571428571427,
+      "min_sampled_clearance_m": 0.03956495548021688,
+      "objective_m": 10.125807284565147,
+      "rotation_rad": 3.6828651244235737,
+      "samples": 132,
+      "translation_m": 5.3380826228145
+    },
+    "motion_space": "se3",
+    "nodes": 23,
+    "optimization_seconds": 0.0013082,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.25127442115576837,
+          1.2179585513981281,
+          1.3828267133179848
+        ],
+        "quaternion": [
+          0.16186962453799308,
+          0.2835001367380754,
+          0.663423630636307,
+          0.6732718495784319
+        ]
+      },
+      "min_clearance_position": 0.5769230769230769,
+      "min_sampled_clearance_m": 0.02387708618386246,
+      "objective_m": 7.8256241544061815,
+      "rotation_rad": 2.488976101082305,
+      "samples": 98,
+      "translation_m": 4.589955222999185
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1019,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1031,
+      "motions": 68,
+      "narrow": 164,
+      "samples": 514,
+      "states": 517
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296283921311-0",
+    "run_id": "B-L-corner-1019-1793229628396",
+    "scene_hash": "sha256:694e022284814f9584c4c9d4cffc48ac720d071b6af315495fb1849802a330d3",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0007849,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0010076,
+    "unix_time_ms": 1793229628396,
+    "validation_seconds": 0.000203,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 131,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.05200413260719582,
+        "surface_m": 0.07952146211731138,
+        "translation_m": 0.05937578187453761
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 146,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009594,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 41,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.124499546333988,
+          0.426125967179685,
+          1.404011776983416
+        ],
+        "quaternion": [
+          0.008790615158887845,
+          -0.01770447259820934,
+          0.3292929480824704,
+          0.944020884874007
+        ]
+      },
+      "min_clearance_position": 0.2857142857142857,
+      "min_sampled_clearance_m": 0.005925222242968431,
+      "objective_m": 10.147033046789778,
+      "rotation_rad": 3.7825975724439194,
+      "samples": 133,
+      "translation_m": 5.2296562026126825
+    },
+    "motion_space": "se3",
+    "nodes": 23,
+    "optimization_seconds": 0.0024013,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3223793438732425,
+          0.5246864832172343,
+          1.3962153030561066
+        ],
+        "quaternion": [
+          0.01063735023671851,
+          -0.07123822529245138,
+          0.4509363352975026,
+          0.889645088530017
+        ]
+      },
+      "min_clearance_position": 0.1929824561403509,
+      "min_sampled_clearance_m": 0.012245476674517874,
+      "objective_m": 7.3255210357369265,
+      "rotation_rad": 2.165236083735082,
+      "samples": 92,
+      "translation_m": 4.51071412688132
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1020,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 934,
+      "motions": 55,
+      "narrow": 122,
+      "samples": 464,
+      "states": 467
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296284127511-0",
+    "run_id": "B-L-corner-1020-1793229628417",
+    "scene_hash": "sha256:936da16f47aacf7a787cafce7a75b55ee70268d0fb1ff2b8da2b987139a59ce3",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0005302,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0007338,
+    "unix_time_ms": 1793229628417,
+    "validation_seconds": 0.0001782,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 132,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.05202587263964232,
+        "surface_m": 0.07835358638054565,
+        "translation_m": 0.04937031259609566
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 147,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0012869,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 98,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.6414710918305699,
+          0.9066476661044911,
+          1.3529723837046965
+        ],
+        "quaternion": [
+          0.22280122600743937,
+          0.10184650752789372,
+          0.5372347887524401,
+          0.8070722918971223
+        ]
+      },
+      "min_clearance_position": 0.3888888888888889,
+      "min_sampled_clearance_m": 0.0011886205460736043,
+      "objective_m": 13.018540450492914,
+      "rotation_rad": 5.862950792225955,
+      "samples": 166,
+      "translation_m": 5.396704420599172
+    },
+    "motion_space": "se3",
+    "nodes": 43,
+    "optimization_seconds": 0.0031965,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.459787662806876,
+          1.3153201046930505,
+          1.6342962883425052
+        ],
+        "quaternion": [
+          0.472295016481187,
+          -0.038497643361423195,
+          0.6453674242544761,
+          0.5991295657650315
+        ]
+      },
+      "min_clearance_position": 0.6021505376344086,
+      "min_sampled_clearance_m": 0.008038620769820606,
+      "objective_m": 9.43613015714012,
+      "rotation_rad": 3.752558266971423,
+      "samples": 117,
+      "translation_m": 4.55780441007727
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1021,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1698,
+      "motions": 116,
+      "narrow": 150,
+      "samples": 849,
+      "states": 852
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296284334405-0",
+    "run_id": "B-L-corner-1021-1793229628439",
+    "scene_hash": "sha256:2732783fdc0044aa381c39f9fd67db1b0334e97729c5a5e4aa9bab393b3a068a",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0007313,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0009491,
+    "unix_time_ms": 1793229628439,
+    "validation_seconds": 0.0001979,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 165,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.05138778608565077,
+        "surface_m": 0.07993991093846807,
+        "translation_m": 0.0564967396312634
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 184,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.000903,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 99,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          0.01597007085352742,
+          2.5409671874458066,
+          1.3961504039754458
+        ],
+        "quaternion": [
+          -0.016206503136321482,
+          -0.006765740568402432,
+          0.6373989067803526,
+          0.7703338287040657
+        ]
+      },
+      "min_clearance_position": 0.9473684210526315,
+      "min_sampled_clearance_m": 0.09246845641480061,
+      "objective_m": 13.960614158406486,
+      "rotation_rad": 5.817511968386761,
+      "samples": 181,
+      "translation_m": 6.397848599503698
+    },
+    "motion_space": "se3",
+    "nodes": 41,
+    "optimization_seconds": 0.0025252,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7567425200187802,
+          0.8560243462988796,
+          1.4544255007951157
+        ],
+        "quaternion": [
+          0.49524309718910875,
+          0.2846841247885786,
+          0.008300909536912952,
+          0.820743759452827
+        ]
+      },
+      "min_clearance_position": 0.477124183006536,
+      "min_sampled_clearance_m": 0.015904682934531563,
+      "objective_m": 10.137404422776939,
+      "rotation_rad": 4.2511948634831205,
+      "samples": 125,
+      "translation_m": 4.6108511002488815
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1022,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1718,
+      "motions": 118,
+      "narrow": 246,
+      "samples": 859,
+      "states": 862
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296284566201-0",
+    "run_id": "B-L-corner-1022-1793229628462",
+    "scene_hash": "sha256:940c910c1c0f93688393a6f642628f2898b0e4536650f407269c0327fdfc2f29",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0011254,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0012885,
+    "unix_time_ms": 1793229628462,
+    "validation_seconds": 0.0001424,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 180,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.051889909216612,
+        "surface_m": 0.07826056142382784,
+        "translation_m": 0.056610520586038535
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 200,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009602,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 48,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.7340343469260853,
+          0.35612714218708225,
+          1.4409444180058535
+        ],
+        "quaternion": [
+          -0.13885912969607966,
+          -0.2462050632084931,
+          0.3007504006751474,
+          0.9108514727683584
+        ]
+      },
+      "min_clearance_position": 0.35,
+      "min_sampled_clearance_m": 0.06648600675549288,
+      "objective_m": 11.572177010544223,
+      "rotation_rad": 4.834520341334613,
+      "samples": 151,
+      "translation_m": 5.287300566809226
+    },
+    "motion_space": "se3",
+    "nodes": 25,
+    "optimization_seconds": 0.0010241,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.8463630346096744,
+          0.5749922387420578,
+          1.3067121127685128
+        ],
+        "quaternion": [
+          -0.056830887437337975,
+          -0.23016677320994414,
+          0.46567464774779155,
+          0.8526081334283512
+        ]
+      },
+      "min_clearance_position": 0.35344827586206895,
+      "min_sampled_clearance_m": 0.102773920248592,
+      "objective_m": 7.608787790164111,
+      "rotation_rad": 2.2161315583670813,
+      "samples": 95,
+      "translation_m": 4.727816764286906
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1023,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1092,
+      "motions": 64,
+      "narrow": 39,
+      "samples": 544,
+      "states": 547
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296284767517-0",
+    "run_id": "B-L-corner-1023-1793229628480",
+    "scene_hash": "sha256:24fce5648bbecaab615cb865a59fe5650f3fbb636ce10aafa4f7a98c29784821",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0002677,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0003934,
+    "unix_time_ms": 1793229628480,
+    "validation_seconds": 0.0001056,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 150,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.05166198437726172,
+        "surface_m": 0.07926548217593618,
+        "translation_m": 0.04748730883593552
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 167,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009049,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 50,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.3463271670034811,
+          1.9032348873726814,
+          1.406885817811235
+        ],
+        "quaternion": [
+          -0.014372812345447399,
+          -0.006847391352087423,
+          0.8759704174985448,
+          0.4821020256796056
+        ]
+      },
+      "min_clearance_position": 0.7333333333333333,
+      "min_sampled_clearance_m": 0.014314292242757931,
+      "objective_m": 11.316416295243036,
+      "rotation_rad": 4.240133689439999,
+      "samples": 147,
+      "translation_m": 5.804242498971037
+    },
+    "motion_space": "se3",
+    "nodes": 23,
+    "optimization_seconds": 0.0028025,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3262314686710763,
+          0.48005045015831804,
+          1.5135422832301983
+        ],
+        "quaternion": [
+          0.006022489627352368,
+          -0.042610954638247635,
+          0.44256576322623264,
+          0.8957028421209167
+        ]
+      },
+      "min_clearance_position": 0.2962962962962963,
+      "min_sampled_clearance_m": 0.05116730560095782,
+      "objective_m": 8.413842644910623,
+      "rotation_rad": 3.054463585466541,
+      "samples": 104,
+      "translation_m": 4.443039983804121
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1024,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1051,
+      "motions": 65,
+      "narrow": 165,
+      "samples": 525,
+      "states": 528
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296284983663-0",
+    "run_id": "B-L-corner-1024-1793229628504",
+    "scene_hash": "sha256:674faa5ba082199cd73eb9999f5f31d0c8bd6a0ac86bb5f2d56c41645478ddf7",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0006151,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0009028,
+    "unix_time_ms": 1793229628504,
+    "validation_seconds": 0.0002674,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 146,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04485217962593055,
+        "surface_m": 0.07933608913186588,
+        "translation_m": 0.05640570195446282
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 162,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009138,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 35,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.9542854260733256,
+          0.1805945447400644,
+          1.4824052059967556
+        ],
+        "quaternion": [
+          -0.027969064884958237,
+          0.13487228222493455,
+          0.14351626221878608,
+          0.9800154495596727
+        ]
+      },
+      "min_clearance_position": 0.14285714285714285,
+      "min_sampled_clearance_m": 0.0002743405939245047,
+      "objective_m": 10.11795387168112,
+      "rotation_rad": 4.1745530100482,
+      "samples": 132,
+      "translation_m": 4.691034958618461
+    },
+    "motion_space": "se3",
+    "nodes": 18,
+    "optimization_seconds": 0.0035112,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.2401621397898792,
+          0.5985648401612695,
+          1.5217782095832406
+        ],
+        "quaternion": [
+          -0.09136376482166514,
+          0.008679570600169127,
+          0.4754341952621046,
+          0.8749512292163966
+        ]
+      },
+      "min_clearance_position": 0.34090909090909094,
+      "min_sampled_clearance_m": 0.0010091802259015307,
+      "objective_m": 8.210548477546196,
+      "rotation_rad": 2.8390265444824534,
+      "samples": 104,
+      "translation_m": 4.5198139697190065
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1025,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 798,
+      "motions": 49,
+      "narrow": 86,
+      "samples": 396,
+      "states": 399
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296285195568-0",
+    "run_id": "B-L-corner-1025-1793229628525",
+    "scene_hash": "sha256:77f42138a4b5d43e062fac7d57a1090ec91bca1b8fb883cc842238035a1899e0",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0003401999999999999,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0005495,
+    "unix_time_ms": 1793229628525,
+    "validation_seconds": 0.000189,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 131,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.043098331106442254,
+        "surface_m": 0.0774298448745197,
+        "translation_m": 0.04910441070579781
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 146,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0010006,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 53,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.6542760953273382,
+          1.0335677465670237,
+          1.5180133412928996
+        ],
+        "quaternion": [
+          0.14359164660769422,
+          -0.10357714170044527,
+          0.6286820044512667,
+          0.7572398246399845
+        ]
+      },
+      "min_clearance_position": 0.4666666666666667,
+      "min_sampled_clearance_m": 0.013221712024573007,
+      "objective_m": 11.16327431441439,
+      "rotation_rad": 4.275698958978881,
+      "samples": 145,
+      "translation_m": 5.604865667741844
+    },
+    "motion_space": "se3",
+    "nodes": 27,
+    "optimization_seconds": 0.0029547,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.2252686105608055,
+          0.5471574452274187,
+          1.4633337935543071
+        ],
+        "quaternion": [
+          0.2072271870273879,
+          0.05013433381584287,
+          0.45137266278054605,
+          0.8664907159479305
+        ]
+      },
+      "min_clearance_position": 0.4972677595628416,
+      "min_sampled_clearance_m": 0.04003232071143319,
+      "objective_m": 7.997717521630431,
+      "rotation_rad": 2.6087580807964446,
+      "samples": 99,
+      "translation_m": 4.606332016595053
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1026,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1186,
+      "motions": 68,
+      "narrow": 145,
+      "samples": 592,
+      "states": 595
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296285419410-0",
+    "run_id": "B-L-corner-1026-1793229628547",
+    "scene_hash": "sha256:ee8ff185ae501babcab32e807b4eea22561bfed40a4432cb3f35ac6c6dc5a4d2",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0006569,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0008477,
+    "unix_time_ms": 1793229628547,
+    "validation_seconds": 0.0001708,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 144,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.043219289287462874,
+        "surface_m": 0.07984273938887468,
+        "translation_m": 0.05567294287892085
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 160,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0009655,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 48,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.0832830708025272,
+          1.8783837063712334,
+          1.4335036640409144
+        ],
+        "quaternion": [
+          -0.13376275615749278,
+          -0.09076088402066336,
+          0.6599992601928837,
+          0.7336695192944743
+        ]
+      },
+      "min_clearance_position": 0.8,
+      "min_sampled_clearance_m": 0.0274756784115322,
+      "objective_m": 10.908209435464201,
+      "rotation_rad": 4.087452513855374,
+      "samples": 143,
+      "translation_m": 5.594521167452214
+    },
+    "motion_space": "se3",
+    "nodes": 25,
+    "optimization_seconds": 0.0012403,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3519227802908442,
+          0.20236363115929457,
+          1.5389335632452832
+        ],
+        "quaternion": [
+          -0.10753700282539003,
+          -0.1649544859730537,
+          0.2837733071409446,
+          0.9384553909137018
+        ]
+      },
+      "min_clearance_position": 0.2109375,
+      "min_sampled_clearance_m": 0.1754432190541395,
+      "objective_m": 8.473141273881037,
+      "rotation_rad": 2.5501750193817294,
+      "samples": 105,
+      "translation_m": 5.1579137486847895
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1027,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1041,
+      "motions": 63,
+      "narrow": 45,
+      "samples": 518,
+      "states": 521
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296285631846-0",
+    "run_id": "B-L-corner-1027-1793229628567",
+    "scene_hash": "sha256:a6b3444548520b137f893e4f5305dffb0dd2101b311f11a05e10eb395d97a943",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0002862,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.00042,
+    "unix_time_ms": 1793229628567,
+    "validation_seconds": 0.0001128,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 142,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04330333557917135,
+        "surface_m": 0.07672991014371866,
+        "translation_m": 0.04908367390484645
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 158,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0013673,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 81,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.32998445420143785,
+          1.2010432425778754,
+          1.3996575796592428
+        ],
+        "quaternion": [
+          -0.0714967770810693,
+          -0.09693906812709903,
+          0.6885930327884289,
+          0.7150738864850983
+        ]
+      },
+      "min_clearance_position": 0.47058823529411764,
+      "min_sampled_clearance_m": 0.02908623662179144,
+      "objective_m": 12.361790111291546,
+      "rotation_rad": 5.020479262493319,
+      "samples": 160,
+      "translation_m": 5.835167070050231
+    },
+    "motion_space": "se3",
+    "nodes": 32,
+    "optimization_seconds": 0.0023884,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.49037705178812674,
+          1.3877960017736286,
+          1.347538146329226
+        ],
+        "quaternion": [
+          -0.10750159623063607,
+          -0.212603404966694,
+          0.7608908775342141,
+          0.6035629805493762
+        ]
+      },
+      "min_clearance_position": 0.6346153846153846,
+      "min_sampled_clearance_m": 0.007053383334328435,
+      "objective_m": 7.9851415174278895,
+      "rotation_rad": 2.7148105317125957,
+      "samples": 100,
+      "translation_m": 4.455887826201515
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1028,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1455,
+      "motions": 98,
+      "narrow": 230,
+      "samples": 729,
+      "states": 732
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296285840446-0",
+    "run_id": "B-L-corner-1028-1793229628590",
+    "scene_hash": "sha256:6920f686ffdbb62fd92b858918f92f57d72a38e9546b4ff3774d6db48f4fc99a",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0012776,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0016567,
+    "unix_time_ms": 1793229628590,
+    "validation_seconds": 0.0003557,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 159,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.052421470505967294,
+        "surface_m": 0.07980743878387875,
+        "translation_m": 0.056573582831826626
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 177,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  },
+  {
+    "build": "Release",
+    "compiler_msvc": 1937,
+    "cpu": "AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD",
+    "dependency_baseline": "15b12b99a227d51e21c86dffd40385439eac87a0",
+    "dependency_versions": {
+      "boost-headers": "1.92.0",
+      "catch2": "3.16.1",
+      "ccd": "2.1",
+      "eigen3": "5.0.1",
+      "fcl": "0.7.0",
+      "glad": "0.1.36",
+      "glfw3": "3.5.1",
+      "imgui": "1.93.0",
+      "nlohmann-json": "3.12.0",
+      "ompl": "2.0.2"
+    },
+    "evaluation_seconds": 0.0011814,
+    "git_commit": "c9881a2",
+    "git_tracked_dirty": true,
+    "iterations": 87,
+    "logical_processors": 32,
+    "memory_bytes": 68633149440,
+    "metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -0.9881771980178033,
+          0.5307824442075596,
+          1.4520811716883835
+        ],
+        "quaternion": [
+          0.39679594658436557,
+          0.09858825751804808,
+          0.25010174694709336,
+          0.87765736391133
+        ]
+      },
+      "min_clearance_position": 0.3856209150326797,
+      "min_sampled_clearance_m": 0.009028920114795724,
+      "objective_m": 12.639426138717141,
+      "rotation_rad": 5.3589709690703895,
+      "samples": 163,
+      "translation_m": 5.672763878925634
+    },
+    "motion_space": "se3",
+    "nodes": 34,
+    "optimization_seconds": 0.0032987,
+    "optimized_metrics": {
+      "complete": true,
+      "min_clearance_pose": {
+        "position": [
+          -1.3007078814908455,
+          0.36637877812734093,
+          1.2589233602582373
+        ],
+        "quaternion": [
+          0.25688959237606007,
+          0.1811840820350423,
+          0.2389617387515028,
+          0.9187368247538789
+        ]
+      },
+      "min_clearance_position": 0.39999999999999997,
+      "min_sampled_clearance_m": 0.02522111834844165,
+      "objective_m": 9.215294581042395,
+      "rotation_rad": 3.5946435679547912,
+      "samples": 114,
+      "translation_m": 4.542257942701166
+    },
+    "os": "Windows",
+    "parameters": {
+      "extension": 0.55,
+      "goal_bias": 0.0,
+      "max_iterations": 10000,
+      "max_nodes": 40000,
+      "max_queries": 2000000,
+      "rotation_weight": 1.3,
+      "seed": 1029,
+      "shortcut_attempts": 100,
+      "time_limit": 1.0,
+      "validation": {
+        "margin": 0.0,
+        "max_samples": 100000,
+        "rotation_step": 0.08,
+        "surface_step": 0.08,
+        "tolerance": 1e-08,
+        "translation_step": 0.08,
+        "use_bvh": true
+      }
+    },
+    "planner": "passagelab-rrt-connect",
+    "queries": {
+      "broad": 1450,
+      "motions": 104,
+      "narrow": 134,
+      "samples": 722,
+      "states": 725
+    },
+    "reason": "path independently validated",
+    "request_id": "17932296286062537-0",
+    "run_id": "B-L-corner-1029-1793229628613",
+    "scene_hash": "sha256:59d126368fdad34d5714a5f9e2b213947b8b60dc1c0ba030c3bb0cfb6184bb35",
+    "scene_id": "B-L-corner",
+    "scene_revision": 1,
+    "schema_version": 1,
+    "search_seconds": 0.0005834,
+    "software_version": "0.2.0",
+    "source_sha256": "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "status": "solved",
+    "total_seconds": 0.0008724,
+    "unix_time_ms": 1793229628613,
+    "validation_seconds": 0.0002714,
+    "verification": {
+      "failed_edge": null,
+      "failed_u": 0.0,
+      "failure": {
+        "body_part_id": "",
+        "obstacle_id": "",
+        "reason": ""
+      },
+      "intervals": 162,
+      "maximum_actual_steps": {
+        "rotation_rad": 0.04433047246476354,
+        "surface_m": 0.0799011670122163,
+        "translation_m": 0.05783670299463325
+      },
+      "method": "discrete interpolation samples; no continuous safety certificate",
+      "reason": "",
+      "samples": 180,
+      "status": 0,
+      "tolerance_policy": "absolute-length-plus-32-epsilon-scale-v1; contact-invalid"
+    }
+  }
+]

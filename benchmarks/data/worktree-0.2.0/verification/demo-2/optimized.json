@@ -1,0 +1,101 @@
+{
+  "endpoint_rotation_tolerance_rad": 1e-08,
+  "endpoint_translation_tolerance_m": 1e-08,
+  "interpolation": "linear-translation-shortest-arc-slerp",
+  "poses": [
+    {
+      "position": [
+        -3.1,
+        -0.2,
+        1.05
+      ],
+      "quaternion": [
+        0.7071067811865476,
+        0.0,
+        0.0,
+        0.7071067811865476
+      ]
+    },
+    {
+      "position": [
+        -0.5004904389113807,
+        -0.0945741890626698,
+        1.2925696903204051
+      ],
+      "quaternion": [
+        0.6479640466768916,
+        -0.026683632432685823,
+        -0.03274776469376756,
+        0.7604986271400273
+      ]
+    },
+    {
+      "position": [
+        0.440026578115641,
+        -0.0989995444280961,
+        1.440679259173142
+      ],
+      "quaternion": [
+        0.30202236959187106,
+        -0.06638070465621496,
+        0.12109759176088163,
+        0.9432451768152174
+      ]
+    },
+    {
+      "position": [
+        1.3682632077332972,
+        -0.019557658078345974,
+        1.4743487531807975
+      ],
+      "quaternion": [
+        0.01126031410869348,
+        -0.05441934758635965,
+        0.14164698602483178,
+        0.9883561459739751
+      ]
+    },
+    {
+      "position": [
+        1.6856927405315005,
+        0.06861958449294518,
+        1.4789160912425083
+      ],
+      "quaternion": [
+        0.026214415124652217,
+        0.029292092121585553,
+        0.1823673586916148,
+        0.9824443619170792
+      ]
+    },
+    {
+      "position": [
+        3.1,
+        0.15,
+        1.55
+      ],
+      "quaternion": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "quaternion_order": "xyzw",
+  "request_id": "17932295634070982-0",
+  "scene_hash": "sha256:7e474534bf8560732ba4ffcc217745a0431304ebe91b649c43deed97b948b7ef",
+  "scene_revision": 1,
+  "schema_version": 1,
+  "source": "shortcut",
+  "validation": {
+    "margin": 0.0,
+    "max_samples": 100000,
+    "rotation_step": 0.08,
+    "surface_step": 0.08,
+    "tolerance": 1e-08,
+    "translation_step": 0.08,
+    "use_bvh": true
+  },
+  "validation_claim": "Requires revalidation on load; discrete sampling only"
+}

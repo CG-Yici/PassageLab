@@ -1,0 +1,2 @@
+# Full per-run scene/path exports remain local. runs.json retains every raw report.
+/release-0.1.0/*/*/[0-9]*/

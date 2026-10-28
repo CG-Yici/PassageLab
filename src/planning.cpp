@@ -1,6 +1,7 @@
 #include "passagelab/core.hpp"
 
 #include <algorithm>
+#include <atomic>
 #include <chrono>
 #include <cmath>
 #include <limits>
@@ -46,6 +47,11 @@ Pose sample(std::mt19937_64 &rng, const Scene &s) {
   for (int i = 0; i < 3; ++i)
     p.t[i] =
         s.sampling.min[i] + u(rng) * (s.sampling.max[i] - s.sampling.min[i]);
+  if (s.config.planar_xy) {
+    p.t.z() = s.start.t.z();
+    p.q = Quat(Eigen::AngleAxisd(2 * std::numbers::pi * u(rng), Vec3::UnitZ())) * s.start.q;
+    return p;
+  }
   // Shoemake's construction is uniform on SO(3).
   const double u1 = u(rng), u2 = u(rng), u3 = u(rng);
   const double a = std::sqrt(1 - u1), b = std::sqrt(u1);
@@ -81,9 +87,12 @@ std::vector<Pose> joined(const Tree &a, std::size_t ai, const Tree &b,
   return x;
 }
 void append_edges(PlanningResult &r, const Pose &a, const Pose &b,
-                  bool start_tree) {
-  if (r.edges.size() < 4000)
-    r.edges.push_back({a, b, start_tree});
+                  bool start_tree, bool accepted, const SearchProgress &progress) {
+  if (r.edges.size() < 4000) {
+    r.edges.push_back({a, b, start_tree, accepted});
+    if (progress)
+      progress(r.edges.back());
+  }
 }
 std::string stop_reason(const std::stop_token &token) {
   return token.stop_requested() ? "cancelled" : "budget exhausted";
@@ -222,11 +231,16 @@ PathValidation validate_path_impl(const Scene &scene, const Path &path,
     }
     auto m = validator.motion(path.poses[i - 1], path.poses[i], cfg, stop);
     r.samples += m.samples;
+    r.intervals += m.intervals;
+    r.translation_step = std::max(r.translation_step, m.translation_step);
+    r.rotation_step = std::max(r.rotation_step, m.rotation_step);
+    r.surface_step = std::max(r.surface_step, m.surface_step);
     if (m.status != CheckStatus::Passed) {
       r.status = m.status;
       r.failed_u = m.failed_u;
       r.reason = "path edge " + std::to_string(i - 1) + " failed: " + m.reason;
       r.failure = m.failure;
+      r.failed_edge = i - 1;
       break;
     }
     r.status = CheckStatus::Passed;
@@ -238,6 +252,12 @@ PathValidation validate_path_impl(const Scene &scene, const Path &path,
   return out;
 }
 } // namespace
+
+std::string new_request_id() {
+  static std::atomic<std::uint64_t> sequence{0};
+  return std::to_string(std::chrono::system_clock::now().time_since_epoch().count()) +
+         "-" + std::to_string(sequence.fetch_add(1));
+}
 
 std::string to_string(SolveStatus s) {
   switch (s) {
@@ -265,7 +285,7 @@ MotionResult validate_path(const Scene &scene, const Path &path,
 }
 
 PlanningResult solve(const Scene &scene, const PlannerConfig &cfg,
-                     std::stop_token stop, Progress progress) {
+                     std::stop_token stop, Progress progress, SearchProgress search_progress) {
   PlanningResult out;
   const auto begin = Clock::now();
   auto finish = [&]() {
@@ -290,7 +310,7 @@ PlanningResult solve(const Scene &scene, const PlannerConfig &cfg,
     finish();
     return out;
   }
-  if (!valid_config(cfg)) {
+  if (!valid_config(cfg) || cfg.planar_xy != scene.config.planar_xy) {
     out.status = SolveStatus::Error;
     out.reason = "invalid planner or validation configuration";
     finish();
@@ -337,6 +357,7 @@ PlanningResult solve(const Scene &scene, const PlannerConfig &cfg,
     out.path.scene_hash = scene.hash;
     out.path.scene_revision = scene.revision;
     out.path.validation = cfg.validation;
+    out.path.request_id = new_request_id();
   };
   auto check_candidate = [&](std::vector<Pose> ps) -> bool {
     make_path(std::move(ps));
@@ -418,11 +439,11 @@ PlanningResult solve(const Scene &scene, const PlannerConfig &cfg,
         steer(t.nodes[ni].pose, target, std::max(cfg.extension, 1e-9), cfg);
     if (distance(t.nodes[ni].pose, next, cfg) < 1e-12)
       return {Extend::Trapped, ni};
-    if (out.edges.size() < 4000)
-      append_edges(out, t.nodes[ni].pose, next, t.start_root);
     if (query_used >= cfg.max_queries)
       return {Extend::Stopped, ni};
     auto m = validator.motion(t.nodes[ni].pose, next, cfg.validation, stop);
+    append_edges(out, t.nodes[ni].pose, next, t.start_root,
+                 m.status == CheckStatus::Passed, search_progress);
     auto after = validator.stats();
     query_used = after.narrow;
     if (m.status == CheckStatus::Incomplete) {
@@ -589,7 +610,7 @@ PathMetrics evaluate(const Scene &scene, const Path &path,
   Validator v(scene);
   v.set_query_budget(cfg.max_queries);
   double best = std::numeric_limits<double>::infinity();
-  auto measure = [&](const Pose &p) -> bool {
+  auto measure = [&](const Pose &p, double position) -> bool {
     if (stop.stop_requested())
       return false;
     auto state = v.state(p, cfg.validation, true);
@@ -614,6 +635,7 @@ PathMetrics evaluate(const Scene &scene, const Path &path,
     if (clearance < best) {
       best = clearance;
       m.min_clearance_pose = p;
+      m.min_clearance_position = position;
     }
     return true;
   };
@@ -623,7 +645,7 @@ PathMetrics evaluate(const Scene &scene, const Path &path,
       return m;
     }
     if (i == 0) {
-      if (!measure(path.poses[i])) {
+      if (!measure(path.poses[i], 0)) {
         m.complete = false;
         return m;
       }
@@ -646,7 +668,7 @@ PathMetrics evaluate(const Scene &scene, const Path &path,
       for (std::uint64_t j = 1; j <= n; ++j) {
         auto p = interpolate(path.poses[i - 1], path.poses[i],
                              double(j) / double(n));
-        if (!measure(p)) {
+        if (!measure(p, (double(i - 1) + double(j) / double(n)) / double(path.poses.size() - 1))) {
           m.complete = false;
           return m;
         }

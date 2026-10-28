@@ -1,0 +1,11 @@
+{
+  "archive": "dist/verified/PassageLab-0.1.1-windows-x64.zip",
+  "archive_sha256": "2ae880a6f3d5c05fb8333745b2ea5ffba15eeedfcc0e65b44008093e58701798",
+  "archive_bytes": 9389044,
+  "zip_crc_check": "passed",
+  "binary_hash_check": "passed",
+  "packaged_cli_scene_c": "solved",
+  "packaged_desktop_smoke": "passed",
+  "packaged_desktop_self_test": "passed",
+  "scope": "Local Windows host; no clean-machine installation claim"
+}

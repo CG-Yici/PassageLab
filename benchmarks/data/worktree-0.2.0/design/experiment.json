@@ -1,0 +1,94 @@
+{
+  "seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1027,
+    1028,
+    1029
+  ],
+  "search_seconds": 1.0,
+  "comparison_contract": "One factor per comparison; original C endpoints are NOT silently projected.",
+  "interpretation": "budget_exhausted is not a proof of infeasibility",
+  "variants": [
+    {
+      "name": "A-control",
+      "motion_space": "se3",
+      "change": "unchanged geometry; same search budget"
+    },
+    {
+      "name": "B-control",
+      "motion_space": "se3",
+      "change": "unchanged geometry; same search budget"
+    },
+    {
+      "name": "C-control",
+      "motion_space": "se3",
+      "change": "unchanged geometry; same search budget"
+    },
+    {
+      "name": "A-thicker",
+      "motion_space": "se3",
+      "change": "one geometry factor=1.25"
+    },
+    {
+      "name": "B-larger-corner",
+      "motion_space": "se3",
+      "change": "one geometry factor=1.15"
+    },
+    {
+      "name": "C-opening-0.85",
+      "motion_space": "se3",
+      "change": "opening half-width/height scale=0.85"
+    },
+    {
+      "name": "C-opening-1.15",
+      "motion_space": "se3",
+      "change": "opening half-width/height scale=1.15"
+    },
+    {
+      "name": "C-offset--0.25",
+      "motion_space": "se3",
+      "change": "second opening y offset=-0.25m"
+    },
+    {
+      "name": "C-offset-0.25",
+      "motion_space": "se3",
+      "change": "second opening y offset=0.25m"
+    },
+    {
+      "name": "C-common-se3",
+      "motion_space": "se3",
+      "change": "same geometry/endpoints; only motion space changes"
+    },
+    {
+      "name": "C-common-planar-xy",
+      "motion_space": "planar-xy",
+      "change": "same geometry/endpoints; only motion space changes"
+    }
+  ]
+}

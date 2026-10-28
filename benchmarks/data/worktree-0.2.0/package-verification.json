@@ -1,0 +1,13 @@
+﻿{
+    "passed":  true,
+    "archive_sha256":  "960BD58BCAEDF20EBF7E654FF4899480760642D428982D319A0B7E0451B95B95",
+    "source_sha256":  "55ddafaf7c410f5e2916476d46028f25f24c5d64a3368fabd67875a5f1486789",
+    "software_version":  "0.2.0",
+    "binary_hashes_checked":  14,
+    "path_contains_development_dependencies":  false,
+    "demos_solved":  3,
+    "fine_path_checks_passed":  6,
+    "desktop_self_test_passed":  true,
+    "interaction_checks_passed":  25,
+    "host":  "Same Windows host; extracted archive with system-only PATH"
+}

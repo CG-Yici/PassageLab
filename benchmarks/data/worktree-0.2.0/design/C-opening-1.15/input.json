@@ -1,0 +1,336 @@
+{
+  "axis_convention": "right-handed-z-up",
+  "default_planning_config": {
+    "extension": 0.4,
+    "goal_bias": 0.05,
+    "max_iterations": 30000,
+    "max_nodes": 80000,
+    "max_queries": 2000000,
+    "rotation_weight": 1.2,
+    "seed": 42,
+    "shortcut_attempts": 100,
+    "time_limit": 30.0,
+    "validation": {
+      "margin": 0.0,
+      "max_samples": 100000,
+      "rotation_step": 0.08,
+      "surface_step": 0.08,
+      "tolerance": 1e-08,
+      "translation_step": 0.08,
+      "use_bvh": true
+    }
+  },
+  "goal_pose": {
+    "position": [
+      3.1,
+      0.15,
+      1.55
+    ],
+    "quaternion": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "moving_body": [
+    {
+      "half_extents": [
+        0.9,
+        0.12,
+        0.12
+      ],
+      "id": "spine",
+      "pose": {
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.2,
+        0.48,
+        0.12
+      ],
+      "id": "offset-fin",
+      "pose": {
+        "position": [
+          0.2,
+          0.32,
+          0.0
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.2,
+        0.12,
+        0.25
+      ],
+      "id": "raised-lug",
+      "pose": {
+        "position": [
+          -0.3,
+          0.0,
+          0.18
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    }
+  ],
+  "obstacles": [
+    {
+      "half_extents": [
+        0.12,
+        0.549,
+        1.6
+      ],
+      "id": "vertical-opening-left",
+      "pose": {
+        "position": [
+          -1.3,
+          -1.451,
+          1.6
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.12,
+        0.899,
+        1.6
+      ],
+      "id": "vertical-opening-right",
+      "pose": {
+        "position": [
+          -1.3,
+          1.101,
+          1.6
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.12,
+        0.5519999999999999,
+        0.21500000000000008
+      ],
+      "id": "vertical-opening-bottom",
+      "pose": {
+        "position": [
+          -1.3,
+          -0.35,
+          0.21500000000000008
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.12,
+        0.5519999999999999,
+        0.4650000000000001
+      ],
+      "id": "vertical-opening-top",
+      "pose": {
+        "position": [
+          -1.3,
+          -0.35,
+          2.7350000000000003
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.12,
+        0.7362500000000001,
+        1.6
+      ],
+      "id": "horizontal-opening-left",
+      "pose": {
+        "position": [
+          1.3,
+          -1.26375,
+          1.6
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.12,
+        0.28625000000000006,
+        1.6
+      ],
+      "id": "horizontal-opening-right",
+      "pose": {
+        "position": [
+          1.3,
+          1.71375,
+          1.6
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.12,
+        0.9774999999999999,
+        0.6315
+      ],
+      "id": "horizontal-opening-bottom",
+      "pose": {
+        "position": [
+          1.3,
+          0.45,
+          0.6315
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    },
+    {
+      "half_extents": [
+        0.12,
+        0.9774999999999999,
+        0.5315000000000001
+      ],
+      "id": "horizontal-opening-top",
+      "pose": {
+        "position": [
+          1.3,
+          0.45,
+          2.6685000000000003
+        ],
+        "quaternion": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "radius": 0.5,
+      "shape": "box"
+    }
+  ],
+  "physical_bounds": {
+    "max": [
+      4.3,
+      2.0,
+      3.2
+    ],
+    "min": [
+      -4.3,
+      -2.0,
+      0.0
+    ]
+  },
+  "quaternion_order": "xyzw",
+  "sampling_bounds": {
+    "max": [
+      3.2,
+      1.25,
+      2.4
+    ],
+    "min": [
+      -3.2,
+      -1.25,
+      0.6
+    ]
+  },
+  "scene_hash": "sha256:bedb84e663a3cb8214f98385a7c4dcc3fe701cb3d5fa71744aa5e9326cc246db",
+  "scene_id": "C-staggered-apertures",
+  "scene_revision": 1,
+  "schema_version": 1,
+  "start_pose": {
+    "position": [
+      -3.1,
+      -0.2,
+      1.05
+    ],
+    "quaternion": [
+      0.7071067811865476,
+      0.0,
+      0.0,
+      0.7071067811865476
+    ]
+  },
+  "units": "m"
+}
