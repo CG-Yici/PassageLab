@@ -10,7 +10,8 @@ flowchart TD
   Planner --> Motion[Motion validation / path recheck]
   Motion --> State[State validity]
   State --> BVH[BVH or full traversal]
-  BVH --> Query[SAT / analytic queries / FCL distance]
+  BVH --> Query[SAT / analytic queries / box-feature distance]
+  Query --> Audit[FCL audit]
   IO[Versioned JSON / SHA-256] --> Core
   OMPL[OMPL adapter] --> Motion
 ```

@@ -1,5 +1,7 @@
 # PassageLab desktop viewer
 
+[中文演示与操作指南](demo.zh-CN.md)
+
 The desktop application uses OpenGL 3.3 core with GLFW, GLAD, Dear ImGui and Eigen. It opens `demo_scenes()[0]` by default. Pass `--scene path/to/scene.json` to load another scene at startup. Scene and path exports use the JSON formats exposed by `passagelab/io.hpp`.
 
 ## Controls

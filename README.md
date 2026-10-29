@@ -1,5 +1,7 @@
 # PassageLab
 
+**English** · [简体中文](README.zh-CN.md) · [中文演示与操作指南](docs/demo.zh-CN.md)
+
 **An interactive C++20 tool for planning and inspecting rigid-body motion through constrained 3D environments.**
 
 A long bar, an L-shaped body, and an asymmetric assembly move through obstacles using translation and rotation. PassageLab computes the motion, checks every path segment at an explicit resolution, and lets you inspect the resulting poses and clearance.

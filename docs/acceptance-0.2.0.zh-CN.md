@@ -1,5 +1,7 @@
 # PassageLab 0.2.0 完成与验收报告
 
+[中文项目介绍](../README.zh-CN.md) · [中文演示与操作指南](demo.zh-CN.md) · [中文文档专项验收](chinese-docs-review.zh-CN.md)
+
 2026-10-28。按照项目设计的首版范围，**P0–P6 已完成实现及本机验收**；P7 是设计明确列出的可选进阶，不属于首版欠项。本报告记录发布前的本机验收；验收时修改尚未提交。发布入口为 [v0.2.0](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0)，源码与发布包通过生产源码指纹对应。
 
 交付包：[PassageLab 0.2.0 Windows x64](https://github.com/CG-Yici/PassageLab/releases/download/v0.2.0/PassageLab-0.2.0-windows-x64.zip)。解压后运行 `Start PassageLab.cmd`。桌面程序需要支持 OpenGL 3.3 的驱动，包内包含应用依赖和本地 Visual C++ 运行库。
