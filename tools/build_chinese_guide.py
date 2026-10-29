@@ -78,9 +78,9 @@ pre{overflow:auto;background:#132c3d;color:#e9f3f8;padding:18px;border-radius:6p
 .note{color:#536877;font-size:15px}@media(max-width:650px){main{padding:10px}section,.intro{padding:18px}h1{font-size:25px}nav{gap:14px}}
 </style>'''
     page += f'<nav aria-label="章节导航">{navigation}</nav><main><div class="intro">'
-    page += '<h1>PassageLab 中文项目与演示指南</h1><p>适用软件：v0.2.0 Windows x64。此页面内置正文、图片、视频和字幕，断网也可阅读与播放。外部资料链接需要联网。</p>'
+    page += '<h1>PassageLab 中文项目与演示指南</h1><p>v0.2.0 · Windows x64</p>'
     page += f'<video controls preload="metadata" src="{video}"><track id="captions" kind="subtitles" srclang="zh-CN" label="简体中文" default></video>'
-    page += '<p class="note">点击播放观看 15 秒演示：0–5 秒场景 A，5–10 秒场景 B，10–15 秒场景 C。无旁白；播放后可在视频控件中切换字幕。完整点击步骤见“演示与操作”。</p></div>'
+    page += '<p class="note">15 秒演示：0–5 秒 A，5–10 秒 B，10–15 秒 C。无旁白，附中文字幕。</p></div>'
     page += sections + '</main>'
     page += '<script>document.getElementById("captions").src=URL.createObjectURL(new Blob([' + json.dumps(vtt, ensure_ascii=True) + '],{type:"text/vtt"}));</script></html>'
     (out/'index.html').write_text(page, encoding='utf-8')
