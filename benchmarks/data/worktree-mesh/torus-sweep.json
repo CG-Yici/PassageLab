@@ -1,0 +1,374 @@
+{
+  "all_watertight": true,
+  "build": "Release",
+  "file": "results/mesh/torus.step",
+  "git_commit": "89649c6",
+  "tessellations": [
+    {
+      "angular_deflection_rad": 0.35,
+      "area_relative_error": 0.004432823921595901,
+      "brep": {
+        "area_m2": 2.960881320327002,
+        "edges": 2,
+        "faces": 1,
+        "shells": 1,
+        "solids": 1,
+        "untriangulated_faces": 0,
+        "volume_m3": 0.22206609902451885
+      },
+      "bvh_nodes": 2047,
+      "linear_deflection_m": 0.016,
+      "mesh": {
+        "area_m2": 2.94775625478125,
+        "boundary_edges": 0,
+        "bounds": {
+          "max": [
+            0.65,
+            0.65,
+            0.15
+          ],
+          "min": [
+            -0.65,
+            -0.65,
+            -0.15
+          ]
+        },
+        "closed": true,
+        "components": 1,
+        "degenerate_triangles": 0,
+        "duplicate_triangles": 0,
+        "inconsistent_edges": 0,
+        "max_edge_m": 0.11608657531028538,
+        "min_edge_m": 0.0261467228242972,
+        "nonmanifold_edges": 0,
+        "oriented": true,
+        "triangles": 2592,
+        "vertices": 1296,
+        "volume_m3": 0.21982039723536514
+      },
+      "mesh_sha256": "58182395272005230d226c622ed2ad9171945a30f2cdaf10176e8212844eaf5a",
+      "scale": 0.001,
+      "seconds": {
+        "assemble": 0.0007271,
+        "read": 0.00434,
+        "tessellate": 0.013123
+      },
+      "solid": true,
+      "volume_relative_error": 0.010112762817100463,
+      "watertight": true,
+      "weld": {
+        "collapsed_triangles": 0,
+        "input_triangles": 2592,
+        "input_vertices": 1369,
+        "output_triangles": 2592,
+        "output_vertices": 1296,
+        "tolerance_m": 1e-09
+      }
+    },
+    {
+      "angular_deflection_rad": 0.35,
+      "area_relative_error": 0.004432823921595901,
+      "brep": {
+        "area_m2": 2.960881320327002,
+        "edges": 2,
+        "faces": 1,
+        "shells": 1,
+        "solids": 1,
+        "untriangulated_faces": 0,
+        "volume_m3": 0.22206609902451885
+      },
+      "bvh_nodes": 2047,
+      "linear_deflection_m": 0.008,
+      "mesh": {
+        "area_m2": 2.94775625478125,
+        "boundary_edges": 0,
+        "bounds": {
+          "max": [
+            0.65,
+            0.65,
+            0.15
+          ],
+          "min": [
+            -0.65,
+            -0.65,
+            -0.15
+          ]
+        },
+        "closed": true,
+        "components": 1,
+        "degenerate_triangles": 0,
+        "duplicate_triangles": 0,
+        "inconsistent_edges": 0,
+        "max_edge_m": 0.11608657531028538,
+        "min_edge_m": 0.0261467228242972,
+        "nonmanifold_edges": 0,
+        "oriented": true,
+        "triangles": 2592,
+        "vertices": 1296,
+        "volume_m3": 0.21982039723536514
+      },
+      "mesh_sha256": "58182395272005230d226c622ed2ad9171945a30f2cdaf10176e8212844eaf5a",
+      "scale": 0.001,
+      "seconds": {
+        "assemble": 0.0006852,
+        "read": 0.0012585,
+        "tessellate": 0.0122545
+      },
+      "solid": true,
+      "volume_relative_error": 0.010112762817100463,
+      "watertight": true,
+      "weld": {
+        "collapsed_triangles": 0,
+        "input_triangles": 2592,
+        "input_vertices": 1369,
+        "output_triangles": 2592,
+        "output_vertices": 1296,
+        "tolerance_m": 1e-09
+      }
+    },
+    {
+      "angular_deflection_rad": 0.35,
+      "area_relative_error": 0.0037090395653496823,
+      "brep": {
+        "area_m2": 2.960881320327002,
+        "edges": 2,
+        "faces": 1,
+        "shells": 1,
+        "solids": 1,
+        "untriangulated_faces": 0,
+        "volume_m3": 0.22206609902451885
+      },
+      "bvh_nodes": 2047,
+      "linear_deflection_m": 0.004,
+      "mesh": {
+        "area_m2": 2.9498992943616043,
+        "boundary_edges": 0,
+        "bounds": {
+          "max": [
+            0.65,
+            0.6495230176830266,
+            0.15
+          ],
+          "min": [
+            -0.6480927707694314,
+            -0.6495230176830266,
+            -0.15
+          ]
+        },
+        "closed": true,
+        "components": 1,
+        "degenerate_triangles": 0,
+        "duplicate_triangles": 0,
+        "inconsistent_edges": 0,
+        "max_edge_m": 0.10272280133560702,
+        "min_edge_m": 0.0261467228242972,
+        "nonmanifold_edges": 0,
+        "oriented": true,
+        "triangles": 2952,
+        "vertices": 1476,
+        "volume_m3": 0.2200766093972489
+      },
+      "mesh_sha256": "b27f04acc05497584f57ebcb12969efa046fe0533319cd0865513a383f556d66",
+      "scale": 0.001,
+      "seconds": {
+        "assemble": 0.000784,
+        "read": 0.0012404,
+        "tessellate": 0.0132663
+      },
+      "solid": true,
+      "volume_relative_error": 0.008958997505739393,
+      "watertight": true,
+      "weld": {
+        "collapsed_triangles": 0,
+        "input_triangles": 2952,
+        "input_vertices": 1554,
+        "output_triangles": 2952,
+        "output_vertices": 1476,
+        "tolerance_m": 1e-09
+      }
+    },
+    {
+      "angular_deflection_rad": 0.35,
+      "area_relative_error": 0.0025320769085691187,
+      "brep": {
+        "area_m2": 2.960881320327002,
+        "edges": 2,
+        "faces": 1,
+        "shells": 1,
+        "solids": 1,
+        "untriangulated_faces": 0,
+        "volume_m3": 0.22206609902451885
+      },
+      "bvh_nodes": 2063,
+      "linear_deflection_m": 0.002,
+      "mesh": {
+        "area_m2": 2.9533841411067883,
+        "boundary_edges": 0,
+        "bounds": {
+          "max": [
+            0.65,
+            0.6497531995662185,
+            0.15
+          ],
+          "min": [
+            -0.6490129856816556,
+            -0.6497531995662185,
+            -0.15
+          ]
+        },
+        "closed": true,
+        "components": 1,
+        "degenerate_triangles": 0,
+        "duplicate_triangles": 0,
+        "inconsistent_edges": 0,
+        "max_edge_m": 0.07611996114149487,
+        "min_edge_m": 0.0261467228242972,
+        "nonmanifold_edges": 0,
+        "oriented": true,
+        "triangles": 4104,
+        "vertices": 2052,
+        "volume_m3": 0.2204932275979525
+      },
+      "mesh_sha256": "487276567268375cc19800195faa8e67e527ea8d06336195a5ce10d2744c9b12",
+      "scale": 0.001,
+      "seconds": {
+        "assemble": 0.0010681,
+        "read": 0.0013022,
+        "tessellate": 0.0185493
+      },
+      "solid": true,
+      "volume_relative_error": 0.007082897540307027,
+      "watertight": true,
+      "weld": {
+        "collapsed_triangles": 0,
+        "input_triangles": 4104,
+        "input_vertices": 2146,
+        "output_triangles": 4104,
+        "output_vertices": 2052,
+        "tolerance_m": 1e-09
+      }
+    },
+    {
+      "angular_deflection_rad": 0.35,
+      "area_relative_error": 0.001707042908819261,
+      "brep": {
+        "area_m2": 2.960881320327002,
+        "edges": 2,
+        "faces": 1,
+        "shells": 1,
+        "solids": 1,
+        "untriangulated_faces": 0,
+        "volume_m3": 0.22206609902451885
+      },
+      "bvh_nodes": 4095,
+      "linear_deflection_m": 0.001,
+      "mesh": {
+        "area_m2": 2.9558269688652823,
+        "boundary_edges": 0,
+        "bounds": {
+          "max": [
+            0.65,
+            0.649877780791526,
+            0.14987834972573547
+          ],
+          "min": [
+            -0.6495111691277495,
+            -0.649877780791526,
+            -0.14987834972573547
+          ]
+        },
+        "closed": true,
+        "components": 1,
+        "degenerate_triangles": 0,
+        "duplicate_triangles": 0,
+        "inconsistent_edges": 0,
+        "max_edge_m": 0.0558221235102921,
+        "min_edge_m": 0.02413997061501725,
+        "nonmanifold_edges": 0,
+        "oriented": true,
+        "triangles": 6318,
+        "vertices": 3159,
+        "volume_m3": 0.22088503161496184
+      },
+      "mesh_sha256": "5d2cc104306a78b27f61577ec556fe4db5ec3d6cae753ab632c6a893cf9694a1",
+      "scale": 0.001,
+      "seconds": {
+        "assemble": 0.0016664,
+        "read": 0.0015148,
+        "tessellate": 0.0317321
+      },
+      "solid": true,
+      "volume_relative_error": 0.005318539906564499,
+      "watertight": true,
+      "weld": {
+        "collapsed_triangles": 0,
+        "input_triangles": 6318,
+        "input_vertices": 3280,
+        "output_triangles": 6318,
+        "output_vertices": 3159,
+        "tolerance_m": 1e-09
+      }
+    },
+    {
+      "angular_deflection_rad": 0.35,
+      "area_relative_error": 0.0008599001184448811,
+      "brep": {
+        "area_m2": 2.960881320327002,
+        "edges": 2,
+        "faces": 1,
+        "shells": 1,
+        "solids": 1,
+        "untriangulated_faces": 0,
+        "volume_m3": 0.22206609902451885
+      },
+      "bvh_nodes": 8191,
+      "linear_deflection_m": 0.0005,
+      "mesh": {
+        "area_m2": 2.9583352581289515,
+        "boundary_edges": 0,
+        "bounds": {
+          "max": [
+            0.65,
+            0.6497531995662185,
+            0.14993882892422838
+          ],
+          "min": [
+            -0.65,
+            -0.6497531995662186,
+            -0.1499388289242284
+          ]
+        },
+        "closed": true,
+        "components": 1,
+        "degenerate_triangles": 0,
+        "duplicate_triangles": 0,
+        "inconsistent_edges": 0,
+        "max_edge_m": 0.03968010127256881,
+        "min_edge_m": 0.017126643258830128,
+        "nonmanifold_edges": 0,
+        "oriented": true,
+        "triangles": 12540,
+        "vertices": 6270,
+        "volume_m3": 0.22147122555645318
+      },
+      "mesh_sha256": "ef9049e659628c1cad2bc8e6a7fdaa1ff682a93efb736b04bbafe498742289ce",
+      "scale": 0.001,
+      "seconds": {
+        "assemble": 0.0036368,
+        "read": 0.0012927,
+        "tessellate": 0.074181
+      },
+      "solid": true,
+      "volume_relative_error": 0.0026788126178592616,
+      "watertight": true,
+      "weld": {
+        "collapsed_triangles": 0,
+        "input_triangles": 12540,
+        "input_vertices": 6440,
+        "output_triangles": 12540,
+        "output_vertices": 6270,
+        "tolerance_m": 1e-09
+      }
+    }
+  ]
+}

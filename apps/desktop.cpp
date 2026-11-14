@@ -1,3 +1,4 @@
+#include "passagelab/cad.hpp"
 #include "passagelab/core.hpp"
 #include "passagelab/io.hpp"
 #include <Eigen/Core>
@@ -17,6 +18,7 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 #include <limits>
+#include <map>
 #include <memory>
 #include <mutex>
 #include <sstream>
@@ -36,7 +38,7 @@ void reset_camera(Camera &camera, const Scene &scene) {
     camera = Camera{};
     Vec3 extent = scene.physical.max - scene.physical.min;
     camera.target = ((scene.physical.max + scene.physical.min) * .5).cast<float>();
-    camera.dist = std::max(6.f, float(extent.norm() * 1.25));
+    camera.dist = std::max(6.f, float(extent.norm() * 1.2));
 }
 struct Mat4 {
     float v[16]{};
@@ -107,10 +109,14 @@ GLuint program() {
                      "vec3 normal; uniform mat4 mvp; uniform mat4 model; out vec3 N; void "
                      "main(){N=transpose(inverse(mat3(model)))*normal;gl_Position=mvp*vec4(p,"
                      "1);}";
-    const char *fs = "#version 330 core\nin vec3 N; out vec4 c; uniform vec4 "
-                     "tint; void main(){float "
-                     "l=.38+.62*max(dot(normalize(N),normalize(vec3(.4,-.5,1))),"
-                     "0.0);c=vec4(tint.rgb*l,tint.a);}";
+    // Sky/ground ambient plus a key and a fill light, applied to both sides of a face so the
+    // inside of an aperture is not black. `lit` = 0 passes the colour through for lines.
+    const char *fs = "#version 330 core\nin vec3 N; out vec4 c; uniform vec4 tint; uniform float lit;"
+                     "void main(){vec3 n=normalize(N); if(!gl_FrontFacing) n=-n;"
+                     "float key=max(dot(n,normalize(vec3(.45,-.55,.70))),0.0);"
+                     "float fill=max(dot(n,normalize(vec3(-.60,.35,.30))),0.0);"
+                     "float l=.30+.16*(.5+.5*n.z)+.52*key+.14*fill;"
+                     "c=vec4(tint.rgb*mix(1.0,l,lit),tint.a);}";
     auto a = shader(GL_VERTEX_SHADER, vs);
     GLuint b = 0;
     try {
@@ -136,9 +142,30 @@ GLuint program() {
     return p;
 }
 GLuint vao = 0, vbo = 0, sphereVao = 0, sphereVbo = 0, prog = 0;
-GLint umvp = -1, umodel = -1, utint = -1;
+GLuint edgeVao = 0, edgeVbo = 0, backdropProg = 0;
+GLint umvp = -1, umodel = -1, utint = -1, ulit = -1;
 GLsizei sphereCount = 0;
 GLuint lineVao = 0, lineVbo = 0;
+// One flat-shaded vertex buffer per tessellated obstacle, built on first draw on the UI thread and
+// released when the scene no longer references the mesh.
+struct MeshBuffer {
+    std::weak_ptr<const MeshShape> owner;
+    GLuint vao = 0, vbo = 0, edgeVao = 0, edgeVbo = 0;
+    GLsizei count = 0, edgeCount = 0;
+};
+std::map<const MeshShape *, MeshBuffer> mesh_buffers;
+void release_mesh_buffers(bool all) {
+    for (auto it = mesh_buffers.begin(); it != mesh_buffers.end();) {
+        if (all || it->second.owner.expired()) {
+            glDeleteBuffers(1, &it->second.vbo);
+            glDeleteVertexArrays(1, &it->second.vao);
+            glDeleteBuffers(1, &it->second.edgeVbo);
+            glDeleteVertexArrays(1, &it->second.edgeVao);
+            it = mesh_buffers.erase(it);
+        } else
+            ++it;
+    }
+}
 struct GlfwGuard {
     ~GlfwGuard() {
         glfwTerminate();
@@ -153,6 +180,13 @@ struct WindowGuard {
 };
 struct GlResourcesGuard {
     ~GlResourcesGuard() {
+        release_mesh_buffers(true);
+        if (backdropProg)
+            glDeleteProgram(backdropProg);
+        if (edgeVbo)
+            glDeleteBuffers(1, &edgeVbo);
+        if (edgeVao)
+            glDeleteVertexArrays(1, &edgeVao);
         if (prog)
             glDeleteProgram(prog);
         if (vbo)
@@ -247,10 +281,56 @@ void init_mesh() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
     glDisableVertexAttribArray(1);
     glVertexAttrib3f(1, 0, 0, 1);
+    // The twelve edges of the unit cube: outlines without the triangle diagonals that
+    // glPolygonMode(GL_LINE) would show.
+    float edge[72];
+    int next = 0;
+    for (int i = 0; i < 8; ++i)
+        for (int bit : {1, 2, 4})
+            if ((i & bit) == 0)
+                for (int corner : {i, i | bit})
+                    for (int axis = 0; axis < 3; ++axis)
+                        edge[next++] = corners[((corner >> axis) & 1) ? 6 : 0][axis];
+    glGenVertexArrays(1, &edgeVao);
+    glGenBuffers(1, &edgeVbo);
+    glBindVertexArray(edgeVao);
+    glBindBuffer(GL_ARRAY_BUFFER, edgeVbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof edge, edge, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+    glDisableVertexAttribArray(1);
+    glVertexAttrib3f(1, 0, 0, 1);
     prog = program();
     umvp = glGetUniformLocation(prog, "mvp");
     umodel = glGetUniformLocation(prog, "model");
     utint = glGetUniformLocation(prog, "tint");
+    ulit = glGetUniformLocation(prog, "lit");
+    // Full-viewport vertical gradient drawn from one oversized triangle; no vertex data.
+    const char *bvs = "#version 330 core\nout float h; void main(){vec2 p=vec2((gl_VertexID<<1)&2,"
+                      "gl_VertexID&2); h=p.y; gl_Position=vec4(p*2.0-1.0,1,1);}";
+    const char *bfs = "#version 330 core\nin float h; out vec4 c; void main(){"
+                      "c=vec4(mix(vec3(.030,.042,.060),vec3(.070,.096,.130),clamp(h,0.0,1.0)),1);}";
+    auto a = shader(GL_VERTEX_SHADER, bvs);
+    GLuint b = 0;
+    try {
+        b = shader(GL_FRAGMENT_SHADER, bfs);
+    } catch (...) {
+        glDeleteShader(a);
+        throw;
+    }
+    backdropProg = glCreateProgram();
+    glAttachShader(backdropProg, a);
+    glAttachShader(backdropProg, b);
+    glLinkProgram(backdropProg);
+    glDeleteShader(a);
+    glDeleteShader(b);
+}
+void backdrop() {
+    glDisable(GL_DEPTH_TEST);
+    glUseProgram(backdropProg);
+    glBindVertexArray(vao);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glEnable(GL_DEPTH_TEST);
 }
 Mat4 model(const Pose &p, const Vec3 &scale) {
     Eigen::Matrix3d r = p.q.normalized().toRotationMatrix();
@@ -271,9 +351,20 @@ void cube(const Mat4 &vp, const Pose &p, const Vec3 &size, const Eigen::Vector4f
     glUniformMatrix4fv(umvp, 1, GL_FALSE, mvp.v);
     glUniformMatrix4fv(umodel, 1, GL_FALSE, md.v);
     glUniform4f(utint, color.x(), color.y(), color.z(), color.w());
+    glUniform1f(ulit, wire ? 0.f : 1.f);
     glPolygonMode(GL_FRONT_AND_BACK, wire ? GL_LINE : GL_FILL);
     glDrawArrays(GL_TRIANGLES, 0, 36);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+void cube_edges(const Mat4 &vp, const Pose &p, const Vec3 &size, const Eigen::Vector4f &color) {
+    Mat4 md = model(p, size), mvp = mul(vp, md);
+    glBindVertexArray(edgeVao);
+    glUniformMatrix4fv(umvp, 1, GL_FALSE, mvp.v);
+    glUniformMatrix4fv(umodel, 1, GL_FALSE, md.v);
+    glUniform4f(utint, color.x(), color.y(), color.z(), color.w());
+    glUniform1f(ulit, 0.f);
+    glDrawArrays(GL_LINES, 0, 24);
+    glBindVertexArray(vao);
 }
 void sphere(const Mat4 &vp, const Pose &p, double radius, const Eigen::Vector4f &color,
             bool wire = false) {
@@ -281,10 +372,91 @@ void sphere(const Mat4 &vp, const Pose &p, double radius, const Eigen::Vector4f 
     glUniformMatrix4fv(umvp, 1, GL_FALSE, mvp.v);
     glUniformMatrix4fv(umodel, 1, GL_FALSE, md.v);
     glUniform4f(utint, color.x(), color.y(), color.z(), color.w());
+    glUniform1f(ulit, wire ? 0.f : 1.f);
     glBindVertexArray(sphereVao);
     glPolygonMode(GL_FRONT_AND_BACK, wire ? GL_LINE : GL_FILL);
     glDrawArrays(GL_TRIANGLES, 0, sphereCount);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glBindVertexArray(vao);
+}
+void mesh(const Mat4 &vp, const Pose &p, const std::shared_ptr<const MeshShape> &shape,
+          const Eigen::Vector4f &color, bool wire = false) {
+    if (!shape)
+        return;
+    auto &buffer = mesh_buffers[shape.get()];
+    if (buffer.owner.expired()) {
+        // The same triangles the collision queries use, so the picture cannot drift from them.
+        const auto &m = shape->mesh();
+        std::vector<float> data;
+        data.reserve(m.triangles.size() * 18);
+        for (const auto &t : m.triangles) {
+            const Vec3 &a = m.vertices[t[0]], &b = m.vertices[t[1]], &c = m.vertices[t[2]];
+            const Vec3 n = (b - a).cross(c - a).normalized();
+            for (const Vec3 *v : {&a, &b, &c})
+                data.insert(data.end(), {float(v->x()), float(v->y()), float(v->z()), float(n.x()),
+                                         float(n.y()), float(n.z())});
+        }
+        if (!buffer.vao) {
+            glGenVertexArrays(1, &buffer.vao);
+            glGenBuffers(1, &buffer.vbo);
+        }
+        glBindVertexArray(buffer.vao);
+        glBindBuffer(GL_ARRAY_BUFFER, buffer.vbo);
+        glBufferData(GL_ARRAY_BUFFER, GLsizeiptr(data.size() * sizeof(float)), data.data(),
+                     GL_STATIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), nullptr);
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+                              reinterpret_cast<void *>(3 * sizeof(float)));
+        buffer.count = GLsizei(data.size() / 6);
+        // Feature edges: open edges and edges whose two faces meet at more than about 25
+        // degrees. Drawn over the shaded faces they show the part's outline, not its triangles.
+        std::map<std::pair<std::uint32_t, std::uint32_t>, std::vector<Vec3>> normals;
+        for (const auto &t : m.triangles) {
+            const Vec3 n = (m.vertices[t[1]] - m.vertices[t[0]])
+                               .cross(m.vertices[t[2]] - m.vertices[t[0]])
+                               .normalized();
+            for (int k = 0; k < 3; ++k)
+                normals[std::minmax(t[size_t(k)], t[size_t((k + 1) % 3)])].push_back(n);
+        }
+        std::vector<float> lines;
+        for (const auto &[edge, faces] : normals)
+            if (faces.size() != 2 || faces[0].dot(faces[1]) < .906)
+                for (auto index : {edge.first, edge.second})
+                    for (int axis = 0; axis < 3; ++axis)
+                        lines.push_back(float(m.vertices[index][axis]));
+        if (!buffer.edgeVao) {
+            glGenVertexArrays(1, &buffer.edgeVao);
+            glGenBuffers(1, &buffer.edgeVbo);
+        }
+        glBindVertexArray(buffer.edgeVao);
+        glBindBuffer(GL_ARRAY_BUFFER, buffer.edgeVbo);
+        glBufferData(GL_ARRAY_BUFFER, GLsizeiptr(lines.size() * sizeof(float)), lines.data(),
+                     GL_STATIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+        glDisableVertexAttribArray(1);
+        glVertexAttrib3f(1, 0, 0, 1);
+        buffer.edgeCount = GLsizei(lines.size() / 3);
+        buffer.owner = shape;
+    }
+    Mat4 md = model(p, Vec3::Ones()), mvp = mul(vp, md);
+    glUniformMatrix4fv(umvp, 1, GL_FALSE, mvp.v);
+    glUniformMatrix4fv(umodel, 1, GL_FALSE, md.v);
+    glUniform4f(utint, color.x(), color.y(), color.z(), color.w());
+    glUniform1f(ulit, wire ? 0.f : 1.f);
+    glBindVertexArray(buffer.vao);
+    glPolygonMode(GL_FRONT_AND_BACK, wire ? GL_LINE : GL_FILL);
+    glDrawArrays(GL_TRIANGLES, 0, buffer.count);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    if (!wire && buffer.edgeCount > 0) {
+        glUniform4f(utint, std::min(1.f, color.x() * 1.5f + .12f), std::min(1.f, color.y() * 1.5f + .12f),
+                    std::min(1.f, color.z() * 1.5f + .12f), 1.f);
+        glUniform1f(ulit, 0.f);
+        glBindVertexArray(buffer.edgeVao);
+        glDrawArrays(GL_LINES, 0, buffer.edgeCount);
+    }
     glBindVertexArray(vao);
 }
 void line(const Mat4 &vp, Vec3 a, Vec3 b, Eigen::Vector4f color) {
@@ -298,8 +470,18 @@ void line(const Mat4 &vp, Vec3 a, Vec3 b, Eigen::Vector4f color) {
     glUniformMatrix4fv(umvp, 1, GL_FALSE, vp.v);
     glUniformMatrix4fv(umodel, 1, GL_FALSE, ident.v);
     glUniform4f(utint, color.x(), color.y(), color.z(), color.w());
+    glUniform1f(ulit, 0.f);
     glDrawArrays(GL_LINES, 0, 2);
     glBindVertexArray(vao);
+}
+// A filled box with a lighter outline, so its shape reads against other boxes of the same colour.
+void solid_box(const Mat4 &vp, const Pose &p, const Vec3 &size, const Eigen::Vector4f &color,
+               bool wire) {
+    cube(vp, p, size, color, wire);
+    if (!wire)
+        cube_edges(vp, p, size,
+                   {std::min(1.f, color.x() * 1.5f + .12f), std::min(1.f, color.y() * 1.5f + .12f),
+                    std::min(1.f, color.z() * 1.5f + .12f), 1.f});
 }
 bool drag_double(const char *label, double *value, double speed, double min, double max) {
     return ImGui::DragScalar(label, ImGuiDataType_Double, value, float(speed), &min, &max, "%.4f");
@@ -1006,7 +1188,30 @@ int main(int argc, char **argv) {
                     ImGui::PushID(int(i));
                     ImGui::Text("%s", o.id.c_str());
                     bool changed = false;
-                    if (o.shape == Shape::Box)
+                    if (o.shape == Shape::Mesh && o.mesh) {
+                        const auto &r = o.mesh->report();
+                        ImGui::Text("STEP mesh · %zu triangles · %s", r.triangles,
+                                    o.mesh->solid() ? "closed solid" : "open surface");
+                        ImGui::Text("volume %.4f m3 · area %.3f m2", std::abs(r.volume), r.area);
+                        // Re-tessellate from the CAD file when the chordal error is edited.
+                        double deflection_mm = o.source.linear_deflection * 1000;
+                        ImGui::InputDouble("Deflection (mm)", &deflection_mm, 0, 0, "%.3f");
+                        if (ImGui::IsItemDeactivatedAfterEdit() && deflection_mm > 0) {
+                            try {
+                                auto source = o.source;
+                                source.linear_deflection = deflection_mm / 1000;
+                                const std::filesystem::path file(
+                                    std::u8string(source.file.begin(), source.file.end()));
+                                o.mesh = std::make_shared<MeshShape>(
+                                    tessellate_step(file, source).mesh);
+                                o.source = source;
+                                changed = true;
+                                message = "Mesh rebuilt from CAD · previous result invalidated";
+                            } catch (const std::exception &e) {
+                                message = e.what();
+                            }
+                        }
+                    } else if (o.shape == Shape::Box)
                         changed |= drag_vector3("Half size", o.half.data(), .005, .01, 20);
                     else
                         changed |= drag_double("Radius", &o.radius, .005, .01, 20);
@@ -1324,6 +1529,10 @@ int main(int argc, char **argv) {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glClearColor(.035f, .05f, .075f, 1);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            backdrop();
+            // Faces sit slightly behind their own outlines.
+            glEnable(GL_POLYGON_OFFSET_FILL);
+            glPolygonOffset(1.f, 1.f);
             Mat4 vp = mul(
                 perspective(.82f, float(std::max(1.f, uw - 640)) / float(std::max(1.f, uh - 194)),
                             .05f, 200),
@@ -1351,7 +1560,25 @@ int main(int argc, char **argv) {
             Vec3 bound_center = (scene.physical.max + scene.physical.min) * .5;
             Pose floor_pose;
             floor_pose.t = Vec3(bound_center.x(), bound_center.y(), scene.physical.min.z() - .015);
-            cube(vp, floor_pose, Vec3(extent.x(), extent.y(), .03), {.10f, .15f, .20f, 1}, true);
+            {
+                // Half-metre floor grid across the physical bounds, heavier every two metres.
+                const double z = scene.physical.min.z();
+                const Vec3 lo = scene.physical.min, hi = scene.physical.max;
+                for (int axis = 0; axis < 2; ++axis) {
+                    const int other = 1 - axis;
+                    for (double k = std::ceil(lo[axis] / .5); k * .5 <= hi[axis] + 1e-9; ++k) {
+                        Vec3 a(0, 0, z), b(0, 0, z);
+                        a[axis] = b[axis] = k * .5;
+                        a[other] = lo[other];
+                        b[other] = hi[other];
+                        const bool major = std::fmod(std::abs(k), 4.0) == 0;
+                        line(vp, a, b,
+                             major ? Eigen::Vector4f(.24f, .33f, .42f, .75f)
+                                   : Eigen::Vector4f(.16f, .22f, .29f, .55f));
+                    }
+                }
+                (void)floor_pose;
+            }
             std::array<Vec3, 8> bound_corners;
             for (int i = 0; i < 8; ++i)
                 bound_corners[size_t(i)] =
@@ -1368,12 +1595,15 @@ int main(int argc, char **argv) {
             for (size_t i = 0; i < scene.obstacles.size(); i++) {
                 auto &o = scene.obstacles[i];
                 auto color = i == size_t(selected) ? Eigen::Vector4f(.96f, .37f, .24f, .9f)
-                                                   : Eigen::Vector4f(.31f, .48f, .59f, .9f);
-                if (o.shape == Shape::Sphere)
+                                                   : Eigen::Vector4f(.34f, .41f, .50f, .94f);
+                if (o.shape == Shape::Mesh)
+                    mesh(vp, o.pose, o.mesh, color, wire);
+                else if (o.shape == Shape::Sphere)
                     sphere(vp, o.pose, o.radius, color, wire);
                 else
-                    cube(vp, o.pose, o.half * 2, color, wire);
+                    solid_box(vp, o.pose, o.half * 2, color, wire);
             }
+            release_mesh_buffers(false);
             Pose current = scene.start;
             bool haspath = false;
             std::string current_path_key;
@@ -1404,7 +1634,7 @@ int main(int argc, char **argv) {
                                     if (part.shape == Shape::Sphere)
                                         sphere(vp, gp, part.radius, {.3f, .8f, .88f, .22f}, true);
                                     else
-                                        cube(vp, gp, part.half * 2, {.3f, .8f, .88f, .22f}, true);
+                                        cube_edges(vp, gp, part.half * 2, {.35f, .82f, .90f, .26f});
                                 }
                         }
                     }
@@ -1464,7 +1694,8 @@ int main(int argc, char **argv) {
                     if (part.shape == Shape::Sphere)
                         sphere(vp, world, part.radius, color, true);
                     else
-                        cube(vp, world, part.half * 2, color, true);
+                        cube_edges(vp, world, part.half * 2,
+                                   {color.x(), color.y(), color.z(), std::min(1.f, color.w() * 2)});
                 }
             };
             draw_body_pose(scene.start, {.25f, .88f, .46f, .42f});
@@ -1495,17 +1726,19 @@ int main(int argc, char **argv) {
                                 : Eigen::Vector4f(.18f, .78f, .72f, 1),
                            wire);
                 else
-                    cube(vp, world, part.half * 2,
-                         fail ? Eigen::Vector4f(1, .15f, .12f, 1)
-                              : Eigen::Vector4f(.18f, .78f, .72f, 1),
-                         wire);
+                    solid_box(vp, world, part.half * 2,
+                              fail ? Eigen::Vector4f(1, .15f, .12f, 1)
+                                   : Eigen::Vector4f(.18f, .78f, .72f, 1),
+                              wire);
             }
             for (auto &o : scene.obstacles)
                 if (o.id == fail_obstacle) {
-                    if (o.shape == Shape::Sphere)
+                    if (o.shape == Shape::Mesh)
+                        mesh(vp, o.pose, o.mesh, {1, .12f, .08f, 1}, true);
+                    else if (o.shape == Shape::Sphere)
                         sphere(vp, o.pose, o.radius, {1, .12f, .08f, 1}, true);
                     else
-                        cube(vp, o.pose, o.half * 2, {1, .12f, .08f, 1}, true);
+                        cube_edges(vp, o.pose, o.half * 2, {1, .12f, .08f, 1});
                 }
             if (playback_state && playback_state->query.on_body &&
                 playback_state->query.on_obstacle)
@@ -1541,8 +1774,16 @@ int main(int argc, char **argv) {
                 int hit = -1;
                 for (size_t i = 0; i < scene.obstacles.size(); i++) {
                     auto &o = scene.obstacles[i];
-                    auto t = o.shape == Shape::Box ? ray_box(ro, rd, o)
-                                                   : ray_sphere(ro, rd, o.pose.t, o.radius);
+                    std::optional<double> t;
+                    if (o.shape == Shape::Mesh && o.mesh) {
+                        // The ray is moved into the mesh frame; a rigid transform keeps its
+                        // parameter, so hits compare directly with the analytic shapes.
+                        const Quat inverse = o.pose.q.conjugate();
+                        if (auto h = o.mesh->ray(inverse * (ro - o.pose.t), inverse * rd))
+                            t = h->parameter;
+                    } else
+                        t = o.shape == Shape::Box ? ray_box(ro, rd, o)
+                                                  : ray_sphere(ro, rd, o.pose.t, o.radius);
                     if (t && *t < nearest) {
                         nearest = *t;
                         hit = int(i);

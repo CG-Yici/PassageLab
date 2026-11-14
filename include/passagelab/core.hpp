@@ -22,13 +22,23 @@ Pose interpolate(const Pose &, const Pose &, double);
 double rotation_distance(const Quat &, const Quat &);
 double pose_distance(const Pose &, const Pose &, double rotation_weight);
 bool valid_pose(const Pose &);
-enum class Shape { Box, Sphere };
+enum class Shape { Box, Sphere, Mesh };
+class MeshShape; // mesh.hpp
+// Where a mesh obstacle came from: a CAD file and the tessellation that produced its triangles.
+struct MeshSource {
+    std::string file;                // UTF-8 path of the STEP file
+    double linear_deflection = 0.002; // maximum chordal error, scene units (m)
+    double angular_deflection = 0.35; // maximum angle between adjacent segments, rad
+    double scale = 0.001;             // CAD model units (mm) to scene units (m)
+};
 struct Part {
     std::string id;
     Shape shape = Shape::Box;
     Vec3 half = Vec3::Constant(0.5);
     double radius = 0.5;
     Pose pose; // body-local for components, world for obstacles
+    std::shared_ptr<const MeshShape> mesh; // Shape::Mesh only; obstacles only
+    MeshSource source;
 };
 struct Bounds {
     Vec3 min = Vec3::Constant(-5);

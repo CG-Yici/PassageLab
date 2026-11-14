@@ -1,0 +1,15 @@
+{
+  "body_part_id": "",
+  "failed_edge": null,
+  "failed_u": 0.0,
+  "intervals": 960,
+  "maximum_actual_rotation_step": 0.0034722922671896034,
+  "maximum_actual_surface_step": 0.004999715316498965,
+  "maximum_actual_translation_step": 0.0036681482521001138,
+  "obstacle_id": "",
+  "reason": "",
+  "request_id": "17946158687032623-0",
+  "samples": 964,
+  "source_sha256": "748374e6738d0c1f9a6d301eaf966d8bb001b0140fa60fe6877c32984d1c5b02",
+  "status": 0
+}

@@ -1,100 +1,40 @@
-# PassageLab：三维刚体运动规划与检查工具
+# PassageLab
 
-[English](README.md) · **简体中文** · [中文演示与操作指南](docs/demo.zh-CN.md) · [下载 v0.2.0](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0)
+[English](README.md) · **简体中文** · [演示与操作指南](docs/demo.zh-CN.md)
 
-**给定物体形状、障碍物和起终点，PassageLab 尝试找出一条同时包含平移与旋转的移动路径，让你检查物体如何穿过受限空间。** 例如：长条如何绕柱、L 形组合体如何转弯、不对称物体如何穿过错位开口。
+PassageLab 解决的问题是：一个不会变形的物体，怎样边移动边转动，穿过一个狭窄的三维空间。你给出物体、障碍物、起点和终点的位姿，它去找一条能通过的运动，检查这条运动有没有碰撞，再把过程放给你看，每个姿态离障碍物多远也一并显示。
 
-当前版本：**v0.2.0 Windows x64**，桌面界面为英文。首版设计 P0–P6 已通过本机验收。
+程序用 C++20 写成，界面用 OpenGL，目前只支持 Windows x64，界面文字是英文。
 
-![场景 C 的实际路径播放：不对称组合体穿过两道开口](docs/media/0.2.0/passagelab.gif)
+![不对称的三段式物体穿过两道错开的开口](docs/media/current/scene-c.gif)
 
-## 快速开始
+## 做了哪些东西
 
-1. 打开 [v0.2.0 发布页](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0)，下载 **`PassageLab-0.2.0-windows-x64.zip`**。GitHub 自动提供的 `Source code` 是源码，不是可直接运行的软件包。
-2. 将压缩包完整解压到有写入权限的文件夹。
-3. 双击 **`Start PassageLab.cmd`**。需要 Windows x64 和支持 OpenGL 3.3 的显卡驱动。
-4. 左上角 `Scene` 选择 `A-offset-passage`，点击右侧 `Plan path`（规划路径）。等 `STATUS` 显示 `solved` 后，勾选下方 `Play`（播放）。
-5. 按 [中文演示指南](docs/demo.zh-CN.md) 继续比较原始/简化路径、检查间隙、编辑尺寸和导出结果。
+- **路径规划**：自己实现的双向 RRT-Connect，在 SE(3) 里搜索，位置和朝向一起采样。搜索有迭代次数、节点数和查询次数的上限，也可以中途取消。
+- **碰撞与距离**：球用解析公式，有向箱体用分离轴判定，箱体之间的距离和最近点是精确计算的。障碍物上建了一层 BVH，用来减少需要逐对检查的数量。
+- **CAD 障碍物**：STEP 文件可以直接当障碍物用。三角化交给 OpenCASCADE；之后把各个面的结果拼成一张带索引的三角网格、合并重复顶点、检查是否封闭、和 B-rep 的体积做对比，再用三角形 BVH 做查询，这些是本项目自己写的。详见 [从 CAD 到三角网格](docs/cad-mesh.md)（英文）。
+- **运动检查**：每一段路径按平移量、转角和物体表面扫过的距离三个标准取样。这样一根长杆即使只转很小的角度，也会被检查足够多次。
+- **查看器**：GLFW、OpenGL 3.3 和 Dear ImGui。可以改位姿和尺寸、点选和拖动物体、拖进度条看路径、显示搜索树、跳到间隙最小的那个姿态。
+- **可复现的运行**：有命令行工具；场景和路径存成 JSON 并带 SHA-256 指纹；随机种子固定；另外接了 OMPL 的 RRT-Connect，用同一套碰撞检查做对照。
 
-[演示视频](https://github.com/CG-Yici/PassageLab/releases/download/v0.2.0/passagelab-demo.mp4)按 A、B、C 顺序播放，共 15 秒。离线文档：下载 **`PassageLab-0.2.0-Chinese-Guide.zip`**，解压后打开 `index.html`，内含中文说明、图片和字幕视频。
+有两样不是我写的：曲面三角化的算法（OpenCASCADE）和用来对照的规划器（OMPL）。FCL 只用来核对我自己算的箱体距离。也正是在核对时发现，FCL 0.7.0 对同一对箱体，交换参数顺序后给出的距离不一样，所以这里的箱体距离改成了自己实现。经过写在 [算法说明](docs/algorithms.md)（英文）里。
 
-## 功能
+## 四个场景
 
-| 功能 | 实际行为 |
-|---|---|
-| 建模与编辑 | 箱体、球体、固定连接的组合刚体；编辑尺寸、局部位姿、障碍和起终位姿 |
-| 三维规划 | 自研双向 RRT-Connect；位置和朝向共同参与搜索；有时间、操作和查询预算，可取消 |
-| 几何检查 | 碰撞/接触、可用的距离和最近点；检查整段插值运动，而非只检查端点 |
-| 路径比较 | 保留原始路径；尝试经过验证的 shortcut 简化；报告平移、旋转和采样间隙 |
-| 交互查看 | 旋转/平移/缩放视角、拾取、线框、播放、姿态残影、搜索边和最小采样间隙定位 |
-| 保存与复现 | 场景/路径 JSON、运行报告、种子、参数与版本信息；导入路径后须重新验证 |
-| 算法对照 | 全遍历与 BVH、自研与 OMPL、完整三维与受限平面模式；OMPL 对照通过命令行运行 |
-
-内置场景为参数化工程演示，移动物体整体受物理边界约束。手工参考运动仅用于独立回归检查。
-
-| 场景名称 | 中文含义 | 主要观察点 |
+| | 场景 | 看点 |
 |---|---|---|
-| `A-offset-passage` | 长条绕柱的错位通道 | 中心点能通过，不代表整根长条不会碰撞 |
-| `B-L-corner` | L 形组合体转角 | 两个部件固定连接，必须作为同一刚体一起转动 |
-| `C-staggered-apertures` | 不对称组合体穿过错位开口 | 高度、位置和三维朝向如何共同变化 |
+| ![A](docs/media/current/scene-a.gif) | **A：绕柱通道** | 一根长杆要绕过柱子。杆的中心很容易过去，两端却会撞上。 |
+| ![B](docs/media/current/scene-b.gif) | **B：L 形转角** | 两个箱体固定成 L 形，作为一个整体在走廊里转弯。 |
+| ![C](docs/media/current/scene-c.gif) | **C：错位开口** | 三段式物体要穿过两道高度不同的开口，必须离开水平面倾斜着过。 |
+| ![D](docs/media/current/scene-d.gif) | **D：STEP 圆孔** | 1.0 m 长的杆穿过一块板上 0.9 m 的圆孔，板来自 STEP 文件。杆只有顺着孔的方向才过得去。 |
 
-## 术语
+动图都是查看器实际渲染的画面。每个场景里，物体整体都必须留在外框之内，所以没法从外面绕过去。
 
-| 名称 | 中文解释 |
-|---|---|
-| 刚体、组合刚体 | 移动时不变形的物体；组合体各部件在一次运动中的相对位置固定 |
-| 位姿（Pose） | 位置与朝向 |
-| SE(3) | 三维刚体位姿的数学表示，可沿三个方向移动，也可改变三维朝向 |
-| RRT-Connect | 从起点和终点各生长一棵随机搜索树，不断尝试扩展并连接；找到的通常不是最优路径 |
-| SAT | 分离轴碰撞判定：检查是否存在能把两个箱体分开的方向；投影间隙不是欧氏距离 |
-| BVH | 包围盒层次结构：先快速排除明显无关的障碍，再做精确几何查询 |
-| shortcut | 尝试用更直接的已验证运动段替换部分路径；不改变起终点 |
-| clearance | 间隙，即物体与障碍/物理边界之间可计算的距离；界面报告的是采样位置的信息 |
-| 离散验证 | 将一段运动分成若干份，在选定位置做检查；没有检查所有连续时刻 |
-| Seed | 随机种子。同一实现、工具链、输入和固定操作预算便于复现；不同规划器不因种子相同就采到相同状态 |
-| JSON、哈希 | JSON 是可读的数据文件；哈希是输入或源码的数字指纹，用于核对结果是否对应当前输入/实现 |
+## 怎么运行
 
-**`solved` 的准确含义是：找到了一条通过声明的离散检查的路径。它不是连续无碰撞的数学证明。** `budget_exhausted` 表示给定预算用完，不能读成“无解”。接触、无法确定的几何结果和检查未完成都不能算通过。
+**直接下载**：到 [v0.2.0 发布页](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0) 下载 `PassageLab-0.2.0-windows-x64.zip`，解压后双击 `Start PassageLab.cmd`。需要 Windows x64 和支持 OpenGL 3.3 的显卡驱动。注意页面上的 `Source code` 是源码，不能直接运行。0.2.0 的包里只有场景 A 到 C，STEP 障碍物和场景 D 是之后加的，要从源码构建。
 
-shortcut 优化的目标是“平移长度 + 旋转权重 × 累计转角”，并不保证平移、旋转和间隙三个指标都分别变好，也不保证获得全局最优路径。
-
-## 实现分工与技术结构
-
-程序使用 C++20。桌面端负责显示和操作，命令行端负责批量运行；两者共用同一套几何、规划和文件读写代码。后台任务使用场景快照，修改计算输入后旧结果会失效。
-
-| 模块 | 实现内容 |
-|---|---|
-| 自研 | 位姿处理、解析查询、箱体 SAT、箱体特征距离、静态 BVH、离散验证、RRT-Connect、shortcut 和结果一致性 |
-| Eigen | 向量、矩阵和四元数计算 |
-| FCL | 几何对照与距离审计；本项目发现所用版本的部分箱体距离不一致后，采用经测试的箱体特征距离作为权威结果 |
-| OMPL | 独立的规划器实现，用来对照自研规划器；两者仍共享本项目的几何/运动验证器 |
-| GLFW / OpenGL / Dear ImGui | 窗口、三维绘制与界面控件 |
-
-两套规划器共享验证器，几何正确性另通过解析案例、FCL 对照和回归测试检查。
-
-源码入口：`include/passagelab/` 为公共接口，`src/` 为核心实现，`apps/` 为桌面端和 CLI，`tests/` 为测试，`tools/` 为构建/实验脚本，`benchmarks/` 为配置与选入仓库的证据。
-
-## 验收结果
-
-**0.2.0 本机验收记录：**
-
-| 项目 | 记录结果 |
-|---|---|
-| 自动测试 | 40/40 CTest 通过 |
-| 桌面输入回放 | A/B/C 各 25 项，共 75/75 通过 |
-| 固定种子演示 | 三场景均求解；原始/简化路径共六次以 0.02 精度进一步复核通过 |
-| 标准实验 | 360/360 成功：三场景 × 30 种子 × 四种配置，每次搜索时间预算 5 秒 |
-| 难度/运动空间实验 | 280/330 成功，50 次预算耗尽；每组 30 种子、时间预算 1 秒 |
-| 总计 | 690 次实验：640 次成功、50 次预算耗尽 |
-| 交付验证 | 同机全新目录源码构建通过；解压软件包后、仅含系统目录的 PATH 下运行检查通过 |
-
-难度实验中，开口缩小 15% 后为 12/30 成功；同几何、同兼容端点的对照中，SE(3) 为 30/30，平面模式为 0/30。原始 C 场景的起终高度/倾斜不同，平面对照另用兼容端点。完整数据、时间分布与统计区间见 [实验说明](docs/experiments.md) 和 [中文验收报告](docs/acceptance-0.2.0.zh-CN.md)。
-
-仍未实测的范围包括新物理机器、其他 GPU、DPI 和输入设备组合。连续碰撞证明、任意网格/CAD 导入、动力学、关节机器人与学习采样不在首版范围内。[GitHub Actions](https://github.com/CG-Yici/PassageLab/actions) 的远程状态与上述本机验收分开查看。
-
-## 从源码构建
-
-安装 Git、Visual Studio 2022 的“使用 C++ 的桌面开发”、Windows SDK 和 Visual Studio CMake 工具后，在 PowerShell 执行：
+**从源码构建**：先装好 Git 和 Visual Studio 2022 的“使用 C++ 的桌面开发”，然后在 PowerShell 里执行：
 
 ```powershell
 git clone https://github.com/CG-Yici/PassageLab.git
@@ -103,19 +43,94 @@ powershell -ExecutionPolicy Bypass -File tools/build.ps1
 ./build/windows/Release/passagelab_desktop.exe
 ```
 
-脚本安装固定版本依赖、构建 Release 并运行 CTest。首次依赖构建需要下载和编译，耗时取决于机器与网络。它临时映射盘符处理含空格或中文的依赖构建路径，结束后释放映射。
+脚本会拉取固定版本的 vcpkg 依赖、构建 Release 并跑一遍测试。第一次要从源码编译 OpenCASCADE 和 OMPL，时间比较长，之后就快了。依赖构建期间它会临时映射一个空闲盘符，因为有些工具遇到带空格或中文的路径会出错；结束后映射会自动撤掉。全程不需要管理员权限。
 
-本次迁移的开发工作区使用 `build/worktree`；其旧 `build/windows` 缓存属于旧源码路径。仅在该迁移工作区使用：
+打开查看器后，在左上角选一个场景，点 **Plan path**，等 `STATUS` 变成 `solved`，再勾选 **Play**。要看场景 D，在 **Scene file** 里填 `assets/cad/D-step-aperture.json`，点 **Load JSON**。更详细的步骤见 [演示与操作指南](docs/demo.zh-CN.md)。
+
+## 命令行
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools/build.ps1 -UseInstalledDependencies -BuildDirectory build/worktree
+$cli = './build/windows/Release/passagelab_cli.exe'
+& $cli plan --demo 0 --seed 42 --seconds 0 --out results/demo-a
+& $cli validate-path --scene results/demo-a/scene.json --path results/demo-a/path.json
+& $cli plan --demo 1 --planner ompl --seed 42 --out results/ompl-b
+& $cli plan --scene assets/cad/D-step-aperture.json --seconds 0 --out results/step-aperture
+& $cli cad-mesh --cad assets/cad/plate-with-hole.step --sweep --out results/plate-sweep.json
+& $cli benchmark --demo 2 --runs 30 --seed 1000 --seconds 5 --out results/experiment-c
 ```
 
-构建脚本位于源码仓库。命令行示例见 [演示指南](docs/demo.zh-CN.md)。项目原创代码采用 [MIT 许可证](LICENSE)，依赖保留各自许可证，见 [第三方声明](THIRD_PARTY_NOTICES.md)。
+`plan` 的退出码：0 表示找到路径并验证通过，2 表示预算用完，1 表示输入有问题。`--seconds 0` 关掉计时上限，只按操作次数限制，这样同一条命令每次跑出的结果相同。每次运行要给一个新的输出目录，已有的结果不会被覆盖。
+
+`--motion-space planar-xy` 把物体限制在起始高度，只允许绕竖直轴转动，用来和完整三维运动在同一个场景上做比较。
+
+## 结果能信到什么程度
+
+`solved` 的意思是：路径的每一段都按报告里记录的步长取样检查过，全部通过。它不能证明连续运动一定不碰撞，比步长还薄的东西有可能正好落在两个采样点之间。要求高的时候，用更小的步长再查一遍，`validate-path --step` 就是做这个的。几个示例的路径都用规划步长的四分之一复查过。
+
+预算用完不等于无解。物体与障碍物刚好接触按碰撞处理。几何查询给不出确定结论时，这个状态一律判为不通过。
+
+网格只是 CAD 曲面的近似，误差在所设的偏差之内。偏差应当设得比你关心的间隙小。
+
+目前不做的：多个运动物体、机器人关节、力和动力学、可变形物体、网格形状的运动物体。长度单位是米，角度是弧度，Z 轴朝上，四元数按 `[x, y, z, w]` 存储。
+
+## 一些实测数字
+
+都来自同一台 Windows 机器的 Release 构建，原始输出在 [benchmarks/data](benchmarks/data)。
+
+- **障碍物 BVH**：1,000 个姿态对 144 个箱体，不用 BVH 要做 134,830 次逐对检查，用了之后是 1,163 次，结果完全一致。
+- **三角形 BVH**：1,000 个箱体姿态对一个 12,540 个三角形的圆环，不用 BVH 要测 2,412 万次三角形，用了之后是 23.9 万次，结果完全一致。
+- **三角化**：同一个圆环在 0.5 mm 偏差下是封闭的，体积和 B-rep 相差 0.27%；16 mm 偏差下是 2,592 个三角形，相差 1.0%。
+- **规划器**：0.2.0 的实验里，场景 A 到 C 共 360 次运行全部求解成功（30 个种子、四种配置、每次限时 5 秒）。把场景 C 的开口缩小 15% 之后，限时 1 秒内 30 次里成功 12 次。
+
+更多数据见 [实验说明](docs/experiments.md) 和 [从 CAD 到三角网格](docs/cad-mesh.md)（均为英文）。
+
+## 测试
+
+一共 46 个 CTest 用例。内容包括：和有解析解的距离对比、和 FCL 对比、BVH 与逐个遍历的结果是否一致、网格化的箱体与解析箱体是否一致；还有那些容易出错的地方，比如正好落在容差上的接触、退化三角形、四元数符号翻转、被取消的搜索、场景改动后再载入旧路径。查看器另有一套回放输入的自检。
+
+```powershell
+ctest --test-dir build/windows -C Release --output-on-failure
+./build/windows/Release/passagelab_desktop.exe --ui-self-test
+```
+
+## 名词解释
+
+| 名词 | 含义 |
+|---|---|
+| 刚体 | 运动时不变形的物体。由几个部件固定在一起的，也算一个刚体。 |
+| 位姿 | 位置加朝向。 |
+| SE(3) | 三维空间里所有位姿的集合：三个方向的平移，加上任意朝向。 |
+| RRT-Connect | 从起点和终点各长出一棵随机搜索树，两棵树不断伸展并尝试接上。找到的路径一般不是最短的。 |
+| SAT（分离轴） | 判断两个凸体是否相交的办法：只要找得到一个方向能把两者分开，就不相交。 |
+| BVH | 包围盒层次结构。先用大盒子排除明显无关的部分，再对剩下的做精确计算。 |
+| B-rep | CAD 里表示实体的方式，用精确的曲面、边和顶点描述边界。 |
+| 三角化 | 把曲面近似成一组三角形。 |
+| 偏差（deflection） | 三角形与原曲面之间允许的最大距离。越小，三角形越多，也越接近原形状。 |
+| 间隙（clearance） | 物体与最近的障碍物或边界之间的距离。 |
+| shortcut | 把路径中绕远的一段换成更直接的一段，换之前先检查新的一段是否可行。 |
+
+## 目录
+
+```text
+include/passagelab/   公共头文件
+src/geometry.cpp      变换、形状查询、障碍物 BVH、状态与运动检查
+src/mesh.cpp          顶点合并、拓扑检查、三角形 BVH、网格查询
+src/cad.cpp           读取 STEP 与三角化（只有这个文件用到 OpenCASCADE）
+src/planning.cpp      采样、RRT-Connect、路径检查与简化
+src/ompl_adapter.cpp  接入同一套检查的 OMPL 规划器
+src/io.cpp            JSON、哈希、报告
+apps/                 命令行工具和查看器
+tests/                单元测试与集成测试
+assets/               场景与 STEP 文件
+benchmarks/           实验配置与记录下来的结果
+tools/                构建、打包和录制脚本
+```
 
 ## 继续阅读
 
-- [中文演示与操作指南](docs/demo.zh-CN.md)：按钮对照、逐步演示、导出重载、失败案例与排错。
-- [中文发布说明](docs/releases/v0.2.0.zh-CN.md)：下载内容、源码/二进制对应关系。
-- [中文验收报告](docs/acceptance-0.2.0.zh-CN.md)：首版需求映射与证据。
-- [原始项目设计](docs/project-design.zh-CN.md)：设计范围；其中待办方框是原始设计文本，当前实现情况以验收报告为准。
+- [演示与操作指南](docs/demo.zh-CN.md)：按钮对照、一步步的演示、导出与重新载入、常见问题
+- [从 CAD 到三角网格](docs/cad-mesh.md)（英文）
+- [0.2.0 验收报告](docs/acceptance-0.2.0.zh-CN.md) 和 [发布说明](docs/releases/v0.2.0.zh-CN.md)
+- [最初的设计文档](docs/project-design.zh-CN.md)：其中的待办清单是当时的原文，实际完成情况以验收报告为准
+
+本项目自己的代码采用 [MIT 许可证](LICENSE)。各依赖沿用它们自己的许可证，见 [第三方声明](THIRD_PARTY_NOTICES.md)。

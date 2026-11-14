@@ -1,34 +1,40 @@
 # PassageLab
 
-**English** · [简体中文](README.zh-CN.md) · [中文演示与操作指南](docs/demo.zh-CN.md)
+**English** · [简体中文](README.zh-CN.md)
 
-**An interactive C++20 tool for planning and inspecting rigid-body motion through constrained 3D environments.**
+PassageLab plans how a rigid body gets through a tight 3D space, and lets you look at the result. You give it a body, some obstacles, a start pose and a goal pose. It searches for a motion that translates and rotates the body past the obstacles, checks that motion, and plays it back with the clearance at every pose.
 
-A long bar, an L-shaped body, and an asymmetric assembly move through obstacles using translation and rotation. PassageLab computes the motion, checks every path segment at an explicit resolution, and lets you inspect the resulting poses and clearance.
+It is written in C++20 with an OpenGL viewer, and runs on Windows x64.
 
-> Version 0.2.0: design phases P0–P6 implemented and verified on Windows x64. 40 CTest cases, 75 desktop input checks, three solved demos with finer path rechecks, fresh-source rebuild and fixed-seed experiments. See [verification status](docs/implementation-status.md) and the [Chinese acceptance report](docs/acceptance-0.2.0.zh-CN.md). P7 is optional future work. [Download v0.2.0](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0).
+![An asymmetric three-part body passing two offset openings](docs/media/current/scene-c.gif)
 
-![Actual PassageLab scene C playback](docs/media/0.2.0/passagelab.gif)
+## What is in it
 
-## What the project demonstrates
+- **Planner.** My own bidirectional RRT-Connect in SE(3). Orientations are sampled uniformly, searches have iteration, node and query budgets, and a running search can be cancelled.
+- **Collision and distance.** Analytic sphere queries, a separating-axis test for oriented boxes, and exact box-to-box distance with closest points. A BVH over the obstacles keeps the number of pair tests down.
+- **CAD obstacles.** A STEP file can be an obstacle. OpenCASCADE tessellates the B-rep; PassageLab welds the per-face output into one indexed mesh, checks that it is watertight, compares its volume with the B-rep, and queries it through a triangle BVH. Details in [CAD to triangle mesh](docs/cad-mesh.md).
+- **Motion checking.** Each path segment is sampled by translation, by rotation and by how far the body's surface travels, so a long bar swinging through a small angle still gets enough samples.
+- **Viewer.** GLFW, OpenGL 3.3 and Dear ImGui. Edit poses and sizes, pick and drag objects, scrub through a path, show the search tree, jump to the tightest pose.
+- **Reproducible runs.** A command-line tool, JSON scenes and paths with SHA-256 fingerprints, fixed seeds, and an OMPL RRT-Connect that runs on the same collision checker for comparison.
 
-- A self-written bidirectional **RRT-Connect** planner in SE(3), with uniform orientation sampling, operation budgets and cancellation.
-- Custom rigid transforms, analytic sphere queries, **OBB separating-axis collision detection**, static obstacle **BVH**, and discrete motion validation.
-- Box-feature distances and nearest points, with FCL distance audits and independent collision comparisons.
-- A GLFW / OpenGL / Dear ImGui desktop application, with pose editing, playback, search trees, collision and clearance inspection.
-- Validated shortcut optimization, immutable scene snapshots, stale-result rejection, versioned JSON and SHA-256 input fingerprints.
-- A headless CLI and an OMPL comparison adapter for reproducible experiments.
-- Matched SE(3) / fixed-height, fixed-tilt planar planning, with the same state and motion checks.
+Two things I did not write: the tessellation algorithm (OpenCASCADE) and the comparison planner (OMPL). FCL is used only to cross-check my box distances. That cross-check is how I found that FCL 0.7.0 returned different distances for the same two boxes depending on argument order, which is why the box distance here is my own. The story is in [algorithm notes](docs/algorithms.md).
 
-The planner implements an established algorithm. Eigen supplies linear algebra, FCL supplies independent geometry comparisons, and OMPL supplies a separate planner. A tested box-specific feature distance handles cases where FCL's GJK distance varied with argument order. See [architecture](docs/architecture.md) and [algorithm notes](docs/algorithms.md).
+## Scenes
 
-## Run the portable release
+| | Scene | What it shows |
+|---|---|---|
+| ![A](docs/media/current/scene-a.gif) | **A: offset passage** | A long bar has to swing around a column. The centre of the bar fits easily; the ends do not. |
+| ![B](docs/media/current/scene-b.gif) | **B: L corner** | Two boxes joined into an L turn through a corridor as one body. |
+| ![C](docs/media/current/scene-c.gif) | **C: staggered apertures** | A three-part body passes two openings at different heights, so it has to tilt out of plane. |
+| ![D](docs/media/current/scene-d.gif) | **D: STEP aperture** | A 1.0 m bar goes through a 0.9 m round hole in a plate loaded from a STEP file. It only fits lengthwise. |
 
-Download `PassageLab-0.2.0-windows-x64.zip` from the [v0.2.0 release](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0), extract it, and run **Start PassageLab.cmd**. Windows x64 and an OpenGL 3.3 driver are required. The release includes checksums, package verification and a demo video. See [release notes](docs/releases/v0.2.0.md) for provenance and tested scope.
+All recordings are frames from the viewer itself. In every scene the whole body has to stay inside the outer box, so it cannot simply go around.
 
-## Build on Windows
+## Try it
 
-Requirements: Windows 10/11 x64, Git, Visual Studio 2022 **Desktop development with C++**, Windows SDK and Visual Studio's CMake tools. OpenGL 3.3 is required for the viewer. Only Windows is currently targeted.
+**Prebuilt.** Download `PassageLab-0.2.0-windows-x64.zip` from the [v0.2.0 release](https://github.com/CG-Yici/PassageLab/releases/tag/v0.2.0), unzip it and run `Start PassageLab.cmd`. You need Windows x64 and an OpenGL 3.3 driver. The 0.2.0 package has scenes A to C; STEP obstacles and scene D came later and need a source build.
+
+**From source.** Install Git and Visual Studio 2022 with *Desktop development with C++*, then:
 
 ```powershell
 git clone https://github.com/CG-Yici/PassageLab.git
@@ -37,80 +43,79 @@ powershell -ExecutionPolicy Bypass -File tools/build.ps1
 ./build/windows/Release/passagelab_desktop.exe
 ```
 
-The build script checks out the vcpkg baseline in `vcpkg.json`, installs dependencies, builds Release and runs CTest. The first dependency build can take a while. It temporarily maps a free drive letter for dependency builds to avoid Windows RC/Ninja issues with Unicode or spaced paths, and releases the mapping afterward. No administrator privileges are required.
+The script fetches the pinned vcpkg dependencies, builds Release and runs the tests. The first run compiles OpenCASCADE and OMPL from source and takes a good while; later runs are quick. It maps a spare drive letter during the dependency build, because some of the tools break on paths with spaces or non-ASCII characters, and removes the mapping when it finishes. Administrator rights are not needed.
 
-For this migrated workspace, run from `passagelab-codex/`. The inherited `build/windows` cache names the previous source location; leave it as historical output and use a fresh build directory with the already installed local dependencies:
+In the viewer, pick a scene at the top left, press **Plan path**, wait for `STATUS solved`, then tick **Play**. To open scene D, type `assets/cad/D-step-aperture.json` into **Scene file** and press **Load JSON**. Controls are listed in [viewer notes](docs/viewer.md).
 
-```powershell
-powershell -ExecutionPolicy Bypass -File tools/build.ps1 -UseInstalledDependencies -BuildDirectory build/worktree
-./build/worktree/Release/passagelab_desktop.exe
-powershell -ExecutionPolicy Bypass -File tools/verify.ps1 -BuildDirectory build/worktree -OutputDirectory results/new-acceptance
-powershell -ExecutionPolicy Bypass -File tools/package.ps1 -BuildDirectory build/worktree
-```
-
-`verify.ps1` checks references, fixed-seed planning, original and optimized paths at 0.02 resolution, the exhausted-budget case, BVH agreement, desktop smoke/self-tests and 25 input-driven operations per scene. It captures real rendered frames and measures rendering, cancellation and memory against reference-host targets. `-SkipDesktop` supports headless verification and records that omission. Verification output directories must be new; packaging refuses to replace an existing package.
-
-`tools/clean_build.ps1` copies source into a fresh local directory and rebuilds/tests it using the pinned dependency installation. `tools/verify_package.ps1` extracts the ZIP into a fresh directory, verifies binary hashes and reruns CLI/desktop checks with a system-only PATH. The portable package includes app-local Visual C++ runtime DLLs; extract it and run **Start PassageLab.cmd**.
-
-## Headless examples
+## Command line
 
 ```powershell
 $cli = './build/windows/Release/passagelab_cli.exe'
-& $cli generate-scenes --out assets/scenes
 & $cli plan --demo 0 --seed 42 --seconds 0 --out results/demo-a
 & $cli validate-path --scene results/demo-a/scene.json --path results/demo-a/path.json
 & $cli plan --demo 1 --planner ompl --seed 42 --out results/ompl-b
+& $cli plan --scene assets/cad/D-step-aperture.json --seconds 0 --out results/step-aperture
+& $cli cad-mesh --cad assets/cad/plate-with-hole.step --sweep --out results/plate-sweep.json
 & $cli benchmark --demo 2 --runs 30 --seed 1000 --seconds 5 --out results/experiment-c
 ```
 
-`--seconds 0` disables the wall-clock deadline; operation and query limits still apply. The saved scene includes configuration overrides, so revalidate against the exported `scene.json`. A `plan` exit code of 0 means solved and verified, 2 means a recorded unsolved result, and 1 means an input or execution error. A timeout does not prove infeasibility.
+`plan` exits with 0 when it found and verified a path, 2 when it ran out of budget, and 1 on bad input. `--seconds 0` turns off the wall-clock limit so that only the operation budgets apply, which makes a run repeatable. Each run wants a new output folder and will not overwrite an old one.
 
-Each plan needs a new output directory: existing scene/path/report files are preserved and produce an error instead of being mixed with another run. Unknown options, malformed numbers and unknown planner names are rejected. Reports include a source SHA-256 and tracked-worktree dirty flag in addition to the Git commit.
+`--motion-space planar-xy` keeps the body at its starting height and only lets it yaw. It is there to compare against full 3D motion on the same scene.
 
-`--motion-space planar-xy` restricts motion to XY translation and world-Z yaw relative to the start orientation. A goal with another height or tilt is invalid. Use compatible endpoints for a meaningful SE(3)/planar comparison; the geometry-variant runner creates and records such a paired case explicitly.
+## How far to trust a result
 
-## Demonstrations
+`solved` means every segment of the path passed the sampled checks at the step size recorded in the report. It does not prove that the continuous motion is collision-free: something thinner than the step could sit between two samples. Check again at a finer step when it matters. `validate-path --step` does that, and the demo paths are rechecked at a quarter of the planning step.
 
-| Scene | Question | Geometry |
-|---|---|---|
-| A: offset passage | Why does checking only the center miss a collision? | Long bar and offset route around a column |
-| B: L corner | How does a compound body turn through a corridor? | Fixed L assembly, inner corner and enclosing boundaries |
-| C: staggered apertures | When does out-of-plane orientation matter? | Asymmetric three-part body, two differently shaped openings |
+Running out of budget does not mean there is no path. Touching counts as a collision. If a geometry query cannot give a definite answer, the state is rejected.
 
-Reference motions are explicitly labeled `hand-constructed-reference` and are validated separately. They are not fed to the planner. All three scenes have physical bounds that constrain the entire body, preventing external bypasses. Their initial parameters are engineering demonstration cases, not measurements of real spaces.
+A mesh is an approximation of the CAD surface, accurate to the chosen deflection. Pick a deflection smaller than the clearance you care about.
 
-## Validation and limits
+Out of scope: several moving bodies, robot joints, forces and dynamics, deformable parts, and mesh-shaped moving bodies. Units are metres and radians, Z is up, and quaternions are stored as `[x, y, z, w]`.
 
-**“Solved” means the complete path passed the declared discrete checks. It is not a continuous collision-free certificate.** Each segment samples translation, angular change and a body-surface travel bound; endpoint-only checking is insufficient. Contact and numerical uncertainty are rejected. Path modification requires revalidation. See [validation](docs/validation.md).
+## Measurements
 
-One rigid body, static boxes/spheres, no gravity, forces, flexible parts, robot joints, CAD import or dynamics. Geometry units are metres, angles radians, Z is up, and serialized quaternions are `[x,y,z,w]`. The metrics describe geometric paths, not real-world maneuver safety or execution speed.
+From one Windows machine, Release build. Raw output is in [benchmarks/data](benchmarks/data).
 
-## Experiments
+- **Obstacle BVH.** 1,000 poses against 144 boxes: 134,830 pair tests without the BVH, 1,163 with it, and identical results.
+- **Triangle BVH.** 1,000 box poses against a 12,540-triangle torus: 24.1 million triangle tests without, 239 thousand with, and identical results.
+- **Tessellation.** The same torus at 0.5 mm deflection is watertight and within 0.27% of the B-rep volume. At 16 mm it is 2,592 triangles and within 1.0%.
+- **Planner.** In the 0.2.0 experiments, scenes A to C solved 360 of 360 runs (30 seeds, four configurations, 5 s each). With the opening in scene C narrowed by 15%, 12 of 30 solved within 1 s.
+
+More in [experiment notes](docs/experiments.md) and [CAD to triangle mesh](docs/cad-mesh.md).
+
+## Tests
+
+46 CTest cases. They compare against closed-form distances and against FCL, check that the BVH and the exhaustive search agree, check a meshed box against the analytic box, and cover the cases that are easy to get wrong: contact exactly at the tolerance, degenerate triangles, quaternion sign flips, cancelled searches, stale paths loaded against an edited scene. The viewer has its own replayed-input self-test.
 
 ```powershell
-python tools/experiments.py --suite baseline --runs 30 --seconds 5 --out results/new-baseline
-python tools/experiments.py --suite comparisons --runs 30 --seconds 5 --out results/new-comparisons
-python tools/design_experiments.py --exe build/windows/Release/passagelab_cli.exe --runs 30 --seconds 1 --out results/new-geometry-experiments
+ctest --test-dir build/windows -C Release --output-on-failure
+./build/windows/Release/passagelab_desktop.exe --ui-self-test
 ```
 
-Python is optional for running the application. The experiment runner uses the standard library; matplotlib is optional for charts. Reports retain failed runs, environment information, seeds, validation settings and query counts. Solved-only timing statistics are explicitly conditional on success. See [experiment notes](docs/experiments.md).
-
-For the migrated build add `--exe build/worktree/Release/passagelab_cli.exe`. Current evidence is under [worktree-0.2.0](benchmarks/data/worktree-0.2.0); previous 0.1.0/0.1.1 evidence and media remain unchanged. All failed experiment outcomes are retained alongside successes.
-
-## Project map
+## Layout
 
 ```text
-include/passagelab/       public domain and IO interfaces
-src/geometry.cpp         transforms, queries, BVH, state/motion validation
-src/planning.cpp         sampling, RRT-Connect, path verification and optimization
-src/ompl_adapter.cpp     OMPL comparison using shared geometry/motion checks
-src/io.cpp               strict JSON, SHA-256, reports
-src/scenes.cpp           parameterized demonstration construction
-apps/                    command-line and desktop entrypoints
-tests/                   analytical, randomized and integration regressions
-assets/scenes/           frozen inputs and separately labeled references
-benchmarks/              experiment definitions and selected raw evidence
-tools/                   build, package and experiment scripts
+include/passagelab/   public headers
+src/geometry.cpp      transforms, shape queries, obstacle BVH, state and motion checks
+src/mesh.cpp          welding, topology checks, triangle BVH, mesh queries
+src/cad.cpp           STEP reading and tessellation (the only file that includes OpenCASCADE)
+src/planning.cpp      sampling, RRT-Connect, path checking, shortcutting
+src/ompl_adapter.cpp  OMPL planner on the same checker
+src/io.cpp            JSON, hashing, reports
+apps/                 command-line tool and viewer
+tests/                unit and integration tests
+assets/               scenes and STEP files
+benchmarks/           experiment configs and recorded results
+tools/                build, packaging and recording scripts
 ```
 
-The original [Chinese project design](docs/project-design.zh-CN.md) records intended scope. [Implementation status](docs/implementation-status.md) records actual verification. Original source: [MIT](LICENSE). Dependencies: [third-party notices](THIRD_PARTY_NOTICES.md).
+## Further reading
+
+- [Algorithm notes](docs/algorithms.md) and [architecture](docs/architecture.md)
+- [CAD to triangle mesh](docs/cad-mesh.md)
+- [Validation](docs/validation.md): exactly what is sampled and when a path is rejected
+- [0.2.0 verification record](docs/implementation-status.md)
+- [Original design document](docs/project-design.zh-CN.md) (Chinese)
+
+PassageLab's own code is under the [MIT license](LICENSE). Dependencies keep their own licenses; see [third-party notices](THIRD_PARTY_NOTICES.md).

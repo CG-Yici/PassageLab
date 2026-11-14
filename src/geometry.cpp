@@ -1,4 +1,5 @@
 #include "passagelab/core.hpp"
+#include "passagelab/mesh.hpp"
 
 #include <algorithm>
 #include <array>
@@ -21,7 +22,16 @@ bool valid_part(const Part &p) {
         return finite(p.half) && (p.half.array() > 0).all();
     if (p.shape == Shape::Sphere)
         return std::isfinite(p.radius) && p.radius > 0;
+    if (p.shape == Shape::Mesh)
+        return p.mesh != nullptr;
     return false;
+}
+double part_extent(const Part &p) {
+    if (p.shape == Shape::Box)
+        return p.half.norm();
+    if (p.shape == Shape::Sphere)
+        return p.radius;
+    return p.mesh ? 0.5 * (p.mesh->bounds().max - p.mesh->bounds().min).norm() : 0.0;
 }
 Pose normalized(Pose p) {
     p.q.normalize();
@@ -249,6 +259,12 @@ bool valid_pose(const Pose &p) {
 Aabb world_aabb(const Part &p, const Pose &parent) {
     Pose t = compose(parent, p.pose);
     Vec3 e;
+    if (p.shape == Shape::Mesh && p.mesh) {
+        const Aabb &local = p.mesh->bounds();
+        const Vec3 centre = t.t + t.q * (0.5 * (local.min + local.max));
+        e = t.q.toRotationMatrix().cwiseAbs() * (0.5 * (local.max - local.min));
+        return {centre - e, centre + e};
+    }
     if (p.shape == Shape::Sphere)
         e = Vec3::Constant(p.radius);
     else
@@ -269,7 +285,7 @@ double body_radius(const Scene &s) {
     double r = 0;
     for (const auto &p : s.body) {
         Pose t = p.pose;
-        r = std::max(r, t.t.norm() + (p.shape == Shape::Box ? p.half.norm() : p.radius));
+        r = std::max(r, t.t.norm() + part_extent(p));
     }
     return r;
 }
@@ -288,6 +304,8 @@ std::vector<std::string> scene_errors(const Scene &s) {
         check_id(p);
         if (!valid_part(p))
             e.push_back("invalid body part: " + p.id);
+        else if (p.shape == Shape::Mesh)
+            e.push_back("mesh parts are supported as obstacles only: " + p.id);
     }
     for (const auto &p : s.obstacles) {
         check_id(p);
@@ -307,9 +325,22 @@ QueryResult query_pair(const Part &a, const Pose &ap, const Part &b, double tol)
         return result(Relation::Indeterminate, a, b, "invalid-input");
     const Pose aa = compose(ap, a.pose), bb = normalized(b.pose);
     const double scale = std::max({1.0, aa.t.cwiseAbs().maxCoeff(), bb.t.cwiseAbs().maxCoeff(),
-                                   (a.shape == Shape::Box ? a.half.norm() : a.radius),
-                                   (b.shape == Shape::Box ? b.half.norm() : b.radius)});
+                                   part_extent(a), part_extent(b)});
     tol += 32 * std::numeric_limits<double>::epsilon() * scale;
+    if (a.shape == Shape::Mesh)
+        return result(Relation::Indeterminate, a, b, "mesh-body-unsupported");
+    if (b.shape == Shape::Mesh) {
+        // Rigid transforms preserve distance, so the body is moved into the mesh frame and the
+        // triangles are never transformed.
+        auto q = b.mesh->query(a, compose(inverse(bb), aa), tol);
+        q.body_id = a.id;
+        q.obstacle_id = b.id;
+        if (q.on_body)
+            q.on_body = bb.t + bb.q * *q.on_body;
+        if (q.on_obstacle)
+            q.on_obstacle = bb.t + bb.q * *q.on_obstacle;
+        return q;
+    }
     if (a.shape == Shape::Sphere && b.shape == Shape::Sphere)
         return sphere_pair(a, ap, b, tol);
     if (a.shape == Shape::Sphere)

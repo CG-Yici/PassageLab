@@ -1,0 +1,46 @@
+{
+  "agrees": true,
+  "box": {
+    "agrees": true,
+    "brute": {
+      "nodes_visited": 0,
+      "seconds": 9.3923586,
+      "triangle_tests": 24122947
+    },
+    "bvh": {
+      "nodes_visited": 230611,
+      "seconds": 0.1369341,
+      "triangle_tests": 239070
+    },
+    "relations": {
+      "overlapping": 69,
+      "separated": 931
+    }
+  },
+  "build": "Release",
+  "bvh_nodes": 8191,
+  "file": "results/mesh/torus.step",
+  "git_commit": "89649c6",
+  "linear_deflection_m": 0.0005,
+  "mesh_sha256": "ef9049e659628c1cad2bc8e6a7fdaa1ff682a93efb736b04bbafe498742289ce",
+  "samples": 1000,
+  "solid": true,
+  "sphere": {
+    "agrees": true,
+    "brute": {
+      "nodes_visited": 0,
+      "seconds": 0.1835654,
+      "triangle_tests": 12540000
+    },
+    "bvh": {
+      "nodes_visited": 93540,
+      "seconds": 0.00474,
+      "triangle_tests": 86430
+    },
+    "relations": {
+      "overlapping": 62,
+      "separated": 938
+    }
+  },
+  "triangles": 12540
+}

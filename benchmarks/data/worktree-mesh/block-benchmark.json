@@ -1,0 +1,46 @@
+{
+  "agrees": true,
+  "box": {
+    "agrees": true,
+    "brute": {
+      "nodes_visited": 0,
+      "seconds": 6.9049271,
+      "triangle_tests": 17999385
+    },
+    "bvh": {
+      "nodes_visited": 286128,
+      "seconds": 0.1816871,
+      "triangle_tests": 282330
+    },
+    "relations": {
+      "overlapping": 129,
+      "separated": 871
+    }
+  },
+  "build": "Release",
+  "bvh_nodes": 6615,
+  "file": "results/mesh/filleted-block.step",
+  "git_commit": "89649c6",
+  "linear_deflection_m": 0.0005,
+  "mesh_sha256": "4cc9ef1f8e535fc35a774bd885fffe216fa80bb01776dd7041a21ae664d1fb07",
+  "samples": 1000,
+  "solid": true,
+  "sphere": {
+    "agrees": true,
+    "brute": {
+      "nodes_visited": 0,
+      "seconds": 0.1394712,
+      "triangle_tests": 9452000
+    },
+    "bvh": {
+      "nodes_visited": 87079,
+      "seconds": 0.0041232,
+      "triangle_tests": 64253
+    },
+    "relations": {
+      "overlapping": 122,
+      "separated": 878
+    }
+  },
+  "triangles": 9452
+}

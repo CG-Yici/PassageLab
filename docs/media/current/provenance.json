@@ -1,0 +1,26 @@
+{
+  "source": "Actual PassageLab OpenGL frames; GIFs are the 3D viewport cropped from the full window",
+  "scenes": {
+    "a": [
+      "--demo",
+      "0"
+    ],
+    "b": [
+      "--demo",
+      "1"
+    ],
+    "c": [
+      "--demo",
+      "2"
+    ],
+    "d": [
+      "--scene",
+      "assets/cad/D-step-aperture.json"
+    ]
+  },
+  "seed_policy": "First solved seed in 42..49, fixed operation limits, wall-clock disabled",
+  "frames_per_scene": 72,
+  "git_commit": "89649c642d3be32be4347cc4a9a504768b8a7262",
+  "git_tracked_dirty": true,
+  "executable_sha256": "4e35bc236448acb1affb629dde201894c48dec108b29641dd48c4e1c66cdadb2"
+}

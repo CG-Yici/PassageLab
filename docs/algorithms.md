@@ -18,6 +18,10 @@ The original design selected FCL as the box-distance backend. Testing found argu
 
 An obstacle BVH stores world AABBs. Collision traversal expands by the clearance/contact threshold. Distance traversal uses AABB distance lower bounds to prune nodes only when they cannot improve the current minimum. The full-traversal mode is retained for comparison. Physical boundary clearance participates in state validity and distance evaluation.
 
+## Triangle meshes from CAD
+
+A STEP obstacle is tessellated per face by OpenCASCADE, then assembled, welded and checked by PassageLab. Box and sphere bodies are queried against it through a triangle BVH: a 13-axis separating-axis test and vertex/edge feature distances for boxes, branch-and-bound closest point for spheres. A closed, consistently oriented mesh is a solid and contains bodies that touch no triangle; inside/outside comes from feature pseudonormals with the generalized winding number as an audit. Details, measurements and limits are in [CAD to triangle mesh](cad-mesh.md).
+
 ## RRT-Connect
 
 Each tree retains its start/goal identity when active trees swap. Extend searches the nearest node, steers using the shared pose interpolation, and validates the complete proposed edge. Connect repeats extension until reached, trapped or stopped. Parent chains are assembled in start-to-goal order, and the candidate is independently checked before `Solved` is returned.

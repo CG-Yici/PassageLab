@@ -20,6 +20,6 @@ flowchart TD
 
 The desktop's worker receives a scene snapshot. A request ID prevents a cancelled or stale worker from publishing into a newer scene. Edits update revision/hash and invalidate results. OpenGL calls remain on the UI thread. Progress and completed results cross an explicit synchronization boundary.
 
-FCL and OMPL types remain within their implementation files. FCL audits separated OBB distance queries and provides independent collision tests. SAT classifies collision; a box-specific feature distance supplies authoritative separated distance/witnesses. OMPL is a comparison planner, not the source of the self-written planner's paths.
+FCL, OMPL and OpenCASCADE types remain within their implementation files; `src/cad.cpp` is the only file that includes the CAD kernel, and it hands the rest of the library a plain indexed triangle mesh. FCL audits separated OBB distance queries and provides independent collision tests. SAT classifies collision; a box-specific feature distance supplies authoritative separated distance/witnesses. OMPL is a comparison planner, not the source of the self-written planner's paths.
 
 The content hash is SHA-256 of canonical JSON computation inputs, excluding the hash itself and revision number. The current Windows implementation uses CNG. Loading a scene recomputes its hash. Loading a path grants no validity; endpoint, metadata and full motion checks must run again.

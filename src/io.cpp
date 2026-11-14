@@ -5,6 +5,8 @@
 #include <cmath>
 #include <fstream>
 #include <iomanip>
+#include <limits>
+#include <passagelab/cad.hpp>
 #include <passagelab/io.hpp>
 #include <sstream>
 #include <thread>
@@ -102,17 +104,70 @@ PlannerConfig read_config(const Json &j) {
         throw std::runtime_error("Invalid planner configuration");
     return c;
 }
-Json part_json(const Part &p) {
+std::string utf8(const std::filesystem::path &p) {
+    const auto s = p.generic_u8string();
+    return {s.begin(), s.end()};
+}
+std::filesystem::path from_utf8(const std::string &s) {
+    return std::filesystem::path(std::u8string(s.begin(), s.end()));
+}
+Json part_json(const Part &p, const std::filesystem::path &directory) {
+    if (p.shape == Shape::Mesh) {
+        // The file is written relative to the scene so a scene and its CAD files move together.
+        std::filesystem::path file = from_utf8(p.source.file);
+        if (!directory.empty() && file.is_absolute()) {
+            std::error_code error;
+            const auto relative =
+                std::filesystem::relative(file, std::filesystem::absolute(directory), error);
+            if (!error && !relative.empty())
+                file = relative;
+        }
+        Json j = {{"id", p.id},
+                  {"shape", "mesh"},
+                  {"pose", pose_json(p.pose)},
+                  {"source",
+                   {{"format", "step"},
+                    {"file", utf8(file)},
+                    {"linear_deflection", p.source.linear_deflection},
+                    {"angular_deflection", p.source.angular_deflection},
+                    {"scale", p.source.scale}}}};
+        if (p.mesh)
+            j["mesh"] = {{"sha256", p.mesh->digest()},
+                         {"vertices", p.mesh->report().vertices},
+                         {"triangles", p.mesh->report().triangles},
+                         {"solid", p.mesh->solid()}};
+        return j;
+    }
     return {{"id", p.id},
             {"shape", p.shape == Shape::Box ? "box" : "sphere"},
             {"half_extents", vec(p.half)},
             {"radius", p.radius},
             {"pose", pose_json(p.pose)}};
 }
-Part read_part(const Json &j) {
+Part read_part(const Json &j, const std::filesystem::path &directory) {
     Part p;
     p.id = j.at("id").get<std::string>();
     auto shape = j.at("shape").get<std::string>();
+    if (shape == "mesh") {
+        const auto &source = j.at("source");
+        if (source.at("format") != "step")
+            throw std::runtime_error("Unsupported mesh source format");
+        p.shape = Shape::Mesh;
+        p.pose = read_pose(j.at("pose"));
+        p.source.linear_deflection = finite_number(source, "linear_deflection");
+        p.source.angular_deflection = finite_number(source, "angular_deflection");
+        p.source.scale = finite_number(source, "scale");
+        std::filesystem::path file = from_utf8(source.at("file").get<std::string>());
+        if (p.id.empty() || file.empty())
+            throw std::runtime_error("Mesh part needs a nonempty ID and source file");
+        if (file.is_relative())
+            file = directory / file;
+        file = std::filesystem::absolute(file).lexically_normal();
+        p.source.file = utf8(file);
+        // The triangles are always rebuilt from the CAD file; a stored digest is never trusted.
+        p.mesh = std::make_shared<MeshShape>(tessellate_step(file, p.source).mesh);
+        return p;
+    }
     if (shape != "box" && shape != "sphere")
         throw std::runtime_error("Unsupported shape: " + shape);
     p.shape = shape == "box" ? Shape::Box : Shape::Sphere;
@@ -159,6 +214,9 @@ Json config_json(const PlannerConfig &c) {
     return j;
 }
 Json scene_json(const Scene &s) {
+    return scene_json(s, {});
+}
+Json scene_json(const Scene &s, const std::filesystem::path &directory) {
     Json j = {{"schema_version", 1},
               {"scene_id", s.id},
               {"scene_revision", s.revision},
@@ -174,32 +232,59 @@ Json scene_json(const Scene &s) {
     j["moving_body"] = Json::array();
     j["obstacles"] = Json::array();
     for (const auto &p : s.body)
-        j["moving_body"].push_back(part_json(p));
+        j["moving_body"].push_back(part_json(p, directory));
     for (const auto &p : s.obstacles)
-        j["obstacles"].push_back(part_json(p));
+        j["obstacles"].push_back(part_json(p, directory));
     return j;
 }
 std::string scene_hash(const Scene &s) {
     Json j = scene_json(s);
     j.erase("scene_hash");
     j.erase("scene_revision");
+    // A mesh is identified by its triangles (the digest) and tessellation settings, not by where
+    // the CAD file happens to be stored.
+    for (auto &obstacle : j["obstacles"])
+        if (obstacle.contains("source"))
+            obstacle["source"].erase("file");
     const std::string bytes = j.dump();
+    return "sha256:" + sha256_hex(bytes.data(), bytes.size());
+}
+std::string sha256_hex(const void *data, std::size_t size) {
+    if (size > std::numeric_limits<ULONG>::max())
+        throw std::runtime_error("SHA256 input too large");
     unsigned char digest[32];
     NTSTATUS status = BCryptHash(BCRYPT_SHA256_ALG_HANDLE, nullptr, 0,
-                                 reinterpret_cast<PUCHAR>(const_cast<char *>(bytes.data())),
-                                 static_cast<ULONG>(bytes.size()), digest, 32);
+                                 reinterpret_cast<PUCHAR>(const_cast<void *>(data)),
+                                 static_cast<ULONG>(size), digest, 32);
     if (status < 0)
         throw std::runtime_error("SHA256 failed");
     std::ostringstream out;
-    out << "sha256:" << std::hex << std::setfill('0');
+    out << std::hex << std::setfill('0');
     for (auto b : digest)
         out << std::setw(2) << int(b);
     return out.str();
 }
+Json mesh_report_json(const MeshReport &r) {
+    return {{"vertices", r.vertices},
+            {"triangles", r.triangles},
+            {"degenerate_triangles", r.degenerate_triangles},
+            {"duplicate_triangles", r.duplicate_triangles},
+            {"boundary_edges", r.boundary_edges},
+            {"nonmanifold_edges", r.nonmanifold_edges},
+            {"inconsistent_edges", r.inconsistent_edges},
+            {"components", r.components},
+            {"closed", r.closed},
+            {"oriented", r.oriented},
+            {"area_m2", r.area},
+            {"volume_m3", r.volume},
+            {"min_edge_m", r.min_edge},
+            {"max_edge_m", r.max_edge},
+            {"bounds", {{"min", vec(r.bounds.min)}, {"max", vec(r.bounds.max)}}}};
+}
 void refresh_hash(Scene &s) {
     s.hash = scene_hash(s);
 }
-Scene scene_from_json(const Json &j) {
+Scene scene_from_json(const Json &j, const std::filesystem::path &directory) {
     if (!j.at("schema_version").is_number_integer() || j.at("schema_version") != 1 || j.at("units") != "m" ||
         j.at("axis_convention") != "right-handed-z-up" || j.at("quaternion_order") != "xyzw")
         throw std::runtime_error("Unsupported scene version or coordinate convention");
@@ -214,9 +299,9 @@ Scene scene_from_json(const Json &j) {
     s.goal = read_pose(j.at("goal_pose"));
     s.config = read_config(j.at("default_planning_config"));
     for (const auto &p : j.at("moving_body"))
-        s.body.push_back(read_part(p));
+        s.body.push_back(read_part(p, directory));
     for (const auto &p : j.at("obstacles"))
-        s.obstacles.push_back(read_part(p));
+        s.obstacles.push_back(read_part(p, directory));
     auto errors = scene_errors(s);
     if (!errors.empty())
         throw std::runtime_error("Invalid scene: " + errors.front());
@@ -224,7 +309,7 @@ Scene scene_from_json(const Json &j) {
     return s;
 }
 Scene load_scene(const std::filesystem::path &p) {
-    return scene_from_json(read_json(p));
+    return scene_from_json(read_json(p), std::filesystem::absolute(p).parent_path());
 }
 void write_json(const Json &j, const std::filesystem::path &p) {
     if (p.has_parent_path())
@@ -239,7 +324,7 @@ void write_json(const Json &j, const std::filesystem::path &p) {
 void save_scene(const Scene &s, const std::filesystem::path &p) {
     auto copy = s;
     refresh_hash(copy);
-    write_json(scene_json(copy), p);
+    write_json(scene_json(copy, std::filesystem::absolute(p).parent_path()), p);
 }
 Json path_json(const Path &p) {
     Json j = {{"schema_version", 1},
